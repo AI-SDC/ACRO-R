@@ -34,9 +34,9 @@ Pivot table
 # Initilaise an ACRO object
 acro_init()
 # Call the acro_pivot_table function
-table = acro_pivot_table(charity_data,
-                         values= "inc_grants",
-                         index="grant_type",
-                         aggfunc="mean")
+table = acro_pivot_table(data=nursery_data,
+                         index = "parents",
+                         values = "children",
+                         aggfunc = list("mean", "std"))
 }
 }

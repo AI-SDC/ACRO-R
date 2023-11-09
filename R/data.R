@@ -12,5 +12,5 @@
 #' @source {}
 #'
 #' @examples
-#' data(charity_data)
-"charity_data"
+#' data(nursery_data)
+"nursery_data"

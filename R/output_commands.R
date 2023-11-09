@@ -9,7 +9,7 @@
 #' @examples
 #' {
 #' acro_init()
-#' acro_crosstab(index=charity_data[,c("year")], columns= charity_data[,c("grant_type")])
+#' acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
 #' acro_rename_output("output_0", "crosstab")
 #' }
 
@@ -17,7 +17,7 @@ acro_rename_output <- function(old, new)
 {
   "Rename an output"
   if (is.null(ac)) {
-    stop("ACRO has not been initialized. Please call acro_init() first.")
+    stop("ACRO has not been initialised. Please first call acro_init().")
   }
   ac$rename_output(old, new)
 }
@@ -32,7 +32,7 @@ acro_rename_output <- function(old, new)
 #' @examples
 #' {
 #' acro_init()
-#' acro_crosstab(index=charity_data[,c("year")], columns= charity_data[,c("grant_type")])
+#' acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
 #' acro_remove_output("output_0")
 #' }
 
@@ -40,7 +40,7 @@ acro_remove_output <- function(name)
 {
   "Remove an output"
   if (is.null(ac)) {
-    stop("ACRO has not been initialized. Please call acro_init() first.")
+    stop("ACRO has not been initialised. Please first call acro_init().")
   }
   ac$remove_output(name)
 }
@@ -56,7 +56,7 @@ acro_remove_output <- function(name)
 #' @examples
 #' {
 #' acro_init()
-#' acro_crosstab(index=charity_data[,c("year")], columns= charity_data[,c("grant_type")])
+#' acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
 #' acro_add_comments("output_0", "This is a crosstab")
 #' }
 
@@ -64,7 +64,7 @@ acro_add_comments <- function(name, comment)
 {
   "Add comments to an output"
   if (is.null(ac)) {
-    stop("ACRO has not been initialized. Please call acro_init() first.")
+    stop("ACRO has not been initialised. Please first call acro_init().")
   }
   ac$add_comments(name, comment)
 }
@@ -87,7 +87,7 @@ acro_custom_output <- function(filename, comment=NULL)
 {
   "Add an unsupported output"
   if (is.null(ac)) {
-    stop("ACRO has not been initialized. Please call acro_init() first.")
+    stop("ACRO has not been initialised. Please first call acro_init().")
   }
   ac$custom_output(filename, comment)
 }
@@ -103,7 +103,7 @@ acro_custom_output <- function(filename, comment=NULL)
 #' @examples
 #' {
 #' acro_init()
-#' acro_crosstab(index=charity_data[,c("year")], columns= charity_data[,c("grant_type")])
+#' acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
 #' acro_add_exception("output_0", "This is not disclosive")
 #' }
 
@@ -111,7 +111,7 @@ acro_add_exception <- function(name, reason)
 {
   "Add an exception request to an output"
   if (is.null(ac)) {
-    stop("ACRO has not been initialized. Please call acro_init() first.")
+    stop("ACRO has not been initialised. Please first call acro_init().")
   }
   ac$add_exception(name, reason)
 }
@@ -124,7 +124,7 @@ acro_add_exception <- function(name, reason)
 #' @examples
 #' {
 #' acro_init()
-#' acro_crosstab(index=charity_data[,c("year")], columns= charity_data[,c("grant_type")])
+#' acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
 #' acro_print_outputs()
 #' }
 
@@ -132,7 +132,7 @@ acro_print_outputs <- function()
 {
   "Prints outputs to console"
   if (is.null(ac)) {
-    stop("ACRO has not been initialized. Please call acro_init() first.")
+    stop("ACRO has not been initialised. Please first call acro_init().")
   }
   ac$print_outputs()
 }
@@ -155,7 +155,7 @@ acro_finalise <- function(path, ext)
 {
   "Write outputs to file"
   if (is.null(ac)) {
-    stop("ACRO has not been initialized. Please call acro_init() first.")
+    stop("ACRO has not been initialised. Please first call acro_init().")
   }
   ac$finalise(path, ext)
 }

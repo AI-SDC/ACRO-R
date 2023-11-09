@@ -1,0 +1,52 @@
+{
+    "version": "0.4.3",
+    "results": {
+        "crosstab": {
+            "uid": "crosstab",
+            "status": "pass",
+            "type": "table",
+            "properties": {
+                "method": "crosstab"
+            },
+            "files": [
+                {
+                    "name": "crosstab_0.csv",
+                    "sdc": {
+                        "summary": {
+                            "suppressed": false,
+                            "negative": 0,
+                            "missing": 0,
+                            "threshold": 0,
+                            "p-ratio": 0,
+                            "nk-rule": 0
+                        },
+                        "cells": {
+                            "negative": [],
+                            "missing": [],
+                            "threshold": [],
+                            "p-ratio": [],
+                            "nk-rule": []
+                        }
+                    }
+                }
+            ],
+            "outcome": {
+                "convenient": {
+                    "not_recom": "ok",
+                    "priority": "ok",
+                    "recommended": "ok"
+                },
+                "inconv": {
+                    "not_recom": "ok",
+                    "priority": "ok",
+                    "recommended": "ok"
+                }
+            },
+            "command": "crosstab()",
+            "summary": "pass",
+            "timestamp": "2023-11-08T23:10:11.499420",
+            "comments": [],
+            "exception": ""
+        }
+    }
+}

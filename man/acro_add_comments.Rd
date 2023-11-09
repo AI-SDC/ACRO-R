@@ -17,7 +17,7 @@ Add comments to outputs
 \examples{
 {
 acro_init()
-acro_crosstab(index=charity_data[,c("year")], columns= charity_data[,c("grant_type")])
+acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
 acro_add_comments("output_0", "This is a crosstab")
 }
 }

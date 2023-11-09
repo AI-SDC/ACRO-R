@@ -13,14 +13,14 @@
 #' # Initilaise an ACRO object
 #' acro_init()
 #' # Call the acro_crosstab function
-#' table = acro_crosstab(index=charity_data[,c("year")], columns= charity_data[,c("grant_type")])
+#' table = acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
 #' }
 
 acro_crosstab <- function(index, columns, values=NULL, aggfunc=NULL)
 {
   "ACRO crosstab"
   if (is.null(ac)) {
-    stop("ACRO has not been initialized. Please call acro_init() first.")
+    stop("ACRO has not been initialised. Please first call acro_init()")
   }
   table = ac$crosstab(index, columns, values=values, aggfunc=aggfunc)
   return(table)
@@ -42,13 +42,13 @@ acro_crosstab <- function(index, columns, values=NULL, aggfunc=NULL)
 #' # Initilaise an ACRO object
 #' acro_init()
 #' # Call the acro_table function
-#' table = acro_table(index=charity_data[,c("year")], columns= charity_data[,c("grant_type")])
+#' table = acro_table(index=nursery_data$recommend, columns = nursery_data$parents)
 #' }
 
 acro_table <- function(index, columns, dnn=NULL, deparse.level=0, ...)
 {
   if (is.null(ac)) {
-    stop("ACRO has not been initialized. Please call acro_init() first.")
+    stop("ACRO has not been initialised. Please first call acro_init().")
   }
   "ACRO crosstab without aggregation function"
   if (is.null(dnn)) {
@@ -102,17 +102,17 @@ acro_table <- function(index, columns, dnn=NULL, deparse.level=0, ...)
 #' # Initilaise an ACRO object
 #' acro_init()
 #' # Call the acro_pivot_table function
-#' table = acro_pivot_table(charity_data,
-#'                          values= "inc_grants",
-#'                          index="grant_type",
-#'                          aggfunc="mean")
+#' table = acro_pivot_table(data=nursery_data,
+#'                          index = "parents",
+#'                          values = "children",
+#'                          aggfunc = list("mean", "std"))
 #' }
 
 acro_pivot_table <- function(data, values=NULL, index=NULL, columns=NULL, aggfunc="mean")
 {
   "ACRO pivot table"
   if (is.null(ac)) {
-    stop("ACRO has not been initialized. Please call acro_init() first.")
+    stop("ACRO has not been initialised. Please first call acro_init()")
   }
   table = ac$pivot_table(data, values=values, index=index, columns=columns, aggfunc=aggfunc)
   return(table)

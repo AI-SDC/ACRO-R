@@ -28,6 +28,6 @@ Compute a simple cross tabulation of two (or more) factors.
 # Initilaise an ACRO object
 acro_init()
 # Call the acro_table function
-table = acro_table(index=charity_data[,c("year")], columns= charity_data[,c("grant_type")])
+table = acro_table(index=nursery_data$recommend, columns = nursery_data$parents)
 }
 }
