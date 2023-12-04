@@ -29,14 +29,3 @@ Cross tabulation of the data.
 \description{
 Pivot table
 }
-\examples{
-{
-# Initilaise an ACRO object
-acro_init()
-# Call the acro_pivot_table function
-table = acro_pivot_table(data=nursery_data,
-                         index = "parents",
-                         values = "children",
-                         aggfunc = list("mean", "std"))
-}
-}

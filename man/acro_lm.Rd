@@ -17,22 +17,3 @@ Regression Results Wrapper.
 \description{
 Fits Ordinary Least Squares Regression
 }
-\examples{
-# Convert the 'recommend' column to an integer scale
-nursery_data$recommend <- as.character(nursery_data$recommend)
-nursery_data$recommend[which(nursery_data$recommend=="not_recom")] <- "0"
-nursery_data$recommend[which(nursery_data$recommend=="recommend")] <- "1"
-nursery_data$recommend[which(nursery_data$recommend=="very_recom")] <- "2"
-nursery_data$recommend[which(nursery_data$recommend=="priority")] <- "3"
-nursery_data$recommend[which(nursery_data$recommend=="spec_prior")] <- "4"
-nursery_data$recommend <- as.numeric(nursery_data$recommend)
-
-# extract relevant columns
-df = nursery_data[, c("recommend", "children")]
-# drop rows with missing values
-df = df[complete.cases(df), ]
-# formula to fit
-formula = "recommend ~ children"
-acro_init()
-acro_lm(formula=formula, data=df)
-}

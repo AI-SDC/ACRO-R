@@ -9,14 +9,11 @@ acro_finalise(path, ext)
 \arguments{
 \item{path}{Name of a folder to save outputs.}
 
-\item{ext}{Extension of the results file. Valid extensions: {json, xlsx}.}
+\item{ext}{Extension of the results file. Valid extensions are json or xlsx.}
+}
+\value{
+No return value, called for side effects
 }
 \description{
 Creates a results file for checking.
-}
-\examples{
-{
-acro_init()
-acro_finalise("results", "json")
-}
 }

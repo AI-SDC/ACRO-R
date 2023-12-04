@@ -11,12 +11,9 @@ acro_custom_output(filename, comment = NULL)
 
 \item{comment}{An optional comment.}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Adds an unsupported output to the results dictionary
-}
-\examples{
-{
-acro_init()
-acro_custom_output("XandY.jpeg")
-}
 }

@@ -6,13 +6,9 @@
 \usage{
 acro_print_outputs()
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Prints the current results dictionary.
-}
-\examples{
-{
-acro_init()
-acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-acro_print_outputs()
-}
 }

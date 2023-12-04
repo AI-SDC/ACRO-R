@@ -3,3 +3,5 @@
 ^charity_data$
 ^nursery_data$
 ^LICENSE\.md$
+^dev_history\.R$
+^\.github$

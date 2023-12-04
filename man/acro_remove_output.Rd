@@ -9,13 +9,9 @@ acro_remove_output(name)
 \arguments{
 \item{name}{Key specifying which output to remove, e.g., 'output_0'.}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Remove outputs
-}
-\examples{
-{
-acro_init()
-acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-acro_remove_output("output_0")
-}
 }

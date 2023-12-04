@@ -11,13 +11,9 @@ acro_add_comments(name, comment)
 
 \item{comment}{The comment.}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Add comments to outputs
-}
-\examples{
-{
-acro_init()
-acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-acro_add_comments("output_0", "This is a crosstab")
-}
 }

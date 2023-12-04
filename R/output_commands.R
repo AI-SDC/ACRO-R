@@ -3,46 +3,30 @@
 #' @param old The old name of the output.
 #' @param new The new name of the output.
 #'
-#' @return NULL
+#' @return No return value, called for side effects
 #' @export
-#'
-#' @examples
-#' {
-#' acro_init()
-#' acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-#' acro_rename_output("output_0", "crosstab")
-#' }
 
 acro_rename_output <- function(old, new)
 {
-  "Rename an output"
-  if (is.null(ac)) {
+  if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
-  ac$rename_output(old, new)
+  acroEnv$ac$rename_output(old, new)
 }
 
 #' Remove outputs
 #'
 #' @param name  Key specifying which output to remove, e.g., 'output_0'.
 #'
-#' @return NULL
+#' @return No return value, called for side effects
 #' @export
-#'
-#' @examples
-#' {
-#' acro_init()
-#' acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-#' acro_remove_output("output_0")
-#' }
 
 acro_remove_output <- function(name)
 {
-  "Remove an output"
-  if (is.null(ac)) {
+  if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
-  ac$remove_output(name)
+  acroEnv$ac$remove_output(name)
 }
 
 #' Add comments to outputs
@@ -50,23 +34,15 @@ acro_remove_output <- function(name)
 #' @param name The name of the output.
 #' @param comment The comment.
 #'
-#' @return NULL
+#' @return No return value, called for side effects
 #' @export
-#'
-#' @examples
-#' {
-#' acro_init()
-#' acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-#' acro_add_comments("output_0", "This is a crosstab")
-#' }
 
 acro_add_comments <- function(name, comment)
 {
-  "Add comments to an output"
-  if (is.null(ac)) {
+  if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
-  ac$add_comments(name, comment)
+  acroEnv$ac$add_comments(name, comment)
 }
 
 #' Adds an unsupported output to the results dictionary
@@ -74,22 +50,15 @@ acro_add_comments <- function(name, comment)
 #' @param filename The name of the file that will be added to the list of the outputs.
 #' @param comment An optional comment.
 #'
-#' @return NULL
+#' @return No return value, called for side effects
 #' @export
-#'
-#' @examples
-#' {
-#' acro_init()
-#' acro_custom_output("XandY.jpeg")
-#' }
 
 acro_custom_output <- function(filename, comment=NULL)
 {
-  "Add an unsupported output"
-  if (is.null(ac)) {
+  if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
-  ac$custom_output(filename, comment)
+  acroEnv$ac$custom_output(filename, comment)
 }
 
 #' Adds an exception request to an output.
@@ -97,65 +66,42 @@ acro_custom_output <- function(filename, comment=NULL)
 #' @param name The name of the output.
 #' @param reason The comment.
 #'
-#' @return NULL
+#' @return No return value, called for side effects
 #' @export
-#'
-#' @examples
-#' {
-#' acro_init()
-#' acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-#' acro_add_exception("output_0", "This is not disclosive")
-#' }
 
 acro_add_exception <- function(name, reason)
 {
-  "Add an exception request to an output"
-  if (is.null(ac)) {
+  if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
-  ac$add_exception(name, reason)
+  acroEnv$ac$add_exception(name, reason)
 }
 
 #' Prints the current results dictionary.
 #'
-#' @return NULL
+#' @return No return value, called for side effects
 #' @export
-#'
-#' @examples
-#' {
-#' acro_init()
-#' acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-#' acro_print_outputs()
-#' }
 
 acro_print_outputs <- function()
 {
-  "Prints outputs to console"
-  if (is.null(ac)) {
+  if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
-  ac$print_outputs()
+  acroEnv$ac$print_outputs()
 }
 
 #' Creates a results file for checking.
 #'
 #' @param path Name of a folder to save outputs.
-#' @param ext Extension of the results file. Valid extensions: {json, xlsx}.
+#' @param ext Extension of the results file. Valid extensions are json or xlsx.
 #'
-#' @return NULL
+#' @return No return value, called for side effects
 #' @export
-#'
-#' @examples
-#' {
-#' acro_init()
-#' acro_finalise("results", "json")
-#' }
 
 acro_finalise <- function(path, ext)
 {
-  "Write outputs to file"
-  if (is.null(ac)) {
+  if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
-  ac$finalise(path, ext)
+  acroEnv$ac$finalise(path, ext)
 }

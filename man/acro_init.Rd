@@ -2,13 +2,16 @@
 % Please edit documentation in R/acro_init.R
 \name{acro_init}
 \alias{acro_init}
-\title{Initialize an ACRO object}
+\title{Initialise an ACRO object}
 \usage{
-acro_init()
+acro_init(suppress = FALSE)
+}
+\arguments{
+\item{suppress}{Whether to automatically apply suppression.}
+}
+\value{
+No return value, called for side effects
 }
 \description{
-Initialize an ACRO object
-}
-\examples{
-acro_init()
+Initialise an ACRO object
 }

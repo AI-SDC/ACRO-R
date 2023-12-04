@@ -21,11 +21,3 @@ Cross tabulation of the data
 \description{
 Compute a simple cross tabulation of two (or more) factors.
 }
-\examples{
-{
-# Initilaise an ACRO object
-acro_init()
-# Call the acro_crosstab function
-table = acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-}
-}

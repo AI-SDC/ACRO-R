@@ -1,17 +1,12 @@
-install_acro <- function(..., envname = "r-acro") {
-    reticulate::py_install("acro", envname = envname, ...)
-}
-
-#' Initialize an ACRO object
+#' Initialise an ACRO object
 #'
-#' @return NULL
+#' @param suppress Whether to automatically apply suppression.
+#'
+#' @return No return value, called for side effects
 #' @export
-#'
-#' @examples acro_init()
-acro_init <- function() {
-  if (!reticulate::py_module_available("acro")) {
-    install_acro()
-  }
-  acro <- reticulate::import("acro")
-  ac <<- acro$ACRO()
+
+acro_init <- function(suppress=FALSE) {
+  create_virtualenv()
+  acro <- reticulate::import("acro", delay_load = TRUE)
+  acroEnv$ac  <- acro$ACRO(suppress=suppress)
 }

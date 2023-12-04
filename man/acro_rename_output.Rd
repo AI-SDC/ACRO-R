@@ -11,13 +11,9 @@ acro_rename_output(old, new)
 
 \item{new}{The new name of the output.}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Rename outputs
-}
-\examples{
-{
-acro_init()
-acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-acro_rename_output("output_0", "crosstab")
-}
 }

@@ -19,25 +19,3 @@ Regression Results Wrapper
 \description{
 Fits Logit or Probit model.
 }
-\examples{
-# Convert the 'recommend' column to an integer scale
-nursery_data$recommend <- as.character(nursery_data$recommend)
-nursery_data$recommend[which(nursery_data$recommend=="not_recom")] <- "0"
-nursery_data$recommend[which(nursery_data$recommend=="recommend")] <- "1"
-nursery_data$recommend[which(nursery_data$recommend=="very_recom")] <- "2"
-nursery_data$recommend[which(nursery_data$recommend=="priority")] <- "3"
-nursery_data$recommend[which(nursery_data$recommend=="spec_prior")] <- "4"
-nursery_data$recommend <- as.numeric(nursery_data$recommend)
-# extract relevant columns
-df = nursery_data[, c("finance", "children")]
-# drop rows with missing values
-df = df[complete.cases(df), ]
-# convert finance to numeric
-df = transform(df, finance = as.numeric(finance))
-# subtract 1 to make 1s and 2S into 0a and 1s
-df$finance <- df$finance -1
-# formula to fit
-formula = "finance ~ children"
-acro_init()
-acro_glm(formula=formula, data=df, family="probit")
-}

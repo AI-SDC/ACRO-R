@@ -11,13 +11,9 @@ acro_add_exception(name, reason)
 
 \item{reason}{The comment.}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Adds an exception request to an output.
-}
-\examples{
-{
-acro_init()
-acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-acro_add_exception("output_0", "This is not disclosive")
-}
 }

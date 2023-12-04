@@ -7,22 +7,13 @@
 #'
 #' @return Cross tabulation of the data
 #' @export
-#'
-#'@examples
-#'{
-#' # Initilaise an ACRO object
-#' acro_init()
-#' # Call the acro_crosstab function
-#' table = acro_crosstab(index=nursery_data$health, columns = nursery_data$finance)
-#' }
 
 acro_crosstab <- function(index, columns, values=NULL, aggfunc=NULL)
 {
-  "ACRO crosstab"
-  if (is.null(ac)) {
+  if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  table = ac$crosstab(index, columns, values=values, aggfunc=aggfunc)
+  table = acroEnv$ac$crosstab(index, columns, values=values, aggfunc=aggfunc)
   return(table)
 }
 
@@ -32,56 +23,48 @@ acro_crosstab <- function(index, columns, values=NULL, aggfunc=NULL)
 #' @param columns Values to group by in the columns.
 #' @param dnn The names to be given to the dimensions in the result
 #' @param deparse.level Controls how the default `dnn` is constructed.
-#' @param ... Any other parameteres.
+#' @param ... Any other parameters.
 #'
 #' @return Cross tabulation of the data
 #' @export
-#'
-#' @examples
-#'{
-#' # Initilaise an ACRO object
-#' acro_init()
-#' # Call the acro_table function
-#' table = acro_table(index=nursery_data$recommend, columns = nursery_data$parents)
-#' }
 
 acro_table <- function(index, columns, dnn=NULL, deparse.level=0, ...)
 {
-  if (is.null(ac)) {
+  if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
   "ACRO crosstab without aggregation function"
   if (is.null(dnn)) {
     if (deparse.level == 0) {
-      row_names <- list("")
-      col_names <- list("")
+      acroEnv$row_names <- list("")
+      acroEnv$col_names <- list("")
     } else if (deparse.level == 1) {
       tryCatch({
         index_symbol <- admiraldev::assert_symbol(substitute(index))
-        row_names <- list(deparse(index_symbol))},
+        acroEnv$row_names <- list(deparse(index_symbol))},
         error = function(e) {
-          row_names <- list("")
+          acroEnv$row_names <- list("")
         })
       tryCatch({
         column_symbol <- admiraldev::assert_symbol(substitute(columns))
-        col_names <- list(deparse(column_symbol))},
+        acroEnv$col_names <- list(deparse(column_symbol))},
         error = function(e) {
-          col_names <- list("")
+          acroEnv$col_names <- list("")
         })
     } else if (deparse.level == 2) {
-      row_names <- list(deparse((substitute(index))))
-      col_names <- list(deparse(substitute(columns)))
+      acroEnv$row_names <- list(deparse((substitute(index))))
+      acroEnv$col_names <- list(deparse(substitute(columns)))
     }
   }
   else {
-    row_names <- list(dnn[1])
-    col_names <- list(dnn[2])
+    acroEnv$row_names <- list(dnn[1])
+    acroEnv$col_names <- list(dnn[2])
   }
 
-  table <- ac$crosstab(index, columns, rownames=row_names, colnames=col_names)
+  table <- acroEnv$ac$crosstab(index, columns, rownames=acroEnv$row_names, colnames=acroEnv$col_names)
   # Check for any unused arguments
   if (length(list(...)) > 0) {
-    warning("Unused arguments were provided: ", paste0(names(list(...)), collapse = ", "), "\n", "To find more help about the function use: acro_help(\"acro_table\")\n")
+    warning("Unused arguments were provided: ", paste0(names(list(...)), collapse = ", "), "\n", "Please use the help command to learn more about the function.")
   }
   return(table)
 }
@@ -96,27 +79,63 @@ acro_table <- function(index, columns, dnn=NULL, deparse.level=0, ...)
 #'
 #' @return Cross tabulation of the data.
 #' @export
-#'
-#' @examples
-#'{
-#' # Initilaise an ACRO object
-#' acro_init()
-#' # Call the acro_pivot_table function
-#' table = acro_pivot_table(data=nursery_data,
-#'                          index = "parents",
-#'                          values = "children",
-#'                          aggfunc = list("mean", "std"))
-#' }
 
 acro_pivot_table <- function(data, values=NULL, index=NULL, columns=NULL, aggfunc="mean")
 {
-  "ACRO pivot table"
-  if (is.null(ac)) {
+  if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  table = ac$pivot_table(data, values=values, index=index, columns=columns, aggfunc=aggfunc)
+  table = acroEnv$ac$pivot_table(data, values=values, index=index, columns=columns, aggfunc=aggfunc)
   return(table)
 }
 
-# acro_hist <- function(column, freq)
+#' Histogram
+#'
+#' @param data The object holding the data.
+#' @param column The column that will be used to plot the histogram.
+#' @param breaks Number of histogram bins to be used.
+#' @param freq If False, the result will contain the number of samples in each bin. If True, the result is the value of the probability density function at the bin.
+#' @param col The color of the plot.
+#' @param filename The name of the file where the plot will be saved.
+#'
+#' @return The histogram.
+#' @export
+
+acro_hist <- function(data, column, breaks=10, freq=TRUE, col=NULL, filename="histogram.png")
+{
+  if (is.null(acroEnv$ac)) {
+    stop("ACRO has not been initialised. Please first call acro_init()")
+  }
+  histogram = acroEnv$ac$hist(data=data, column=column, bins=as.integer(breaks), density=freq, color=col, filename=filename)
+  # Load the saved histogram
+  image <- png::readPNG(histogram)
+  grid::grid.raster(image)
+  return(histogram)
+}
+
+#' Survival analysis
+#'
+#' @param time An array of times (censoring times or event times).
+#' @param status Status at the event time.
+#' @param output  A string determine the type of output. Available options are table or plot.
+#' @param filename The name of the file where the plot will be saved.
+#'
+#' @return The survival table or plot.
+#' @export
+
+acro_surv_func <- function(time, status, output, filename="kaplan-meier.png")
+{
+  if (is.null(acroEnv$ac)) {
+    stop("ACRO has not been initialised. Please first call acro_init()")
+  }
+  results = acroEnv$ac$surv_func(time=time, status=status, output=output, filename=filename)
+  if (output=="plot"){
+    # Load the saved survival plot
+    image <- png::readPNG(results[[2]])
+    grid::grid.raster(image)
+  }
+  return(results)
+  }
+
+
 

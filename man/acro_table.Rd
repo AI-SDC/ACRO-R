@@ -15,19 +15,11 @@ acro_table(index, columns, dnn = NULL, deparse.level = 0, ...)
 
 \item{deparse.level}{Controls how the default \code{dnn} is constructed.}
 
-\item{...}{Any other parameteres.}
+\item{...}{Any other parameters.}
 }
 \value{
 Cross tabulation of the data
 }
 \description{
 Compute a simple cross tabulation of two (or more) factors.
-}
-\examples{
-{
-# Initilaise an ACRO object
-acro_init()
-# Call the acro_table function
-table = acro_table(index=nursery_data$recommend, columns = nursery_data$parents)
-}
 }

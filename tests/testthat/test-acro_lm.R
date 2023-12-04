@@ -14,11 +14,12 @@ df = df[complete.cases(df), ]
 formula = "recommend ~ children"
 
 test_that("acro_lm without initialising ACRO object first", {
-  ac <<- NULL
+  acroEnv$ac <- NULL
   expect_error(acro_lm(formula=formula, data=df), "ACRO has not been initialised. Please first call acro_init()")
 })
 
 test_that("acro_lm works", {
+  testthat::skip_on_cran()
   acro_init()
   model=acro_lm(formula=formula, data=df)
   expect_s3_class(model,"statsmodels.iolib.summary.Summary")
