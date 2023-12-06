@@ -1,6 +1,4 @@
----
-title: acro
----
+## acro
 
 The **acro** package is an interface to the python package 'acro' [GitHub link](https://github.com/AI-SDC/ACRO). It provides a comprehensive set of tools for automating the statistical disclosure control (SDC) of research outputs.The package assists researchers and output checkers by distinguishing between research output that is safe to publish, output that requires further analysis, and output that cannot be published because of substantial disclosure risk. The package includes functionality to:
 

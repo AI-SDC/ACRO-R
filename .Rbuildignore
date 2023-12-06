@@ -5,3 +5,5 @@
 ^LICENSE\.md$
 ^dev_history\.R$
 ^\.github$
+^example-notebook\.Rmd$
+^example-notebook\.nb\.html$
