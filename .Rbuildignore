@@ -7,3 +7,4 @@
 ^\.github$
 ^example-notebook\.Rmd$
 ^example-notebook\.nb\.html$
+^cran-comments\.md$

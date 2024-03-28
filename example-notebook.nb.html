@@ -1788,11 +1788,6 @@ results or not. The default is no suppression.</p>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNyb19pbml0KClcbmBgYCJ9 -->
 <pre class="r"><code>acro_init()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOnZlcnNpb246IDAuNC41XG5JTkZPOmFjcm86Y29uZmlnOiB7J3NhZmVfdGhyZXNob2xkJzogMTAsICdzYWZlX2RvZl90aHJlc2hvbGQnOiAxMCwgJ3NhZmVfbmtfbic6IDIsICdzYWZlX25rX2snOiAwLjksICdzYWZlX3ByYXRpb19wJzogMC4xLCAnY2hlY2tfbWlzc2luZ192YWx1ZXMnOiBGYWxzZSwgJ3N1cnZpdmFsX3NhZmVfdGhyZXNob2xkJzogMTAsICd6ZXJvc19hcmVfZGlzY2xvc2l2ZSc6IFRydWV9XG5JTkZPOmFjcm86YXV0b21hdGljIHN1cHByZXNzaW9uOiBGYWxzZVxuIn0= -->
-<pre><code>INFO:acro:version: 0.4.5
-INFO:acro:config: {&#39;safe_threshold&#39;: 10, &#39;safe_dof_threshold&#39;: 10, &#39;safe_nk_n&#39;: 2, &#39;safe_nk_k&#39;: 0.9, &#39;safe_pratio_p&#39;: 0.1, &#39;check_missing_values&#39;: False, &#39;survival_safe_threshold&#39;: 10, &#39;zeros_are_disclosive&#39;: True}
-INFO:acro:automatic suppression: False</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1811,16 +1806,9 @@ and stored elsewhere.</li>
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSA9IGZhcmZmOjpyZWFkQVJGRihcIm51cnNlcnlfZGF0YS9udXJzZXJ5LmFyZmZcIilcbmBgYCJ9 -->
-<pre class="r"><code>data = farff::readARFF(&quot;nursery_data/nursery.arff&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUGFyc2Ugd2l0aCByZWFkZXI9cmVhZHIgOiBudXJzZXJ5X2RhdGEvbnVyc2VyeS5hcmZmXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IHJlYWRyXG5oZWFkZXI6IDAuMDIwMDAwOyBwcmVwcm9jOiAwLjAyMDAwMDsgZGF0YTogMC40NzAwMDA7IHBvc3Rwcm9jOiAwLjAwMDAwMDsgdG90YWw6IDAuNTEwMDAwXG4ifQ== -->
-<pre><code>Parse with reader=readr : nursery_data/nursery.arff
-Loading required package: readr
-header: 0.020000; preproc: 0.020000; data: 0.470000; postproc: 0.000000; total: 0.510000</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSA9IGFzLmRhdGEuZnJhbWUoZGF0YSlcblxubmFtZXMoZGF0YSlbbmFtZXMoZGF0YSkgPT0gXCJjbGFzc1wiXSA8LSBcInJlY29tbWVuZFwiXG5gYGAifQ== -->
-<pre class="r"><code>data = as.data.frame(data)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSA9IGZhcmZmOjpyZWFkQVJGRihcIm51cnNlcnlfZGF0YS9udXJzZXJ5LmFyZmZcIilcbmRhdGEgPSBhcy5kYXRhLmZyYW1lKGRhdGEpXG5cbm5hbWVzKGRhdGEpW25hbWVzKGRhdGEpID09IFwiY2xhc3NcIl0gPC0gXCJyZWNvbW1lbmRcIlxuYGBgIn0= -->
+<pre class="r"><code>data = farff::readARFF(&quot;nursery_data/nursery.arff&quot;)
+data = as.data.frame(data)
 
 names(data)[names(data) == &quot;class&quot;] &lt;- &quot;recommend&quot;</code></pre>
 <!-- rnb-source-end -->
@@ -1832,19 +1820,11 @@ random int from range 4-10</li>
 </ul>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSRjaGlsZHJlbiA8LWFzLm51bWVyaWMoYXMuY2hhcmFjdGVyKGRhdGEkY2hpbGRyZW4pKVxuYGBgIn0= -->
-<pre class="r"><code>data$children &lt;-as.numeric(as.character(data$children))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogTkFzIGludHJvZHVjZWQgYnkgY29lcmNpb25cbiJ9 -->
-<pre><code>Warning: NAs introduced by coercion</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YVtpcy5uYShkYXRhKV0gPC0gIHJvdW5kKHJ1bmlmKHN1bShpcy5uYShkYXRhKSksIG1pbiA9IDQsIG1heCA9IDEwKSwwKVxudW5pcXVlKGRhdGEkY2hpbGRyZW4pXG5gYGAifQ== -->
-<pre class="r"><code>data[is.na(data)] &lt;-  round(runif(sum(is.na(data)), min = 4, max = 10),0)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSRjaGlsZHJlbiA8LWFzLm51bWVyaWMoYXMuY2hhcmFjdGVyKGRhdGEkY2hpbGRyZW4pKVxuZGF0YVtpcy5uYShkYXRhKV0gPC0gIHJvdW5kKHJ1bmlmKHN1bShpcy5uYShkYXRhKSksIG1pbiA9IDQsIG1heCA9IDEwKSwwKVxudW5pcXVlKGRhdGEkY2hpbGRyZW4pXG5gYGAifQ== -->
+<pre class="r"><code>data$children &lt;-as.numeric(as.character(data$children))
+data[is.na(data)] &lt;-  round(runif(sum(is.na(data)), min = 4, max = 10),0)
 unique(data$children)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAgMSAgMiAgMyAgNCAxMCAgNSAgOCAgNiAgNyAgOVxuIn0= -->
-<pre><code> [1]  1  2  3  4 10  5  8  6  7  9</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1854,7 +1834,7 @@ unique(data$children)</code></pre>
 <h4>ACRO Crosstab</h4>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5kZXggPSBkYXRhWywgYyhcInJlY29tbWVuZFwiKV1cbmNvbHVtbnMgPSBkYXRhWywgYyhcInBhcmVudHNcIildXG52YWx1ZXMgPSBkYXRhWywgYyhcImNoaWxkcmVuXCIpXVxuXG4jIGNvbnZlcnQgdGhlIHZhbHVlcyB0byBhbiBhcnJheVxudmFsdWVzID0gbWF0cml4KHZhbHVlcywgbmNvbD0xKVxuXG50YWJsZSA9IGFjcm9fY3Jvc3N0YWIoaW5kZXggPSBpbmRleCwgY29sdW1ucz0gY29sdW1ucywgdmFsdWVzID0gdmFsdWVzLCAgYWdnZnVuYyA9IFwic3VtXCIpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5kZXggPSBkYXRhWywgYyhcInJlY29tbWVuZFwiKV1cbmNvbHVtbnMgPSBkYXRhWywgYyhcInBhcmVudHNcIildXG52YWx1ZXMgPSBkYXRhWywgYyhcImNoaWxkcmVuXCIpXVxuXG4jIGNvbnZlcnQgdGhlIHZhbHVlcyB0byBhbiBhcnJheVxudmFsdWVzID0gbWF0cml4KHZhbHVlcywgbmNvbD0xKVxuXG50YWJsZSA9IGFjcm9fY3Jvc3N0YWIoaW5kZXggPSBpbmRleCwgY29sdW1ucz0gY29sdW1ucywgdmFsdWVzID0gdmFsdWVzLCAgYWdnZnVuYyA9IFwic3VtXCIpXG50YWJsZVxuYGBgIn0= -->
 <pre class="r"><code>index = data[, c(&quot;recommend&quot;)]
 columns = data[, c(&quot;parents&quot;)]
 values = data[, c(&quot;children&quot;)]
@@ -1862,34 +1842,9 @@ values = data[, c(&quot;children&quot;)]
 # convert the values to an array
 values = matrix(values, ncol=1)
 
-table = acro_crosstab(index = index, columns= columns, values = values,  aggfunc = &quot;sum&quot;)</code></pre>
+table = acro_crosstab(index = index, columns= columns, values = values,  aggfunc = &quot;sum&quot;)
+table</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOmdldF9zdW1tYXJ5KCk6IGZhaWw7IHRocmVzaG9sZDogMSBjZWxscyBtYXkgbmVlZCBzdXBwcmVzc2luZzsgcC1yYXRpbzogNCBjZWxscyBtYXkgbmVlZCBzdXBwcmVzc2luZzsgbmstcnVsZTogNCBjZWxscyBtYXkgbmVlZCBzdXBwcmVzc2luZzsgXG5JTkZPOmFjcm86b3V0Y29tZV9kZjpcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXxcbmNvbF8wICAgICAgfGdyZWF0X3ByZXQgICAgICAgICAgfHByZXRlbnRpb3VzICAgICAgICAgfHVzdWFsICAgICAgICAgICAgICAgICAgICAgICAgIHxcbnJvd18wICAgICAgfCAgICAgICAgICAgICAgICAgICAgfCAgICAgICAgICAgICAgICAgICAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHxcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXxcbm5vdF9yZWNvbSAgfCAgICAgICAgICAgICAgICAgb2sgfCAgICAgICAgICAgICAgICAgb2sgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICBva3xcbnByaW9yaXR5ICAgfCAgICAgICAgICAgICAgICAgb2sgfCAgICAgICAgICAgICAgICAgb2sgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICBva3xcbnJlY29tbWVuZCAgfCBwLXJhdGlvOyBuay1ydWxlOyAgfCBwLXJhdGlvOyBuay1ydWxlOyAgfCB0aHJlc2hvbGQ7IHAtcmF0aW87IG5rLXJ1bGU7IHxcbnNwZWNfcHJpb3IgfCAgICAgICAgICAgICAgICAgb2sgfCAgICAgICAgICAgICAgICAgb2sgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICBva3xcbnZlcnlfcmVjb20gfCBwLXJhdGlvOyBuay1ydWxlOyAgfCAgICAgICAgICAgICAgICAgb2sgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICBva3xcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXxcblxuSU5GTzphY3JvOnJlY29yZHM6YWRkKCk6IG91dHB1dF8wXG4ifQ== -->
-<pre><code>INFO:acro:get_summary(): fail; threshold: 1 cells may need suppressing; p-ratio: 4 cells may need suppressing; nk-rule: 4 cells may need suppressing; 
-INFO:acro:outcome_df:
-------------------------------------------------------------------------------------|
-col_0      |great_pret          |pretentious         |usual                         |
-row_0      |                    |                    |                              |
-------------------------------------------------------------------------------------|
-not_recom  |                 ok |                 ok |                            ok|
-priority   |                 ok |                 ok |                            ok|
-recommend  | p-ratio; nk-rule;  | p-ratio; nk-rule;  | threshold; p-ratio; nk-rule; |
-spec_prior |                 ok |                 ok |                            ok|
-very_recom | p-ratio; nk-rule;  |                 ok |                            ok|
-------------------------------------------------------------------------------------|
-
-INFO:acro:records:add(): output_0</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFibGVcbmBgYCJ9 -->
-<pre class="r"><code>table</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NSwibmNvbCI6Mywic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbNSDDlyAzXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJtMVN6VW9jUVJCdWQzZjhtU1FhRUwwWmdtZTNMNEVReUdVUkNlUmdGREVnWGpZOVBSVnRuZTBldW50MEJ3UmZJYjZDK0FMeEpQaEtPZVhrU2RPL2NXZmNRMU5WWDMxZDlWVlg3MjBkZkVnUFVvUlFGL1c2SGRSTmpJdVM3L3RmK3A4UTZuVk1NSU42YU1IYXNTRXRPeVpDaTVZMXVEMjBiRFM0M25EMjhnSDUrUDZxRVQvenozMytsamI1djk5N0szKzArSjg5ZnJmcGJVZ09idjU0ZS9FcklBMmhDU2NqVU1aNTY4ZHlZSG9rZ2VoaEtVRUg1SlgxZ1dzbUtoVnZWcW9pUmF2YzY1THduQ2pNZUE1ajJ5djAvTnZpelZIQnowQnEyOHpCVTVTVnRjaE9qTE5xem1Qek5JbTBJQ3FPTUJ2QWQwRUlGUks4R2xBNEl3cndWeWR0Q3VzNXUxT3FiVFptZkJxTFNFbnFncDBDYnJIV1h0VGFkY0JPZGdJMHZ1TjZveFNsb0pTUWVJdkpiM1lOaytWV3lsb2ZDNDZ6aWhXYWNTeDhtWmZqTDBoeGppZTNtTVFFRjNvb2dZcFJBT1pMeVlSa3V2NS8weVpId1BPNGQxVUNIVHBXUk15UzZsREV0WjEvQ2wxaSt6UW5tdUNmMGdpWUltNU9sT2JQY0NPdHMreWtOUy9QeUJhd1ZIRTdTdDZueHhVLzdYK2MrQi8ydkFrMm1mQzd2bVVuQ292anp3SS9ZaHppSnlsSUJrVUlGczJUdVJmRFpsWWVkNU1hVkdFdE5JbThsSW9pSXVIdi9RT1hpckhCQkFRQUFBPT0ifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["great_pret"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["pretentious"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["usual"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"4698","2":"4727","3":"4667","_rn_":"not_recom"},{"1":"2326","2":"4707","3":"6210","_rn_":"priority"},{"1":"NaN","2":"NaN","3":"2","_rn_":"recommend"},{"1":"7057","2":"4384","3":"2678","_rn_":"spec_prior"},{"1":"NaN","2":"294","3":"457","_rn_":"very_recom"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[5]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1897,36 +1852,13 @@ INFO:acro:records:add(): output_0</code></pre>
 <h4>ACRO table</h4>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5kZXggPSBkYXRhWywgYyhcInBhcmVudHNcIildXG5jb2x1bW5zID0gZGF0YVssIGMoXCJzb2NpYWxcIildXG5cbnRhYmxlID0gYWNyb190YWJsZShpbmRleD1pbmRleCwgY29sdW1ucz1jb2x1bW5zLCBkZXBhcnNlLmxldmVsPTEpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5kZXggPSBkYXRhWywgYyhcInBhcmVudHNcIildXG5jb2x1bW5zID0gZGF0YVssIGMoXCJzb2NpYWxcIildXG5cbnRhYmxlID0gYWNyb190YWJsZShpbmRleD1pbmRleCwgY29sdW1ucz1jb2x1bW5zLCBkZXBhcnNlLmxldmVsPTEpXG50YWJsZVxuYGBgIn0= -->
 <pre class="r"><code>index = data[, c(&quot;parents&quot;)]
 columns = data[, c(&quot;social&quot;)]
 
-table = acro_table(index=index, columns=columns, deparse.level=1)</code></pre>
+table = acro_table(index=index, columns=columns, deparse.level=1)
+table</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOmdldF9zdW1tYXJ5KCk6IHBhc3NcbklORk86YWNybzpvdXRjb21lX2RmOlxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfFxuY29sdW1ucyAgICAgfG5vbnByb2IgfHByb2JsZW1hdGljIHxzbGlnaHRseV9wcm9ifFxuaW5kZXggICAgICAgfCAgICAgICAgfCAgICAgICAgICAgIHwgICAgICAgICAgICAgfFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfFxuZ3JlYXRfcHJldCAgfCBvayAgICAgfCBvayAgICAgICAgIHwgb2sgICAgICAgICAgfFxucHJldGVudGlvdXMgfCBvayAgICAgfCBvayAgICAgICAgIHwgb2sgICAgICAgICAgfFxudXN1YWwgICAgICAgfCBvayAgICAgfCBvayAgICAgICAgIHwgb2sgICAgICAgICAgfFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfFxuXG5JTkZPOmFjcm86cmVjb3JkczphZGQoKTogb3V0cHV0XzFcbiJ9 -->
-<pre><code>INFO:acro:get_summary(): pass
-INFO:acro:outcome_df:
-------------------------------------------------|
-columns     |nonprob |problematic |slightly_prob|
-index       |        |            |             |
-------------------------------------------------|
-great_pret  | ok     | ok         | ok          |
-pretentious | ok     | ok         | ok          |
-usual       | ok     | ok         | ok          |
-------------------------------------------------|
-
-INFO:acro:records:add(): output_1</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFibGVcbmBgYCJ9 -->
-<pre class="r"><code>table</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Mywic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbMyDDlyAzXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJxVlNQVS9ETUJCMVA5TFNRQXNTZ2cwRzlucGhnSkdoUW1LQUlnUlNOK1E0Uit2V3RTUGJnV2JqVi9CRCtRR0FuVHBxazJaanNPNzgvUHp1bmM5UG84bGxPQWtSUWkzVWJqVlJLN0FwQ2w2ZWI0ZlhDTFdiZHROQWJkUnpjV1ZKeHprVG9ZR0xOMStmam8ycThmL25wY0tCSUV2UU5qbGEyOHpCcnBBaVVUTHkyMzJYYzFnU3c2aUgrcHF6NmN6dzdEWG5sVFVQRWlKaW9qRVRNYXhjUVYvNHU4THJVaW5lUVJtYmhqbGNZeS9KWkRTM3lhbGRQK1ZWSmxKT2RORkh4NFBuM2dpVkN0WnVRT09JYU1CM3ViVWExdVowbk9oN3RtS2lqa1dVSWhsbkM4QVYxdG1PMW1NT2pLTTVVT05KRnlVcFNrRnJxZkNJcVFjM2kyMjVreVF6TXlsd2xESnVtTUJ5TGJQYmZrL0pEMXczeW5DcWdCZzdKVENiYVlJQllaaE1kZkY0cVU0SlgwdnUvWHFGUWpxTWlTSDRUVm54bXNKZG1WZ2xZY3MyM2ZjTktwY2JxZ0ljcHNMWmpJZDBsb3JGOEdwcjltNzFmV3lWYzFleVdSZ0x2RlFIeEpRSktIcmdKQUx1TndQN0hQbHI0RVF4VVhRZVdsUmpJdzBwZUNHVnZFRDh2L29EYWpsVk5iVURBQUE9In0= -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["nonprob"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["problematic"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["slightly_prob"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1440","2":"1440","3":"1440","_rn_":"great_pret"},{"1":"1440","2":"1440","3":"1440","_rn_":"pretentious"},{"1":"1440","2":"1440","3":"1440","_rn_":"usual"}],"options":{"columns":{"min":{},"max":[10],"total":[3]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1934,38 +1866,14 @@ INFO:acro:records:add(): output_1</code></pre>
 <h4>ACRO pivot table</h4>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5kZXggPSBcInBhcmVudHNcIlxudmFsdWVzID0gXCJjaGlsZHJlblwiXG5hZ2dmdW5jID0gbGlzdChcIm1lYW5cIiwgXCJzdGRcIilcblxudGFibGUgPSBhY3JvX3Bpdm90X3RhYmxlKGRhdGEsIHZhbHVlcz12YWx1ZXMsIGluZGV4PWluZGV4LCBhZ2dmdW5jPWFnZ2Z1bmMpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5kZXggPSBcInBhcmVudHNcIlxudmFsdWVzID0gXCJjaGlsZHJlblwiXG5hZ2dmdW5jID0gbGlzdChcIm1lYW5cIiwgXCJzdGRcIilcblxudGFibGUgPSBhY3JvX3Bpdm90X3RhYmxlKGRhdGEsIHZhbHVlcz12YWx1ZXMsIGluZGV4PWluZGV4LCBhZ2dmdW5jPWFnZ2Z1bmMpXG50YWJsZVxuYGBgIn0= -->
 <pre class="r"><code>index = &quot;parents&quot;
 values = &quot;children&quot;
 aggfunc = list(&quot;mean&quot;, &quot;std&quot;)
 
-table = acro_pivot_table(data, values=values, index=index, aggfunc=aggfunc)</code></pre>
+table = acro_pivot_table(data, values=values, index=index, aggfunc=aggfunc)
+table</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOmdldF9zdW1tYXJ5KCk6IHBhc3NcbklORk86YWNybzpvdXRjb21lX2RmOlxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfFxuICAgICAgICAgICAgbWVhbiAgICAgfHN0ZCAgICAgfFxuICAgICAgICAgICAgY2hpbGRyZW4gfGNoaWxkcmVufFxucGFyZW50cyAgICAgICAgICAgICAgfCAgICAgICAgfFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfFxudXN1YWwgICAgICAgIG9rICAgICAgfCBvayAgICAgfFxucHJldGVudGlvdXMgIG9rICAgICAgfCBvayAgICAgfFxuZ3JlYXRfcHJldCAgIG9rICAgICAgfCBvayAgICAgfFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfFxuXG5JTkZPOmFjcm86cmVjb3JkczphZGQoKTogb3V0cHV0XzJcbiJ9 -->
-<pre><code>INFO:acro:get_summary(): pass
-INFO:acro:outcome_df:
-------------------------------|
-            mean     |std     |
-            children |children|
-parents              |        |
-------------------------------|
-usual        ok      | ok     |
-pretentious  ok      | ok     |
-great_pret   ok      | ok     |
-------------------------------|
-
-INFO:acro:records:add(): output_2</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFibGVcbmBgYCJ9 -->
-<pre class="r"><code>table</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6Miwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbMyDDlyAyXSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJuMVRQMi9VTUJ6MUpSZmFpMmhCcmVoR2Rlck1lV0VBeEpLMlZ5U0cvaEVDMGRWeGZ2VGNTKzNJOXJWM1ltSGdBL0F0WUVBTW5WbjdFZm9CR1BnQ1pTL1ljVnd1YWNDU2xWOWUzbnQ1dG45K05UeDhIQi9HQ0tFUWRjTUFoWkVwVWZUbTlZdkJVNFM2Z1hucG9DN3EyZWZVa0ZaTlljRmxxMGg2djc1K1duLzdQSWszeXBIRXErTEhsNHNuTjkvRGo2ZmZGdE9ySlB6K2MybHllWjZFbnpmUFY5N3ZOSXdqVGs1QW1lSithZTdBNVJNZ3ZOK25JNVpuRXJoSGxjNzZjMmpkNkc1QmVFWVVaandERTlhZ2JsdzFlQXRVOEZPUTJwUnhDWmVqbnFtWWlmVFlGR3RtWHRkbm5VaHpvbno0WGdVT3FpQlVTSEJwd0x3UURVZEN6dkMyS3hnbCtjc3lxUk05YXhQQlZBTlhUSEM4Tjl5VWtzeTJDQjFEdHVQaGVZTkgvemRvMWF5M2FWS2lBUCtUOWZmcmZxRjIyWlR4TmhheFlYTTJCdHhnUGJ6bGRWQUMrK2t4VUYyUk5tcFdsSUpTUXVJaGszdTJWZWJ0SGhRelBUS3JTeWNzMTR4ajRXeHVIMVJQaWpQc08yM0pkdG9IZCs2aEl5NytyZzdSQytLTWFJTGZTU05wc1ZzUWhUWjdhY3dDZXllaWhyZ2pHOEM5Q2JjL3p3WjBOT0ZqZTdubWU2OE0xSEZoYnVyQS9UTHd3YUxLNmc3d0k4YkJOMkJPVXNqOS9UQ0xMTmVJQzhtNDM4M1lvQXByb1lubnhWVGtIcW42K2c5S1c3YXhDZ1FBQUE9PSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["mean  children"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["std   children"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"3.243981","2":"2.439679"},{"1":"3.266667","2":"2.467234"},{"1":"3.259491","2":"2.456668"}],"options":{"columns":{"min":{},"max":[10],"total":[2]},"rows":{"min":[10],"max":[10],"total":[3]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1976,13 +1884,6 @@ INFO:acro:records:add(): output_2</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNyb19oaXN0KGRhdGEsIFwiY2hpbGRyZW5cIilcbmBgYCJ9 -->
 <pre class="r"><code>acro_hist(data, &quot;children&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOnN0YXR1czogcmV2aWV3XG5JTkZPOmFjcm86cmVjb3JkczphZGQoKTogb3V0cHV0XzNcbiJ9 -->
-<pre><code>INFO:acro:status: review
-INFO:acro:records:add(): output_3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYWNyb19hcnRpZmFjdHMvaGlzdG9ncmFtXzAucG5nXCJcbiJ9 -->
-<pre><code>[1] &quot;acro_artifacts/histogram_0.png&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1999,211 +1900,6 @@ data(lung)
 
 acro_surv_func(time=lung$time, status=lung$status, output =&quot;plot&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOmdldF9zdW1tYXJ5KCk6IGZhaWw7IHRocmVzaG9sZDogNzQwIGNlbGxzIG1heSBuZWVkIHN1cHByZXNzaW5nOyBcbklORk86YWNybzpvdXRjb21lX2RmOlxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXxcbiAgICAgICB8U3VydnwgfHByb2IgICAgU3VydiBwcm9iIHxTRSB8fG51bXwgYXR8IHJpc2sgIG51bSB8ZXZlbnRzICB8XG5UaW1lICAgfCAgICB8IHwgICAgICAgICAgICAgICAgICB8ICAgfHwgICB8ICAgfCAgICAgICAgICAgfCAgICAgICAgfFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXxcbjUuMCAgICB8ICAgIHwgfCAgICAgb2sgICAgICAgICAgIHxvayB8fCAgIHwgICB8ICAgIG9rICAgICB8ICAgICAgb2t8XG4xMS4wICAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTIuMCAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcblxuMTMuMCAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjE1LjAgICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yNi4wICAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMzAuMCAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjMxLjAgICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG41My4wICAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNTQuMCAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjU5LjAgICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG42MC4wICAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNjEuMCAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjYyLjAgICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG42NS4wICAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNzEuMCAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjc5LjAgICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG44MS4wICAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuODguMCAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjkyLjAgICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG45My4wICAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuOTUuMCAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjEwNS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xMDcuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTEwLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjExNi4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xMTguMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTIyLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjEzMS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xMzIuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTM1LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjE0Mi4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xNDQuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTQ1LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjE0Ny4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xNTMuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTU2LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjE2My4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xNjYuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTY3LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjE3MC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xNzMuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTc0LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjE3NS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xNzYuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTc3LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjE3OS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xODAuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTgxLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjE4Mi4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xODMuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTg1LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjE4Ni4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xODguMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTg5LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjE5MS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xOTIuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTk0LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjE5Ni4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xOTcuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMTk5LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjIwMS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yMDIuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjAzLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjIwNy4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yMDguMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjEwLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjIxMS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yMTIuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjE4LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjIyMS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yMjIuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjIzLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjIyNC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yMjUuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjI2LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjIyOS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yMzAuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjM1LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjIzNy4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yMzkuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjQwLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjI0My4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yNDUuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjQ2LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjI1Mi4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yNTkuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjY2LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjI2Ny4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yNjguMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjY5LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjI3MC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yNzIuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjc2LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjI3OS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yODMuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjg0LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjI4NS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yODYuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjg4LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjI5MS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4yOTIuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMjkzLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjI5Ni4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4zMDAuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMzAxLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjMwMy4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4zMDUuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMzA2LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjMxMC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4zMTUuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMzIwLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjMyOS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4zMzIuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMzM3LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjM0MC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4zNDUuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMzQ4LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjM1MC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4zNTEuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMzUzLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjM1Ni4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4zNjEuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMzYzLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjM2NC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4zNzEuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMzc2LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjM4Mi4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4zODQuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuMzg3LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjM5MC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4zOTQuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNDA0LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjQxMy4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG40MjYuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNDI4LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjQyOS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG40MzMuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNDQyLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjQ0NC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG40NTAuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNDU1LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjQ1Ny4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG40NTguMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNDYwLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjQ3My4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG40NzcuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNTExLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjUxOS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG41MjAuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNTI0LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjUyOS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG41MzMuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNTQzLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjU1MC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG41NTEuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNTU4LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjU1OS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG41NjcuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNTc0LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjU4My4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG41ODguMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNjEzLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjYyNC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG42NDEuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNjQzLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjY1NC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG42NTUuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNjg3LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjY4OS4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG43MDUuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNzA3LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjcyOC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG43MzEuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNzM1LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjc0MC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG43NjUuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuNzkxLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjgwNi4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG44MTQuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuODIxLjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjg0MC4wICB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG44ODMuMCAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuOTY1LjAgIHwgdGhyfGV8c2hvbGQ7ICAgdGhyZXNob2xkfDsgIHx8IHRofHJlc3xob2xkOyAgIHRocnxlc2hvbGQ7IHxcbjEwMTAuMCB8IHRocnxlfHNob2xkOyAgIHRocmVzaG9sZHw7ICB8fCB0aHxyZXN8aG9sZDsgICB0aHJ8ZXNob2xkOyB8XG4xMDIyLjAgfCB0aHJ8ZXxzaG9sZDsgICB0aHJlc2hvbGR8OyAgfHwgdGh8cmVzfGhvbGQ7ICAgdGhyfGVzaG9sZDsgfFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXxcblxuSU5GTzphY3JvOnJlY29yZHM6YWRkKCk6IG91dHB1dF80XG4ifQ== -->
-<pre><code>INFO:acro:get_summary(): fail; threshold: 740 cells may need suppressing; 
-INFO:acro:outcome_df:
--------------------------------------------------------------------|
-       |Surv| |prob    Surv prob |SE ||num| at| risk  num |events  |
-Time   |    | |                  |   ||   |   |           |        |
--------------------------------------------------------------------|
-5.0    |    | |     ok           |ok ||   |   |    ok     |      ok|
-11.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-12.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-
-13.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-15.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-26.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-30.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-31.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-53.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-54.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-59.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-60.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-61.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-62.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-65.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-71.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-79.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-81.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-88.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-92.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-93.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-95.0   | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-105.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-107.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-110.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-116.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-118.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-122.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-131.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-132.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-135.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-142.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-144.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-145.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-147.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-153.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-156.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-163.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-166.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-167.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-170.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-173.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-174.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-175.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-176.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-177.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-179.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-180.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-181.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-182.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-183.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-185.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-186.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-188.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-189.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-191.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-192.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-194.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-196.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-197.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-199.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-201.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-202.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-203.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-207.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-208.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-210.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-211.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-212.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-218.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-221.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-222.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-223.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-224.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-225.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-226.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-229.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-230.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-235.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-237.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-239.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-240.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-243.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-245.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-246.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-252.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-259.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-266.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-267.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-268.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-269.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-270.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-272.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-276.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-279.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-283.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-284.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-285.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-286.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-288.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-291.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-292.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-293.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-296.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-300.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-301.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-303.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-305.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-306.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-310.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-315.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-320.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-329.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-332.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-337.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-340.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-345.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-348.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-350.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-351.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-353.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-356.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-361.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-363.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-364.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-371.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-376.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-382.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-384.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-387.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-390.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-394.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-404.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-413.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-426.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-428.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-429.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-433.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-442.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-444.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-450.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-455.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-457.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-458.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-460.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-473.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-477.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-511.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-519.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-520.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-524.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-529.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-533.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-543.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-550.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-551.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-558.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-559.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-567.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-574.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-583.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-588.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-613.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-624.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-641.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-643.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-654.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-655.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-687.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-689.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-705.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-707.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-728.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-731.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-735.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-740.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-765.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-791.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-806.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-814.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-821.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-840.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-883.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-965.0  | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-1010.0 | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
-1022.0 | thr|e|shold;   threshold|;  || th|res|hold;   thr|eshold; |
--------------------------------------------------------------------|
-
-INFO:acro:records:add(): output_4</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbjxGaWd1cmUgc2l6ZSA2NDB4NDgwIHdpdGggMSBBeGVzPlxuXG5bWzJdXVxuWzFdIFwiYWNyb19hcnRpZmFjdHMva2FwbGFuLW1laWVyXzAucG5nXCJcbiJ9 -->
-<pre><code>[[1]]
-&lt;Figure size 640x480 with 1 Axes&gt;
-
-[[2]]
-[1] &quot;acro_artifacts/kaplan-meier_0.png&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -2249,40 +1945,6 @@ formula = &quot;recommend ~ children&quot;</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNyb19sbShmb3JtdWxhPWZvcm11bGEsIGRhdGE9ZGYpXG5gYGAifQ== -->
 <pre class="r"><code>acro_lm(formula=formula, data=df)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOm9sc3IoKSBvdXRjb21lOiBwYXNzOyBkb2Y9MTI5NTguMCA+PSAxMFxuSU5GTzphY3JvOnJlY29yZHM6YWRkKCk6IG91dHB1dF81XG4ifQ== -->
-<pre><code>INFO:acro:olsr() outcome: pass; dof=12958.0 &gt;= 10
-INFO:acro:records:add(): output_5</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiPGNsYXNzICdzdGF0c21vZGVscy5pb2xpYi5zdW1tYXJ5LlN1bW1hcnknPlxuXCJcIlwiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgT0xTIFJlZ3Jlc3Npb24gUmVzdWx0cyAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuRGVwLiBWYXJpYWJsZTogICAgICAgICAgICAgIHJlY29tbWVuZCAgIFItc3F1YXJlZDogICAgICAgICAgICAgICAgICAgICAgIDAuMDAxXG5Nb2RlbDogICAgICAgICAgICAgICAgICAgICAgICAgICAgT0xTICAgQWRqLiBSLXNxdWFyZWQ6ICAgICAgICAgICAgICAgICAgMC4wMDBcbk1ldGhvZDogICAgICAgICAgICAgICAgIExlYXN0IFNxdWFyZXMgICBGLXN0YXRpc3RpYzogICAgICAgICAgICAgICAgICAgICA2LjU5MFxuRGF0ZTogICAgICAgICAgICAgICAgV2VkLCAwNiBEZWMgMjAyMyAgIFByb2IgKEYtc3RhdGlzdGljKTogICAgICAgICAgICAgMC4wMTAzXG5UaW1lOiAgICAgICAgICAgICAgICAgICAgICAgIDE0OjU1OjI0ICAgTG9nLUxpa2VsaWhvb2Q6ICAgICAgICAgICAgICAgIC0yNTEyNC5cbk5vLiBPYnNlcnZhdGlvbnM6ICAgICAgICAgICAgICAgMTI5NjAgICBBSUM6ICAgICAgICAgICAgICAgICAgICAgICAgIDUuMDI1ZSswNFxuRGYgUmVzaWR1YWxzOiAgICAgICAgICAgICAgICAgICAxMjk1OCAgIEJJQzogICAgICAgICAgICAgICAgICAgICAgICAgNS4wMjdlKzA0XG5EZiBNb2RlbDogICAgICAgICAgICAgICAgICAgICAgICAgICAxICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbkNvdmFyaWFuY2UgVHlwZTogICAgICAgICAgICBub25yb2J1c3QgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG4gICAgICAgICAgICAgICAgIGNvZWYgICAgc3RkIGVyciAgICAgICAgICB0ICAgICAgUD58dHwgICAgICBbMC4wMjUgICAgICAwLjk3NV1cbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuSW50ZXJjZXB0ICAgICAgMi4yMzYxICAgICAgMC4wMjUgICAgIDkxLjEwOCAgICAgIDAuMDAwICAgICAgIDIuMTg4ICAgICAgIDIuMjg0XG5jaGlsZHJlbiAgICAgICAwLjAxNTQgICAgICAwLjAwNiAgICAgIDIuNTY3ICAgICAgMC4wMTAgICAgICAgMC4wMDQgICAgICAgMC4wMjdcbj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuT21uaWJ1czogICAgICAgICAgICAgICAgICAgIDc2NzM4LjgwNCAgIER1cmJpbi1XYXRzb246ICAgICAgICAgICAgICAgICAgIDIuODgzXG5Qcm9iKE9tbmlidXMpOiAgICAgICAgICAgICAgICAgIDAuMDAwICAgSmFycXVlLUJlcmEgKEpCKTogICAgICAgICAgICAgMTc0My4wMTBcblNrZXc6ICAgICAgICAgICAgICAgICAgICAgICAgICAtMC40ODUgICBQcm9iKEpCKTogICAgICAgICAgICAgICAgICAgICAgICAgMC4wMFxuS3VydG9zaXM6ICAgICAgICAgICAgICAgICAgICAgICAxLjQ4NyAgIENvbmQuIE5vLiAgICAgICAgICAgICAgICAgICAgICAgICA3LjA0XG49PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cblxuTm90ZXM6XG5bMV0gU3RhbmRhcmQgRXJyb3JzIGFzc3VtZSB0aGF0IHRoZSBjb3ZhcmlhbmNlIG1hdHJpeCBvZiB0aGUgZXJyb3JzIGlzIGNvcnJlY3RseSBzcGVjaWZpZWQuXG5cIlwiXCJcbiJ9 -->
-<pre><code>&lt;class &#39;statsmodels.iolib.summary.Summary&#39;&gt;
-&quot;&quot;&quot;
-                            OLS Regression Results                            
-==============================================================================
-Dep. Variable:              recommend   R-squared:                       0.001
-Model:                            OLS   Adj. R-squared:                  0.000
-Method:                 Least Squares   F-statistic:                     6.590
-Date:                Wed, 06 Dec 2023   Prob (F-statistic):             0.0103
-Time:                        14:55:24   Log-Likelihood:                -25124.
-No. Observations:               12960   AIC:                         5.025e+04
-Df Residuals:                   12958   BIC:                         5.027e+04
-Df Model:                           1                                         
-Covariance Type:            nonrobust                                         
-==============================================================================
-                 coef    std err          t      P&gt;|t|      [0.025      0.975]
-------------------------------------------------------------------------------
-Intercept      2.2361      0.025     91.108      0.000       2.188       2.284
-children       0.0154      0.006      2.567      0.010       0.004       0.027
-==============================================================================
-Omnibus:                    76738.804   Durbin-Watson:                   2.883
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1743.010
-Skew:                          -0.485   Prob(JB):                         0.00
-Kurtosis:                       1.487   Cond. No.                         7.04
-==============================================================================
-
-Notes:
-[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-&quot;&quot;&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -2311,35 +1973,6 @@ formula = &quot;finance ~ children&quot;</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNyb19nbG0oZm9ybXVsYT1mb3JtdWxhLCBkYXRhPWRmLCBmYW1pbHk9XCJsb2dpdFwiKVxuYGBgIn0= -->
 <pre class="r"><code>acro_glm(formula=formula, data=df, family=&quot;logit&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiT3B0aW1pemF0aW9uIHRlcm1pbmF0ZWQgc3VjY2Vzc2Z1bGx5LlxuICAgICAgICAgQ3VycmVudCBmdW5jdGlvbiB2YWx1ZTogMC42OTMxNDNcbiAgICAgICAgIEl0ZXJhdGlvbnMgM1xuIn0= -->
-<pre><code>Optimization terminated successfully.
-         Current function value: 0.693143
-         Iterations 3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOmxvZ2l0cigpIG91dGNvbWU6IHBhc3M7IGRvZj0xMjk1OC4wID49IDEwXG5JTkZPOmFjcm86cmVjb3JkczphZGQoKTogb3V0cHV0XzZcbiJ9 -->
-<pre><code>INFO:acro:logitr() outcome: pass; dof=12958.0 &gt;= 10
-INFO:acro:records:add(): output_6</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiPGNsYXNzICdzdGF0c21vZGVscy5pb2xpYi5zdW1tYXJ5LlN1bW1hcnknPlxuXCJcIlwiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICBMb2dpdCBSZWdyZXNzaW9uIFJlc3VsdHMgICAgICAgICAgICAgICAgICAgICAgICAgICBcbj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuRGVwLiBWYXJpYWJsZTogICAgICAgICAgICAgICAgZmluYW5jZSAgIE5vLiBPYnNlcnZhdGlvbnM6ICAgICAgICAgICAgICAgIDEyOTYwXG5Nb2RlbDogICAgICAgICAgICAgICAgICAgICAgICAgIExvZ2l0ICAgRGYgUmVzaWR1YWxzOiAgICAgICAgICAgICAgICAgICAgMTI5NThcbk1ldGhvZDogICAgICAgICAgICAgICAgICAgICAgICAgICBNTEUgICBEZiBNb2RlbDogICAgICAgICAgICAgICAgICAgICAgICAgICAgMVxuRGF0ZTogICAgICAgICAgICAgICAgV2VkLCAwNiBEZWMgMjAyMyAgIFBzZXVkbyBSLXNxdS46ICAgICAgICAgICAgICAgNS42NDhlLTA2XG5UaW1lOiAgICAgICAgICAgICAgICAgICAgICAgIDE0OjU1OjMwICAgTG9nLUxpa2VsaWhvb2Q6ICAgICAgICAgICAgICAgIC04OTgzLjFcbmNvbnZlcmdlZDogICAgICAgICAgICAgICAgICAgICAgIFRydWUgICBMTC1OdWxsOiAgICAgICAgICAgICAgICAgICAgICAgLTg5ODMuMlxuQ292YXJpYW5jZSBUeXBlOiAgICAgICAgICAgIG5vbnJvYnVzdCAgIExMUiBwLXZhbHVlOiAgICAgICAgICAgICAgICAgICAgMC43NTAxXG49PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cbiAgICAgICAgICAgICAgICAgY29lZiAgICBzdGQgZXJyICAgICAgICAgIHogICAgICBQPnx6fCAgICAgIFswLjAyNSAgICAgIDAuOTc1XVxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5JbnRlcmNlcHQgICAgICAwLjAwNzQgICAgICAwLjAyOSAgICAgIDAuMjU0ICAgICAgMC43OTkgICAgICAtMC4wNTAgICAgICAgMC4wNjVcbmNoaWxkcmVuICAgICAgLTAuMDAyMyAgICAgIDAuMDA3ICAgICAtMC4zMTkgICAgICAwLjc1MCAgICAgIC0wLjAxNiAgICAgICAwLjAxMlxuPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG5cIlwiXCJcbiJ9 -->
-<pre><code>&lt;class &#39;statsmodels.iolib.summary.Summary&#39;&gt;
-&quot;&quot;&quot;
-                           Logit Regression Results                           
-==============================================================================
-Dep. Variable:                finance   No. Observations:                12960
-Model:                          Logit   Df Residuals:                    12958
-Method:                           MLE   Df Model:                            1
-Date:                Wed, 06 Dec 2023   Pseudo R-squ.:               5.648e-06
-Time:                        14:55:30   Log-Likelihood:                -8983.1
-converged:                       True   LL-Null:                       -8983.2
-Covariance Type:            nonrobust   LLR p-value:                    0.7501
-==============================================================================
-                 coef    std err          z      P&gt;|z|      [0.025      0.975]
-------------------------------------------------------------------------------
-Intercept      0.0074      0.029      0.254      0.799      -0.050       0.065
-children      -0.0023      0.007     -0.319      0.750      -0.016       0.012
-==============================================================================
-&quot;&quot;&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -2350,37 +1983,6 @@ children      -0.0023      0.007     -0.319      0.750      -0.016       0.012
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNyb19nbG0oZm9ybXVsYT1mb3JtdWxhLCBkYXRhPWRmLCBmYW1pbHk9XCJwcm9iaXRcIilcbmBgYCJ9 -->
 <pre class="r"><code>acro_glm(formula=formula, data=df, family=&quot;probit&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOnByb2JpdHIoKSBvdXRjb21lOiBwYXNzOyBkb2Y9MTI5NTguMCA+PSAxMFxuIn0= -->
-<pre><code>INFO:acro:probitr() outcome: pass; dof=12958.0 &gt;= 10</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiT3B0aW1pemF0aW9uIHRlcm1pbmF0ZWQgc3VjY2Vzc2Z1bGx5LlxuICAgICAgICAgQ3VycmVudCBmdW5jdGlvbiB2YWx1ZTogMC42OTMxNDNcbiAgICAgICAgIEl0ZXJhdGlvbnMgM1xuIn0= -->
-<pre><code>Optimization terminated successfully.
-         Current function value: 0.693143
-         Iterations 3</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOnJlY29yZHM6YWRkKCk6IG91dHB1dF83XG4ifQ== -->
-<pre><code>INFO:acro:records:add(): output_7</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiPGNsYXNzICdzdGF0c21vZGVscy5pb2xpYi5zdW1tYXJ5LlN1bW1hcnknPlxuXCJcIlwiXG4gICAgICAgICAgICAgICAgICAgICAgICAgIFByb2JpdCBSZWdyZXNzaW9uIFJlc3VsdHMgICAgICAgICAgICAgICAgICAgICAgICAgICBcbj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuRGVwLiBWYXJpYWJsZTogICAgICAgICAgICAgICAgZmluYW5jZSAgIE5vLiBPYnNlcnZhdGlvbnM6ICAgICAgICAgICAgICAgIDEyOTYwXG5Nb2RlbDogICAgICAgICAgICAgICAgICAgICAgICAgUHJvYml0ICAgRGYgUmVzaWR1YWxzOiAgICAgICAgICAgICAgICAgICAgMTI5NThcbk1ldGhvZDogICAgICAgICAgICAgICAgICAgICAgICAgICBNTEUgICBEZiBNb2RlbDogICAgICAgICAgICAgICAgICAgICAgICAgICAgMVxuRGF0ZTogICAgICAgICAgICAgICAgV2VkLCAwNiBEZWMgMjAyMyAgIFBzZXVkbyBSLXNxdS46ICAgICAgICAgICAgICAgNS42NDhlLTA2XG5UaW1lOiAgICAgICAgICAgICAgICAgICAgICAgIDE0OjU1OjM3ICAgTG9nLUxpa2VsaWhvb2Q6ICAgICAgICAgICAgICAgIC04OTgzLjFcbmNvbnZlcmdlZDogICAgICAgICAgICAgICAgICAgICAgIFRydWUgICBMTC1OdWxsOiAgICAgICAgICAgICAgICAgICAgICAgLTg5ODMuMlxuQ292YXJpYW5jZSBUeXBlOiAgICAgICAgICAgIG5vbnJvYnVzdCAgIExMUiBwLXZhbHVlOiAgICAgICAgICAgICAgICAgICAgMC43NTAxXG49PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cbiAgICAgICAgICAgICAgICAgY29lZiAgICBzdGQgZXJyICAgICAgICAgIHogICAgICBQPnx6fCAgICAgIFswLjAyNSAgICAgIDAuOTc1XVxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5JbnRlcmNlcHQgICAgICAwLjAwNDcgICAgICAwLjAxOCAgICAgIDAuMjU0ICAgICAgMC43OTkgICAgICAtMC4wMzEgICAgICAgMC4wNDFcbmNoaWxkcmVuICAgICAgLTAuMDAxNCAgICAgIDAuMDA0ICAgICAtMC4zMTkgICAgICAwLjc1MCAgICAgIC0wLjAxMCAgICAgICAwLjAwN1xuPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG5cIlwiXCJcbiJ9 -->
-<pre><code>&lt;class &#39;statsmodels.iolib.summary.Summary&#39;&gt;
-&quot;&quot;&quot;
-                          Probit Regression Results                           
-==============================================================================
-Dep. Variable:                finance   No. Observations:                12960
-Model:                         Probit   Df Residuals:                    12958
-Method:                           MLE   Df Model:                            1
-Date:                Wed, 06 Dec 2023   Pseudo R-squ.:               5.648e-06
-Time:                        14:55:37   Log-Likelihood:                -8983.1
-converged:                       True   LL-Null:                       -8983.2
-Covariance Type:            nonrobust   LLR p-value:                    0.7501
-==============================================================================
-                 coef    std err          z      P&gt;|z|      [0.025      0.975]
-------------------------------------------------------------------------------
-Intercept      0.0047      0.018      0.254      0.799      -0.031       0.041
-children      -0.0014      0.004     -0.319      0.750      -0.010       0.007
-==============================================================================
-&quot;&quot;&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -2396,9 +1998,6 @@ name.</p>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNyb19yZW5hbWVfb3V0cHV0KFwib3V0cHV0XzBcIiwgXCJjcm9zc3RhYlwiKVxuYGBgIn0= -->
 <pre class="r"><code>acro_rename_output(&quot;output_0&quot;, &quot;crosstab&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOnJlY29yZHM6cmVuYW1lX291dHB1dCgpOiBvdXRwdXRfMCByZW5hbWVkIHRvIGNyb3NzdGFiXG4ifQ== -->
-<pre><code>INFO:acro:records:rename_output(): output_0 renamed to crosstab</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -2410,9 +2009,6 @@ name.</p>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNyb19yZW1vdmVfb3V0cHV0KFwib3V0cHV0XzNcIilcbmBgYCJ9 -->
 <pre class="r"><code>acro_remove_output(&quot;output_3&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOnJlY29yZHM6cmVtb3ZlKCk6IG91dHB1dF8zIHJlbW92ZWRcbiJ9 -->
-<pre><code>INFO:acro:records:remove(): output_3 removed</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -2437,9 +2033,6 @@ checkers.</p>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNyb19hZGRfY29tbWVudHMoXCJvdXRwdXRfMVwiLCBcIlRoaXMgaXMgYSBjcm9zc3RhYiBvbiB0aGUgbnVyc2VyeSBkYXRhc2V0LlwiKVxuYGBgIn0= -->
 <pre class="r"><code>acro_add_comments(&quot;output_1&quot;, &quot;This is a crosstab on the nursery dataset.&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSU5GTzphY3JvOnJlY29yZHM6YSBjb21tZW50IHdhcyBhZGRlZCB0byBvdXRwdXRfMVxuIn0= -->
-<pre><code>INFO:acro:records:a comment was added to output_1</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
