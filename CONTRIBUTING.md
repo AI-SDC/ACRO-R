@@ -10,7 +10,7 @@ The `.pre-commit-config.yaml` specifies a number of formatting/checking tools.
 The [pre-commit](https://pre-commit.com) tool can be installed with:
 
 ```
-$ pip install pre-commit`
+$ pip install pre-commit
 ```
 
 And run with:
@@ -31,8 +31,8 @@ install.packages("testthat")
 Checking the package:
 
 ```
-R CMD build .
-R CMD check acro_0.1.2.tar.gz
+$ R CMD build .
+$ R CMD check acro_0.1.2.tar.gz
 ```
 
 To identify packages needed to install R packages, for example devtools:
