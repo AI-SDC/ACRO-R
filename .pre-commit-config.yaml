@@ -57,7 +57,6 @@ repos:
       - id: readme-rmd-rendered
       - id: no-browser-statement
       - id: no-debug-statement
-      - id: pkgdown
 
       - id: deps-in-desc
         exclude: >
