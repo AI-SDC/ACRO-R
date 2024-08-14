@@ -52,4 +52,29 @@ repos:
             tests/testthat/in/.*|
             renv/.*
           )$
+
+      - id: roxygenize
+        additional_dependencies:
+          - reticulate
+          - admiraldev
+          - png
+
+      - id: use-tidy-description
+      - id: readme-rmd-rendered
+      - id: no-browser-statement
+      - id: no-debug-statement
+      - id: pkgdown
+
+      - id: deps-in-desc
+        exclude: >
+          (?x)^(
+            dev_history.R|
+            example-notebook.Rmd|
+            prepare_to_submit_to_CRAN.R|
+          )$
+
+  - repo: https://github.com/lorenzwalthert/gitignore-tidy
+    rev: 0.1.2
+    hooks:
+      - id: tidy-gitignore
 ...
