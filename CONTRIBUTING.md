@@ -57,3 +57,10 @@ devtools::load_all(".")
 
 To remove the local virtual Python environment, delete the `r-acro` folder.
 On GNU/Linux this is typically located in `~/.virtualenvs`
+
+
+To execute tests locally:
+
+```R
+devtools::test()
+```
