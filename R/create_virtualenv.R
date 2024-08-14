@@ -18,7 +18,7 @@ install_acro <- function(..., envname = "r-acro") {
 create_virtualenv <- function(...) {
   # Create a virtual environment if it does not exists
   if (!reticulate::virtualenv_exists("r-acro")) {
-    reticulate::virtualenv_create("r-acro", version=">= 3.8", packages = character(0))
+    reticulate::virtualenv_create("r-acro", version = ">= 3.8", packages = character(0))
   }
   reticulate::use_virtualenv("r-acro", required = TRUE)
 

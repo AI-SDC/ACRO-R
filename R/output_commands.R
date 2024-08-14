@@ -6,8 +6,7 @@
 #' @return No return value, called for side effects
 #' @export
 
-acro_rename_output <- function(old, new)
-{
+acro_rename_output <- function(old, new) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
@@ -21,8 +20,7 @@ acro_rename_output <- function(old, new)
 #' @return No return value, called for side effects
 #' @export
 
-acro_remove_output <- function(name)
-{
+acro_remove_output <- function(name) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
@@ -37,8 +35,7 @@ acro_remove_output <- function(name)
 #' @return No return value, called for side effects
 #' @export
 
-acro_add_comments <- function(name, comment)
-{
+acro_add_comments <- function(name, comment) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
@@ -53,8 +50,7 @@ acro_add_comments <- function(name, comment)
 #' @return No return value, called for side effects
 #' @export
 
-acro_custom_output <- function(filename, comment=NULL)
-{
+acro_custom_output <- function(filename, comment = NULL) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
@@ -69,8 +65,7 @@ acro_custom_output <- function(filename, comment=NULL)
 #' @return No return value, called for side effects
 #' @export
 
-acro_add_exception <- function(name, reason)
-{
+acro_add_exception <- function(name, reason) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
@@ -82,8 +77,7 @@ acro_add_exception <- function(name, reason)
 #' @return No return value, called for side effects
 #' @export
 
-acro_print_outputs <- function()
-{
+acro_print_outputs <- function() {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
@@ -98,8 +92,7 @@ acro_print_outputs <- function()
 #' @return No return value, called for side effects
 #' @export
 
-acro_finalise <- function(path, ext)
-{
+acro_finalise <- function(path, ext) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }

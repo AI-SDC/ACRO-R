@@ -6,12 +6,11 @@
 #' @return Regression Results Wrapper.
 #' @export
 
-acro_lm <- function(formula, data)
-{
+acro_lm <- function(formula, data) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
-  model = acroEnv$ac$olsr(formula, data)
+  model <- acroEnv$ac$olsr(formula, data)
   model$summary()
 }
 
@@ -24,17 +23,16 @@ acro_lm <- function(formula, data)
 #' @return Regression Results Wrapper
 #' @export
 
-acro_glm <- function(formula, data, family)
-{
+acro_glm <- function(formula, data, family) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
   if (family == "logit") {
-    model = acroEnv$ac$logitr(formula, data)
+    model <- acroEnv$ac$logitr(formula, data)
   } else if (family == "probit") {
-    model = acroEnv$ac$probitr(formula, data)
+    model <- acroEnv$ac$probitr(formula, data)
   } else {
-    stop("Invalid family. Options for family are: logit or probit");
+    stop("Invalid family. Options for family are: logit or probit")
   }
   model$summary()
 }

@@ -31,9 +31,25 @@ repos:
       - id: codespell
         args: ["-L", "tre"]
         exclude: >
-            (?x)^(
-                .*\.txt|
-                .*\.ipynb|
-                .*\.html
-            )$
+          (?x)^(
+            .*\.txt|
+            .*\.ipynb|
+            .*\.html
+          )$
+
+  # Format R files
+  - repo: https://github.com/lorenzwalthert/precommit
+    rev: v0.4.3
+    hooks:
+      - id: style-files
+        args: [
+          --style_pkg=styler,
+          --style_fun=tidyverse_style,
+          --cache-root=styler-perm
+        ]
+        exclude: >
+          (?x)^(
+            tests/testthat/in/.*|
+            renv/.*
+          )$
 ...

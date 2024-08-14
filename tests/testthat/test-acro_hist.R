@@ -6,7 +6,7 @@ test_that("acro_hist without initialising ACRO object first", {
 test_that("acro_hist works", {
   testthat::skip_on_cran()
   acro_init()
-  filename = acro_hist(nursery_data, "children")
+  filename <- acro_hist(nursery_data, "children")
   expect_true(file.exists(filename))
 })
 
