@@ -36,7 +36,7 @@ test_that("acro_glm with logit as a family works", {
   expect_s3_class(model,"statsmodels.iolib.summary.Summary")
 })
 
-test_that("acro_glm through an error if the family is not recongnised", {
+test_that("acro_glm through an error if the family is not recognised", {
   testthat::skip_on_cran()
   acro_init()
   expect_error(acro_glm(formula=formula, data=df, family="mean"), "Invalid family. Options for family are: logit or probit")

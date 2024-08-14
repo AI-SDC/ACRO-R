@@ -24,4 +24,3 @@ test_that("acro_lm works", {
   model=acro_lm(formula=formula, data=df)
   expect_s3_class(model,"statsmodels.iolib.summary.Summary")
 })
-

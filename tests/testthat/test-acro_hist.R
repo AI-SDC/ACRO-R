@@ -12,4 +12,3 @@ test_that("acro_hist works", {
 
 # Delete the acro_artifacts folder
 unlink("acro_artifacts", recursive = TRUE)
-

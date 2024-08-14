@@ -20,4 +20,3 @@ test_that("acro_pivot_table works", {
   print(expected_table)
   expect_equal(table[, -1, drop = FALSE], expected_table[, -1, drop = FALSE])
 })
-

@@ -25,8 +25,8 @@ acro_init()
 ```
 
 ### Load the data
-- The dataset used in this example notebook is the nursery dataset from OpenML.  
-- The code below reads the data from a folder called "nursery_data" which we assume is at the same level as the folder where you are working.  
+- The dataset used in this example notebook is the nursery dataset from OpenML.
+- The code below reads the data from a folder called "nursery_data" which we assume is at the same level as the folder where you are working.
 - The path might need to be changed if the data has been downloaded and stored elsewhere.
 ```{r}
 data = farff::readARFF("nursery_data/nursery.arff")
@@ -185,9 +185,9 @@ acro_add_comments("output_1", "This is a crosstab on the nursery dataset.")
 ```
 
 #### Finalise
-- The users must call finalise() at the end of each session.  
-- Each output is saved to a CSV file.    
-- The SDC analysis for each output is saved to a json file or Excel file  
+- The users must call finalise() at the end of each session.
+- Each output is saved to a CSV file.
+- The SDC analysis for each output is saved to a json file or Excel file
   (depending on the extension of the name of the file provided as an input to the function)
 
 ```{r}

@@ -136,6 +136,3 @@ acro_surv_func <- function(time, status, output, filename="kaplan-meier.png")
   }
   return(results)
   }
-
-
-
