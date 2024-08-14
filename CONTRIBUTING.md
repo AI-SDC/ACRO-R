@@ -19,48 +19,11 @@ And run with:
 $ pre-commit run -a
 ```
 
-## Notes
-
-Some prerequisites for testing:
-
-```R
-install.packages("spelling")
-install.packages("testthat")
-```
-
-Checking the package:
+## Building and Testing
 
 ```
-$ R CMD build .
-$ R CMD check acro_0.1.2.tar.gz
-```
-
-To identify packages needed to install R packages, for example devtools:
-
-```R
-install.packages("pak")
-
-writeLines(pak::pkg_system_requirements("devtools", "ubuntu", "22.04"))
-```
-
-Install devtools:
-
-```R
-install.packages("devtools")
-```
-
-Load the local repository:
-
-```R
-devtools::load_all(".")
+$ Rscript prepare_to_submit_to_CRAN.R
 ```
 
 To remove the local virtual Python environment, delete the `r-acro` folder.
 On GNU/Linux this is typically located in `~/.virtualenvs`
-
-
-To execute tests locally:
-
-```R
-devtools::test()
-```

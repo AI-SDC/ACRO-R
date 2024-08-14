@@ -8,3 +8,4 @@
 ^example-notebook\.Rmd$
 ^example-notebook\.nb\.html$
 ^cran-comments\.md$
+^.pre-commit-config.yaml$
