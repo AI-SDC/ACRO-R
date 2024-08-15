@@ -4,9 +4,6 @@
 install.packages("devtools")
 install.packages("usethis")
 install.packages("covr")
-install.packages("reticulate")
-install.packages("admiraldev")
-install.packages("png")
 library(devtools)
 library(covr)
 
