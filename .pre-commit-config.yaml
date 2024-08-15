@@ -57,12 +57,4 @@ repos:
       - id: readme-rmd-rendered
       - id: no-browser-statement
       - id: no-debug-statement
-
-      - id: deps-in-desc
-        exclude: >
-          (?x)^(
-            dev_history.R|
-            example-notebook.Rmd|
-            prepare_to_submit_to_CRAN.R|
-          )$
 ...
