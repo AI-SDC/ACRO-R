@@ -33,6 +33,9 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      # set matplotlib backend because Windows CI errors with:
+      # "This probably means that Tcl wasn't installed properly."
+      MPLBACKEND: Agg  # https://github.com/orgs/community/discussions/26434
 
     steps:
       - uses: actions/checkout@v4
