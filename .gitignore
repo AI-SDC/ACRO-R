@@ -54,6 +54,7 @@ pip-log.txt
 coverage.xml
 htmlcov/
 nosetests.xml
+tests/testthat/Rplots.pdf
 
 # Translations
 *.mo
