@@ -9,7 +9,6 @@
 install_acro <- function(
     envname = "r-acro", ...,
     python_version = ">=3.8,<=3.11") {
-
   # create Python virtual environment
   reticulate::virtualenv_create(
     envname = envname,
