@@ -6,6 +6,6 @@ library(devtools)
 library(covr)
 
 # check that there are no errors, warnings or notes
-devtools::test()
+#devtools::test()
 
-# devtools::check()
+devtools::check()

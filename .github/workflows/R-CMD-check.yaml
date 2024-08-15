@@ -48,13 +48,6 @@ jobs:
           extra-packages: any::rcmdcheck
           needs: check
 
-      - name: Build and Test
-        run: |
-          Rscript test.R
-
-#############################################################
-# this action has problems with reticulate creating venvs
-#############################################################
-#      - uses: r-lib/actions/check-r-package@v2
-#        with:
-#          upload-snapshots: true
+      - uses: r-lib/actions/check-r-package@v2
+        with:
+          upload-snapshots: true

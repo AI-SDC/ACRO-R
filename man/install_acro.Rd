@@ -2,18 +2,20 @@
 % Please edit documentation in R/create_virtualenv.R
 \name{install_acro}
 \alias{install_acro}
-\title{Install the python library 'acro'}
+\title{Install acro}
 \usage{
-install_acro(..., envname = "r-acro")
+install_acro(envname = "r-acro", ..., python_version = ">=3.8,<=3.11")
 }
 \arguments{
+\item{envname}{the name of the Python virtual environment}
+
 \item{...}{Any other parameters.}
 
-\item{envname}{the name of the python virtual environment}
+\item{python_version}{Passed on to \code{reticulate::virtualenv_starter()}}
 }
 \value{
 No return value, called for side effects
 }
 \description{
-Install the python library 'acro'
+Install acro
 }
