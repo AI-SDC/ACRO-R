@@ -11,22 +11,24 @@ name: R-CMD-check
 
 jobs:
   R-CMD-check:
-    runs-on: ${{ matrix.config.os }}
+    runs-on: ${{ matrix.os }}
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+    name: ${{ matrix.os }} (${{ matrix.r }})
 
     strategy:
       fail-fast: false
       matrix:
-        config:
-          - {os: macos-latest, r: 'release'}
-          - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest, r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest, r: 'release'}
-          - {os: ubuntu-latest, r: 'oldrel-1'}
-          # - {os: ubuntu-latest, r: 'oldrel-2'}
-          # - {os: ubuntu-latest, r: 'oldrel-3'}
-          # - {os: ubuntu-latest, r: 'oldrel-4'}
+        include:
+
+          # default everything
+          - {os: 'ubuntu-latest' , python: '3.11', r: 'release'}
+          - {os: 'windows-latest', python: '3.11', r: 'release'}
+          - {os: 'macOS-latest'  , python: '3.11', r: 'release'}
+
+          # older R versions
+          - {os: 'ubuntu-latest' , python: '3.9', r: 'oldrel-1'}
+          - {os: 'ubuntu-latest' , python: '3.9', r: 'oldrel-2'}
+          - {os: 'ubuntu-latest' , python: '3.9', r: 'oldrel-3'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -35,13 +37,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
       - uses: r-lib/actions/setup-pandoc@v2
 
       - uses: r-lib/actions/setup-r@v2
         with:
-          r-version: ${{ matrix.config.r }}
-          http-user-agent: ${{ matrix.config.http-user-agent }}
-          use-public-rspm: true
+          r-version: ${{ matrix.r }}
+          cache-version: 1
+          upgrade: 'TRUE'
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
