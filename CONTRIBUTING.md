@@ -41,8 +41,7 @@ $ R -e "devtools::check()"
 Generate coverage report locally:
 
 ```
-$ export NOT_CRAN=true
-$ R -e "covr::package_coverage()"
+$ R -e 'Sys.setenv(NOT_CRAN = "true"); covr::package_coverage()'
 ```
 
 ## Notes
