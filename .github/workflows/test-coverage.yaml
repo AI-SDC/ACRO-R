@@ -37,5 +37,5 @@ jobs:
           extra-packages: covr
 
       - name: Test coverage
-        run: R -e "Sys.setenv(NOT_CRAN = 'true'); covr::codecov()"
+        run: NOT_CRAN=true R -e 'covr::codecov()'
         shell: Rscript {0}
