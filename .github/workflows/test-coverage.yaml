@@ -37,5 +37,7 @@ jobs:
           extra-packages: covr
 
       - name: Test coverage
-        run: covr::codecov()
+        run: |
+          export NOT_CRAN=true
+          covr::codecov()
         shell: Rscript {0}
