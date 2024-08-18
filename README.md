@@ -1,5 +1,10 @@
 ## ACRO: Tools for the Automatic Checking of Research Outputs
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
+[![CRAN](https://www.r-pkg.org/badges/version/acro)](https://CRAN.R-project.org/package=acro)
+[![check](https://github.com/AI-SDC/ACRO-R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AI-SDC/ACRO-R/actions?query=workflow%3AR-CMD-check)
+[![codecov](https://codecov.io/gh/AI-SDC/ACRO-R/graph/badge.svg?token=VxbjBHzeXU)](https://codecov.io/gh/AI-SDC/ACRO-R)
+
 This repository maintains the ACRO R package, which is an interface to the
 Python [ACRO](https://github.com/AI-SDC/ACRO) package.
 

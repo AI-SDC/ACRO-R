@@ -27,9 +27,6 @@ Some prerequisites for testing locally:
 install.packages("spelling")
 install.packages("testthat")
 install.packages("devtools")
-install.packages("covr")
-install.packages("DT")
-install.packages("htmltools")
 ```
 
 Run tests locally:
@@ -38,10 +35,30 @@ Run tests locally:
 $ R -e "devtools::check()"
 ```
 
+## Coverage
+
+Some prerequisites for generating coverage locally:
+
+```R
+install.packages("covr")
+install.packages("DT")
+install.packages("htmltools")
+```
+
 Generate coverage report locally:
 
 ```
 $ R -e 'Sys.setenv(NOT_CRAN = "true"); covr::package_coverage()'
+```
+
+## Linting
+
+```R
+install.packages("lintr")
+```
+
+```
+$ R -e 'lintr::lint_package()'
 ```
 
 ## Notes
