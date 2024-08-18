@@ -45,16 +45,3 @@ jobs:
             token = "${{ secrets.CODECOV_TOKEN }}"
           )
         shell: Rscript {0}
-
-      - name: Show Test Output
-        if: always()
-        run: |
-          find ${{ runner.temp }}/package -name 'testthat.Rout*' -exec cat '{}' \; || true
-        shell: bash
-
-      - name: Upload Test Results
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-test-failures
-          path: ${{ runner.temp }}/package
