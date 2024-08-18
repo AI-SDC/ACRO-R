@@ -19,10 +19,40 @@ And run with:
 $ pre-commit run -a
 ```
 
-## Building and Testing
+## Testing
+
+Some prerequisites for testing locally:
+
+```R
+install.packages("spelling")
+install.packages("testthat")
+install.packages("devtools")
+install.packages("covr")
+install.packages("DT")
+install.packages("htmltools")
+```
+
+Run tests locally:
 
 ```
-$ Rscript prepare_to_submit_to_CRAN.R
+$ R -e "devtools::check()"
+```
+
+Generate coverage report locally:
+
+```
+$ export NOT_CRAN=true
+$ R -e "covr::package_coverage()"
+```
+
+## Notes
+
+To identify packages needed to install R packages, for example devtools:
+
+```R
+install.packages("pak")
+
+writeLines(pak::pkg_system_requirements("devtools", "ubuntu", "22.04"))
 ```
 
 To remove the local virtual Python environment, delete the `r-acro` folder.

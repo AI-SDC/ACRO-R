@@ -137,6 +137,7 @@ dmypy.json
 *.Rcheck
 .Rhistory
 .Rproj.user
+lib/
 
 #Jims Development
 stata/various_stata_development__files
