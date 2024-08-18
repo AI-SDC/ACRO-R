@@ -37,16 +37,15 @@ jobs:
           needs: coverage
           cache-version: 2
 
-      - name: Test coverage
+      - name: Generate xml Report
         run: |
-          covr::codecov(
-            quiet = FALSE,
-            clean = FALSE,
-            token = "${{ secrets.CODECOV_TOKEN }}"
+          covr::to_cobertura(
+            covr::package_coverage(),
+            filename = "coverage.xml"
           )
         shell: Rscript {0}
 
-      - name: Upload coverage to Codecov
+      - name: Upload Report to Codecov
         uses: codecov/codecov-action@v4
         with:
           fail_ci_if_error: true
