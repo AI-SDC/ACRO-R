@@ -14,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      NOT_CRAN: true
 
     steps:
       - name: Checkout ACRO
@@ -37,5 +38,5 @@ jobs:
           extra-packages: covr
 
       - name: Test coverage
-        run: NOT_CRAN=true R -e 'covr::codecov()'
+        run: covr::codecov()
         shell: Rscript {0}
