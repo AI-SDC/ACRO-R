@@ -9,7 +9,7 @@ Authors@R: c(
   person("Richard John", "Preen", role = c("ctb"),
          email = "Richard2.Preen@uwe.ac.uk", comment = c(ORCID = "0000-0003-3351-8132")))
 Maintainer: Jim Smith <James.Smith@uwe.ac.uk>
-Description: Assists researchers and output checkers by distinguishing between research output that is safe to publish, output that requires further analysis, and output that cannot be published because of substantial disclosure risk. A paper about the tool was presented at The United Nations Economic Commission for Europe Expert Meeting on Statistical Data Confidentiality, see <https://unece.org/statistics/events/SDC2023> and <https://uwe-repository.worktribe.com/output/11060964>.
+Description: Assists researchers and output checkers by distinguishing between research output that is safe to publish, output that requires further analysis, and output that cannot be published because of substantial disclosure risk. A paper about the tool was presented at the UNECE Expert Meeting on Statistical Data Confidentiality 2023; see <https://uwe-repository.worktribe.com/output/11060964>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
