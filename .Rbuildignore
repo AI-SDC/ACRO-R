@@ -3,6 +3,7 @@
 ^LICENSE\.md$
 ^\.Rproj\.user$
 ^\.github$
+^_pkgdown\.yml$
 ^acro\.Rproj$
 ^charity_data$
 ^cran-comments\.md$
