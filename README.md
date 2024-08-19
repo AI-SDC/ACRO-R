@@ -42,7 +42,7 @@ initialised using the following R code:
 acro_init()
 ```
 
-Then the functions can be called. See [notebook](example-notebook.Rmd) examples.
+Then the functions can be called.
 
 ### Acknowledgement
 
