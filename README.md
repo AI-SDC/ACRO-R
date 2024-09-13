@@ -39,7 +39,7 @@ ACRO currently depends on an older version of Pandas (~1.5.0) for which no pre-c
 
 For Windows, [Microsoft Visual Studio](https://visualstudio.microsoft.com/downloads/) and the [C++ build tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) will likely need to be installed first.
 
-If you are unable to install the C++ tools, but are able to install multiple versions of Python, you can use the following method to explicitly create the Python virtual environment with your desired `python.exe` -- this should only need to be done once.
+If you are unable to install the C++ tools, but are able to install multiple versions of Python, you can use the following method to explicitly create the Python virtual environment with your desired `python.exe`.
 
 First identify the location of the `python.exe` needed, which may be in `C:\Program Files\` or in your local `C:\Users\username\AppData\Local\Programs\Python\`.
 
