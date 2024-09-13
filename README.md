@@ -43,7 +43,7 @@ If you are unable to install the C++ tools, but are able to install multiple ver
 
 First identify the location of the `python.exe` needed, which may be in `C:\Program Files\` or in your local `C:\Users\username\AppData\Local\Programs\Python\`.
 
-Then from R, use reticulate to create the virtual environment and install ACRO, for example (note that forward slashes are required in the path). Change the path provided as a version to your Python path.
+Then from R, use reticulate to create the virtual environment and install ACRO; see example below (note that forward slashes are required in the path). Change the path provided as a version to your Python path.
 
 ```R
 >>> library("reticulate")
