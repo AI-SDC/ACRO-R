@@ -1,4 +1,4 @@
-## ACRO: Tools for the Automatic Checking of Research Outputs
+## ACRO: Tools for the Semi-Automatic Checking of Research Outputs
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![CRAN](https://www.r-pkg.org/badges/version/acro)](https://CRAN.R-project.org/package=acro)
