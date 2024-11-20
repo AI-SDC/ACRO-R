@@ -8,8 +8,8 @@
 <title>A Tool for Automating the Statistical Disclosure Control of Research Outputs • acro</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="A Tool for Automating the Statistical Disclosure Control of Research Outputs">
 <meta name="description" content="Assists researchers and output checkers by distinguishing between research output that is safe to publish, output that requires further analysis, and output that cannot be published because of substantial disclosure risk. A paper about the tool was presented at the UNECE Expert Meeting on Statistical Data Confidentiality 2023; see &lt;https://uwe-repository.worktribe.com/output/11060964&gt;.">
 <meta property="og:description" content="Assists researchers and output checkers by distinguishing between research output that is safe to publish, output that requires further analysis, and output that cannot be published because of substantial disclosure risk. A paper about the tool was presented at the UNECE Expert Meeting on Statistical Data Confidentiality 2023; see &lt;https://uwe-repository.worktribe.com/output/11060964&gt;.">
@@ -47,18 +47,21 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level2">
-<h2 id="acro-tools-for-the-automatic-checking-of-research-outputs">ACRO: Tools for the Automatic Checking of Research Outputs<a class="anchor" aria-label="anchor" href="#acro-tools-for-the-automatic-checking-of-research-outputs"></a>
+<h2 id="acro-tools-for-the-semi-automatic-checking-of-research-outputs">ACRO: Tools for the Semi-Automatic Checking of Research Outputs<a class="anchor" aria-label="anchor" href="#acro-tools-for-the-semi-automatic-checking-of-research-outputs"></a>
 </h2>
 <p><a href="https://opensource.org/licenses/MIT" class="external-link"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License"></a> <a href="https://CRAN.R-project.org/package=acro" class="external-link"><img src="https://www.r-pkg.org/badges/version/acro" alt="CRAN"></a> <a href="https://github.com/AI-SDC/ACRO-R/actions?query=workflow%3AR-CMD-check" class="external-link"><img src="https://github.com/AI-SDC/ACRO-R/actions/workflows/R-CMD-check.yaml/badge.svg" alt="check"></a> <a href="https://app.codecov.io/gh/AI-SDC/ACRO-R" class="external-link"><img src="https://codecov.io/gh/AI-SDC/ACRO-R/graph/badge.svg?token=VxbjBHzeXU" alt="codecov"></a></p>
 <p>This repository maintains the ACRO R package, which is an interface to the Python <a href="https://github.com/AI-SDC/ACRO" class="external-link">ACRO</a> package.</p>
-<p>ACRO (Automatic Checking of Research Outputs) is an open source tool for automating the <a href="https://en.wikipedia.org/wiki/Statistical_disclosure_control" class="external-link">statistical disclosure control</a> (SDC) of research outputs. ACRO assists researchers and output checkers by distinguishing between research output that is safe to publish, output that requires further analysis, and output that cannot be published because of a substantial risk of disclosing private data.</p>
-<p>It does this by providing a light-weight ‘skin’ that sits over well-known analysis tools, in a variety of languages researchers might use. This adds functionality to:</p>
+<p>ACRO is a free and open source tool that supports the semi-automated checking of research outputs (SACRO) for privacy disclosure within secure data environments. SACRO is a framework that applies best-practice principles-based <a href="https://en.wikipedia.org/wiki/Statistical_disclosure_control" class="external-link">statistical disclosure control</a> (SDC) techniques on-the-fly as researchers conduct their analysis. SACRO is designed to assist human checkers rather than seeking to replace them as with current automated rules-based approaches.</p>
+<p>The ACRO package is a lightweight Python tool that sits over well-known analysis tools that produce outputs such as tables, plots, and statistical models. This package adds functionality to:</p>
 <ul>
-<li>identify potentially disclosive outputs against a range of commonly used disclosure tests;</li>
-<li>suppress outputs where required;</li>
-<li>report reasons for suppression;</li>
-<li>produce simple summary documents TRE staff can use to streamline their workflow.</li>
+<li>automatically identify potentially disclosive outputs against a range of commonly used disclosure tests;</li>
+<li>apply optional disclosure mitigation strategies as requested;</li>
+<li>report reasons for applying SDC;</li>
+<li>and produce simple summary documents trusted research environment staff can use to streamline their workflow and maintain auditable records.</li>
 </ul>
+<p>This creates an explicit change in the dynamics so that SDC is something done with researchers rather than to them, and enables more efficient communication with checkers.</p>
+<p>A graphical user interface (<a href="https://github.com/AI-SDC/SACRO-Viewer" class="external-link">SACRO-Viewer</a>) supports human checkers by displaying the requested output and results of the checks in an immediately accessible format, highlighting identified issues, potential mitigation options, and tracking decisions made.</p>
+<p>Additional programming languages such as this R package are supported by providing front-end packages that interface with the core ACRO Python back-end.</p>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
