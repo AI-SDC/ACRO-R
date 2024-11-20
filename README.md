@@ -7,14 +7,20 @@
 
 This repository maintains the ACRO R package, which is an interface to the Python [ACRO](https://github.com/AI-SDC/ACRO) package.
 
-ACRO (Automatic Checking of Research Outputs) is an open source tool for automating the [statistical disclosure control](https://en.wikipedia.org/wiki/Statistical_disclosure_control) (SDC) of research outputs. ACRO assists researchers and output checkers by distinguishing between research output that is safe to publish, output that requires further analysis, and output that cannot be published because of a substantial risk of disclosing private data.
+ACRO is a free and open source tool that supports the semi-automated checking of research outputs (SACRO) for privacy disclosure within secure data environments. SACRO is a framework that applies best-practice principles-based [statistical disclosure control](https://en.wikipedia.org/wiki/Statistical_disclosure_control) (SDC) techniques on-the-fly as researchers conduct their analysis. SACRO is designed to assist human checkers rather than seeking to replace them as with current automated rules-based approaches.
 
-It does this by providing a light-weight 'skin' that sits over well-known analysis tools, in a variety of languages researchers might use. This adds functionality to:
+The ACRO package is a lightweight Python tool that sits over well-known analysis tools that produce outputs such as tables, plots, and statistical models. This package adds functionality to:
 
-*   identify potentially disclosive outputs against a range of commonly used disclosure tests;
-*   suppress outputs where required;
-*   report reasons for suppression;
-*   produce simple summary documents TRE staff can use to streamline their workflow.
+* automatically identify potentially disclosive outputs against a range of commonly used disclosure tests;
+* apply optional disclosure mitigation strategies as requested;
+* report reasons for applying SDC;
+* and produce simple summary documents trusted research environment staff can use to streamline their workflow and maintain auditable records.
+
+This creates an explicit change in the dynamics so that SDC is something done with researchers rather than to them, and enables more efficient communication with checkers.
+
+A graphical user interface ([SACRO-Viewer](https://github.com/AI-SDC/SACRO-Viewer)) supports human checkers by displaying the requested output and results of the checks in an immediately accessible format, highlighting identified issues, potential mitigation options, and tracking decisions made.
+
+Additional programming languages such as this R package are supported by providing front-end packages that interface with the core ACRO Python back-end.
 
 ### Installation
 
