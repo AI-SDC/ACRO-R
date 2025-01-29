@@ -30,41 +30,14 @@ Install the **acro** package from CRAN as follows:
 install.packages("acro")
 ```
 
-#### Notes for Python 3.13
-
-ACRO currently depends on numpy version 1.x.x for which no pre-compiled wheels are available within pip for Python 3.13. Therefore, in this scenario, numpy must be built from source. This requires the installation of a C++ compiler before pip installing acro.
-
-For Windows, the [Microsoft Visual Studio C++ build tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) will likely need to be installed first.
-
-If you are unable to install the C++ tools, but are able to install multiple versions of Python, you can use the following method to explicitly create the Python virtual environment with your desired `python.exe`.
-
-First identify the location of the `python.exe` needed, which may be in `C:\Program Files\` or in your local `C:\Users\username\AppData\Local\Programs\Python\`.
-
-Then from R, use reticulate to create the virtual environment and install ACRO; see example below. Change the path provided as a version to your Python path (note that forward slashes are required in the path).
-
-```R
->>> library("reticulate")
->>> reticulate::virtualenv_create(envname = "r-acro-0.4.7", version = "C:/Users/username/AppData/Local/Programs/Python/Python310/python.exe", force = TRUE, packages = NULL)
->>> reticulate::py_install("acro", envname = "r-acro-0.4.7")
-```
-
-Finally, the R ACRO library can be used as normal:
-
-```R
->>> library("acro")
->>> acro_init(suppress = TRUE)
-```
-
 ### Usage
 
 Before using any function from the package, an acro object should be initialised using the following R code:
 
 ``` r
 >>> library("acro")
->>> acro_init()
+>>> acro_init(suppress = TRUE)
 ```
-
-Then the functions can be called.
 
 ### Documentation
 

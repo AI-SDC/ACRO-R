@@ -21,9 +21,9 @@ jobs:
         include:
 
           # default everything
-          - {os: 'ubuntu-latest', python: '3.12', r: 'release'}
-          - {os: 'windows-latest', python: '3.12', r: 'release'}
-          - {os: 'macOS-latest', python: '3.12', r: 'release'}
+          - {os: 'ubuntu-latest', python: '3.13', r: 'release'}
+          - {os: 'windows-latest', python: '3.13', r: 'release'}
+          - {os: 'macOS-latest', python: '3.13', r: 'release'}
 
           # older R versions
           - {os: 'ubuntu-latest', python: '3.9', r: 'oldrel-1'}
