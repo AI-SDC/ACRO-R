@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">acro</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,29 +68,13 @@
 <p>Install the <strong>acro</strong> package from CRAN as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"acro"</span><span class="op">)</span></span></code></pre></div>
-<div class="section level4">
-<h4 id="notes-for-python-313">Notes for Python 3.13<a class="anchor" aria-label="anchor" href="#notes-for-python-313"></a>
-</h4>
-<p>ACRO currently depends on numpy version 1.x.x for which no pre-compiled wheels are available within pip for Python 3.13. Therefore, in this scenario, numpy must be built from source. This requires the installation of a C++ compiler before pip installing acro.</p>
-<p>For Windows, the <a href="https://visualstudio.microsoft.com/visual-cpp-build-tools/" class="external-link">Microsoft Visual Studio C++ build tools</a> will likely need to be installed first.</p>
-<p>If you are unable to install the C++ tools, but are able to install multiple versions of Python, you can use the following method to explicitly create the Python virtual environment with your desired <code>python.exe</code>.</p>
-<p>First identify the location of the <code>python.exe</code> needed, which may be in <code>C:\Program Files\</code> or in your local <code>C:\Users\username\AppData\Local\Programs\Python\</code>.</p>
-<p>Then from R, use reticulate to create the virtual environment and install ACRO; see example below. Change the path provided as a version to your Python path (note that forward slashes are required in the path).</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> <span class="fu">library</span>(<span class="st">"reticulate"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> reticulate<span class="sc">::</span><span class="fu">virtualenv_create</span>(<span class="at">envname =</span> <span class="st">"r-acro-0.4.7"</span>, <span class="at">version =</span> <span class="st">"C:/Users/username/AppData/Local/Programs/Python/Python310/python.exe"</span>, <span class="at">force =</span> <span class="cn">TRUE</span>, <span class="at">packages =</span> <span class="cn">NULL</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> reticulate<span class="sc">::</span><span class="fu">py_install</span>(<span class="st">"acro"</span>, <span class="at">envname =</span> <span class="st">"r-acro-0.4.7"</span>)</span></code></pre></div>
-<p>Finally, the R ACRO library can be used as normal:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> <span class="fu">library</span>(<span class="st">"acro"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> <span class="fu">acro_init</span>(<span class="at">suppress =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-</div>
 </div>
 <div class="section level3">
 <h3 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h3>
 <p>Before using any function from the package, an acro object should be initialised using the following R code:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> <span class="fu">library</span>(<span class="st">"acro"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> <span class="fu">acro_init</span>()</span></code></pre></div>
-<p>Then the functions can be called.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> <span class="fu">library</span>(<span class="st">"acro"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="sc">&gt;</span><span class="er">&gt;&gt;</span> <span class="fu">acro_init</span>(<span class="at">suppress =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
