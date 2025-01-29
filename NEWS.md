@@ -1,3 +1,7 @@
+# acro 0.1.4
+
+* Upgrade ACRO Python backend to v0.4.8, supporting numpy v2 for a more seamless installation with Python 3.13.
+ 
 # acro 0.1.3
 
 * Upgrade ACRO Python backend to v0.4.7, supporting pandas v2 for a more seamless installation with Python 3.12.
