@@ -1,5 +1,5 @@
 Package: acro
-Title: A Tool for Automating the Statistical Disclosure Control of Research Outputs
+Title: A Tool for Semi-Automating the Statistical Disclosure Control of Research Outputs
 Version: 0.1.4
 Authors@R: c(
   person("Jim", "Smith", role = c("cre","ctb"),
