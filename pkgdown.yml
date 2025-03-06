@@ -2,7 +2,7 @@ pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2025-01-29T15:38Z
+last_built: 2025-03-06T21:12Z
 urls:
   reference: https://AI-SDC.github.io/ACRO-R/reference
   article: https://AI-SDC.github.io/ACRO-R/articles
