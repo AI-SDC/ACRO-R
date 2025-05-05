@@ -1,5 +1,6 @@
 ## ACRO: Tools for the Semi-Automatic Checking of Research Outputs
 
+[![IEEE Xplore](https://img.shields.io/badge/IEEE%20Xplore-10.1109/TP.2025.3566052-blue)](https://doi.org/10.1109/TP.2025.3566052)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://opensource.org/licenses/MIT)
 [![CRAN](https://www.r-pkg.org/badges/version/acro)](https://CRAN.R-project.org/package=acro)
 [![check](https://github.com/AI-SDC/ACRO-R/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/AI-SDC/ACRO-R/actions?query=workflow%3AR-CMD-check)
@@ -42,6 +43,8 @@ Before using any function from the package, an acro object should be initialised
 ### Documentation
 
 The github-pages contains pre-built [documentation](https://ai-sdc.github.io/ACRO-R/).
+
+Additionally, see our [paper describing the SACRO framework](https://doi.org/10.1109/TP.2025.3566052) to learn about its principles-based SDC methodology and usage.
 
 ### Acknowledgement
 
