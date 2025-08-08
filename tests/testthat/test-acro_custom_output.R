@@ -1,5 +1,5 @@
 test_that("acro_custom_output without initialising ACRO object first", {
-  acroEnv$ac <-NULL
+  acroEnv$ac <- NULL
   expect_error(acro_custom_output(filepath), "ACRO has not been initialised. Please first call acro_init()")
 })
 

@@ -1,28 +1,28 @@
 Package: acro
-Title: A Tool for Automating the Statistical Disclosure Control of Research Outputs
-Version: 0.1.2
+Title: A Tool for Semi-Automating the Statistical Disclosure Control of Research Outputs
+Version: 0.1.5
 Authors@R: c(
   person("Jim", "Smith", role = c("cre","ctb"),
          email = "James.Smith@uwe.ac.uk", comment = c(ORCID = "0000-0001-7908-1859")),
   person("Maha", "Albashir", role = c("aut","ctb"),
          email = "Maha.Albashir@uwe.ac.uk"),
-  person("Richard John", "Preen", role = c("ctb"),
+  person("Richard John", "Preen", role = c("aut","ctb"),
          email = "Richard2.Preen@uwe.ac.uk", comment = c(ORCID = "0000-0003-3351-8132")))
 Maintainer: Jim Smith <James.Smith@uwe.ac.uk>
-Description: Assists researchers and output checkers by distinguishing between research output that is safe to publish, output that requires further analysis, and output that cannot be published because of substantial disclosure risk. A paper about the tool was presented at The United Nations Economic Commission for Europe Expert Meeting on Statistical Data Confidentiality, see <https://unece.org/statistics/events/SDC2023> and <https://uwe-repository.worktribe.com/output/11060964>.
+Description: A Tool for Semi-Automating the Statistical Disclosure Control of Research Outputs.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
-SystemRequirements: Python (>= 3.8)
-Imports: 
+RoxygenNote: 7.3.2
+SystemRequirements: Python (>= 3.9)
+Imports:
     reticulate,
     admiraldev,
     png
-Depends: 
+Depends:
     R (>= 2.10)
 LazyData: true
-Suggests: 
+Suggests:
     spelling,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

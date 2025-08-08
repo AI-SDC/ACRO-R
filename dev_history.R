@@ -40,7 +40,7 @@ devtools::check_mac_release()
 
 # Check reverse dependencies
 # remotes::install_github("r-lib/revdepcheck")
-install.packages('revdepcheck', repos = 'https://r-lib.r-universe.dev')
+install.packages("revdepcheck", repos = "https://r-lib.r-universe.dev")
 usethis::use_git_ignore("revdep/")
 usethis::use_build_ignore("revdep/")
 
@@ -51,7 +51,7 @@ id <- rstudioapi::terminalExecute("Rscript -e 'revdepcheck::revdep_check(num_wor
 rstudioapi::terminalKill(id)
 # See outputs
 revdep_details(revdep = "pkg")
-revdep_summary()                 # table of results by package
+revdep_summary() # table of results by package
 revdep_report() # in revdep/
 # Clean up when on CRAN
 revdep_reset()

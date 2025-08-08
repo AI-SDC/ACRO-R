@@ -1,12 +1,26 @@
-#' Install the python library 'acro'
+acro_venv <- "r-acro-0.4.9"
+acro_package <- "acro==0.4.9"
+python_version <- ">=3.9"
+
+
+#' Install acro
 #'
+#' @param envname the name of the Python virtual environment
 #' @param ... Any other parameters.
-#' @param envname the name of the python virtual environment
 #'
 #' @return No return value, called for side effects
 
-install_acro <- function(..., envname = "r-acro") {
-  reticulate::py_install("acro", envname = envname, ...)
+install_acro <- function(envname = "r-acro", ...) {
+  # create Python virtual environment
+  reticulate::virtualenv_create(
+    envname = envname,
+    version = python_version,
+    force = TRUE,
+    packages = NULL
+  )
+
+  # install Python acro
+  reticulate::py_install(acro_package, envname = envname)
 }
 
 #' Create a python virtual environment
@@ -16,13 +30,11 @@ install_acro <- function(..., envname = "r-acro") {
 #' @return No return value, called for side effects
 
 create_virtualenv <- function(...) {
-  # Create a virtual environment if it does not exists
-  if (!reticulate::virtualenv_exists("r-acro")) {
-    reticulate::virtualenv_create("r-acro", version=">= 3.8")
+  # ensure a virtual environment exists
+  if (!reticulate::virtualenv_exists(acro_venv)) {
+    install_acro(envname = acro_venv)
   }
-  reticulate::use_virtualenv("r-acro", required = TRUE)
 
-  if (!reticulate::py_module_available("acro")) {
-    install_acro()
-  }
+  # activate virtual environment
+  reticulate::use_virtualenv(acro_venv, required = TRUE)
 }

@@ -8,12 +8,11 @@
 #' @return Cross tabulation of the data
 #' @export
 
-acro_crosstab <- function(index, columns, values=NULL, aggfunc=NULL)
-{
+acro_crosstab <- function(index, columns, values = NULL, aggfunc = NULL) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  table = acroEnv$ac$crosstab(index, columns, values=values, aggfunc=aggfunc)
+  table <- acroEnv$ac$crosstab(index, columns, values = values, aggfunc = aggfunc)
   return(table)
 }
 
@@ -28,8 +27,7 @@ acro_crosstab <- function(index, columns, values=NULL, aggfunc=NULL)
 #' @return Cross tabulation of the data
 #' @export
 
-acro_table <- function(index, columns, dnn=NULL, deparse.level=0, ...)
-{
+acro_table <- function(index, columns, dnn = NULL, deparse.level = 0, ...) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
@@ -39,29 +37,34 @@ acro_table <- function(index, columns, dnn=NULL, deparse.level=0, ...)
       acroEnv$row_names <- list("")
       acroEnv$col_names <- list("")
     } else if (deparse.level == 1) {
-      tryCatch({
-        index_symbol <- admiraldev::assert_symbol(substitute(index))
-        acroEnv$row_names <- list(deparse(index_symbol))},
+      tryCatch(
+        {
+          index_symbol <- admiraldev::assert_symbol(substitute(index))
+          acroEnv$row_names <- list(deparse(index_symbol))
+        },
         error = function(e) {
           acroEnv$row_names <- list("")
-        })
-      tryCatch({
-        column_symbol <- admiraldev::assert_symbol(substitute(columns))
-        acroEnv$col_names <- list(deparse(column_symbol))},
+        }
+      )
+      tryCatch(
+        {
+          column_symbol <- admiraldev::assert_symbol(substitute(columns))
+          acroEnv$col_names <- list(deparse(column_symbol))
+        },
         error = function(e) {
           acroEnv$col_names <- list("")
-        })
+        }
+      )
     } else if (deparse.level == 2) {
       acroEnv$row_names <- list(deparse((substitute(index))))
       acroEnv$col_names <- list(deparse(substitute(columns)))
     }
-  }
-  else {
+  } else {
     acroEnv$row_names <- list(dnn[1])
     acroEnv$col_names <- list(dnn[2])
   }
 
-  table <- acroEnv$ac$crosstab(index, columns, rownames=acroEnv$row_names, colnames=acroEnv$col_names)
+  table <- acroEnv$ac$crosstab(index, columns, rownames = acroEnv$row_names, colnames = acroEnv$col_names)
   # Check for any unused arguments
   if (length(list(...)) > 0) {
     warning("Unused arguments were provided: ", paste0(names(list(...)), collapse = ", "), "\n", "Please use the help command to learn more about the function.")
@@ -80,12 +83,11 @@ acro_table <- function(index, columns, dnn=NULL, deparse.level=0, ...)
 #' @return Cross tabulation of the data.
 #' @export
 
-acro_pivot_table <- function(data, values=NULL, index=NULL, columns=NULL, aggfunc="mean")
-{
+acro_pivot_table <- function(data, values = NULL, index = NULL, columns = NULL, aggfunc = "mean") {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  table = acroEnv$ac$pivot_table(data, values=values, index=index, columns=columns, aggfunc=aggfunc)
+  table <- acroEnv$ac$pivot_table(data, values = values, index = index, columns = columns, aggfunc = aggfunc)
   return(table)
 }
 
@@ -101,12 +103,11 @@ acro_pivot_table <- function(data, values=NULL, index=NULL, columns=NULL, aggfun
 #' @return The histogram.
 #' @export
 
-acro_hist <- function(data, column, breaks=10, freq=TRUE, col=NULL, filename="histogram.png")
-{
+acro_hist <- function(data, column, breaks = 10, freq = TRUE, col = NULL, filename = "histogram.png") {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  histogram = acroEnv$ac$hist(data=data, column=column, bins=as.integer(breaks), density=freq, color=col, filename=filename)
+  histogram <- acroEnv$ac$hist(data = data, column = column, bins = as.integer(breaks), density = freq, color = col, filename = filename)
   # Load the saved histogram
   image <- png::readPNG(histogram)
   grid::grid.raster(image)
@@ -123,19 +124,15 @@ acro_hist <- function(data, column, breaks=10, freq=TRUE, col=NULL, filename="hi
 #' @return The survival table or plot.
 #' @export
 
-acro_surv_func <- function(time, status, output, filename="kaplan-meier.png")
-{
+acro_surv_func <- function(time, status, output, filename = "kaplan-meier.png") {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  results = acroEnv$ac$surv_func(time=time, status=status, output=output, filename=filename)
-  if (output=="plot"){
+  results <- acroEnv$ac$surv_func(time = time, status = status, output = output, filename = filename)
+  if (output == "plot") {
     # Load the saved survival plot
     image <- png::readPNG(results[[2]])
     grid::grid.raster(image)
   }
   return(results)
-  }
-
-
-
+}
