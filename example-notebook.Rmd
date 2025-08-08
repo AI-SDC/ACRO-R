@@ -63,10 +63,23 @@ table
 
 ```{r}
 index = data[, c("parents")]
-columns = data[, c("social")]
-
-table = acro_table(index=index, columns=columns, deparse.level=1)
+mycolumns = data[, c("social")]
+table = acro_table(index=index, columns=mycolumns, deparse.level=1)
 table
+```
+
+
+### ACRO crosstab multiple dimensions
+
+
+```{r}
+mycols = data[, c("parents")]
+myrows =list(data[, c("social")],data[,c("finance")])
+
+table = acro_crosstab(index=myrows, columns=mycols,deparse.level=1)
+
+table
+
 ```
 
 #### ACRO pivot table
