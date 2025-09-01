@@ -6,36 +6,36 @@ Keeping this comprehensive will require input from the community.
 
 So please email sacro.contact@uwe.ac.uk, or [raise an issue on the GitHub repository](https://github.com/AI-SDC/ACRO-R/issues/new/choose) if:
  - you have a setting that is not covered, or
- - the steps outlined below do not work for you, 
+ - the steps outlined below do not work for you,
 
-**Please note**: most of the scenarios below assume that 
+**Please note**: most of the scenarios below assume that
 - you have a working version of Python 3 (version 3.9 or higher) on your system
 - you are able to access a terminal or command prompt to write and execute some commands.
 
 ---
 
 ## Step 1 create a python virtual environment and install the base python package *acro*
-**In every case** we recommend that you create what is called a 'python virtual environment' called **r-acro**.  
-Virtual environments (*venv's*) are recommended best practice.  
-This is because they isolate the impact of any changes you make in one venv - such as adding or updating a package- from the rest of your system.  
+**In every case** we recommend that you create what is called a 'python virtual environment' called **r-acro**.
+Virtual environments (*venv's*) are recommended best practice.
+This is because they isolate the impact of any changes you make in one venv - such as adding or updating a package- from the rest of your system.
 
 There are many tutorials available on the web if you get stuck.
 We do not endorse any particular site, but here are some examples:
 - [an overview with examples  for windows/linux/mac](https://python.land/virtual-environments/virtualenv)
 - [another that also contains instructions for VSCode and Pycharm](https://realpython.com/python-virtual-environments-a-primer/)
-  
-**For individual users** we suggest that you do this in your home directory where you should have write permission.  
+
+**For individual users** we suggest that you do this in your home directory where you should have write permission.
 
 **To install site-wide** we assume you have access rights and know where your organisation's preferred locations are (for example, this might be ```/usr/local``` on a linux system).
 
 ### Make a dedicated virtual environment
 You can make a new virtual environment  via:
 - the Anaconda GUI interface to the conda system
-- command line access - by opening a terminal or command prompt and entering the command: 
+- command line access - by opening a terminal or command prompt and entering the command:
  ```sh
   conda create --n r-acro
   ```
-if you have a version of conda installed or   
+if you have a version of conda installed or
  ```sh
 python -m venv ./r-acro
 ```
@@ -74,16 +74,16 @@ source r-acro/bin/activate
 #you should see the your command prompt change to show (r-acro)
 python -m pip install acro
 #assuming this completes successfuly you can now exit the virtual environment
-deactivate 
+deactivate
 ```
 ---
 
 ## Step 2 Install the R packages *reticulate* and *acro*
 
 The *reticulate* package is the industry-standard method for supporting communications between R and Python.
-It provides the `plumbing` between the R `front-end' 
+It provides the `plumbing` between the R `front-end'
 
-These commands should work whether you are 
+These commands should work whether you are
 - working on a machine outside the TRE: in which case packages should install from a mirror of the CRAN service
 - working on a machine inside a TRE: in which case the administrator should have set up a local mirror of approved packages from CRAN
 
@@ -128,7 +128,7 @@ If you follow the menu items from ```Tools->Project Options ->Python``` or ```To
   library(reticulate)
   library("acro)"
    ```
-   
+
 ### Option 3 - Editing your personal R preferences
 In your home directory create (or edit) the file ```.Rprofile``` file, adding the lines
 
@@ -139,5 +139,5 @@ Sys.setenv(RETICULATE_PYTHON_ENV=file.path(Sys.getenv("USERPROFILE"),"r-acro"))
 
 
 
-### Option 4- Making site-wide changes 
+### Option 4- Making site-wide changes
  You can also edit the [site-wide Rprofile]() file to add these global environment variables, using replacing *~/r-acro* with the path to wherever you created the dedicated virtual environment.
