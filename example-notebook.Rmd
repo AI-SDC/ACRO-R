@@ -25,12 +25,12 @@ acro_init()
 ```
 
 ### Load the data
-- The dataset used in this example notebook is the nursery dataset from OpenML.  
-- The code below reads the data from a folder called "nursery_data" which we assume is at the same level as the folder where you are working.  
+- The dataset used in this example notebook is the nursery dataset from OpenML.
+- The code below reads the data from a folder called "nursery_data" which we assume is at the same level as the folder where you are working.
 - The path might need to be changed if the data has been downloaded and stored elsewhere.
 ```{r}
-data = farff::readARFF("nursery_data/nursery.arff")
-data = as.data.frame(data)
+data <- farff::readARFF("nursery_data/nursery.arff")
+data <- as.data.frame(data)
 
 names(data)[names(data) == "class"] <- "recommend"
 ```
@@ -38,8 +38,8 @@ names(data)[names(data) == "class"] <- "recommend"
 - Convert the children column to integers, replacing 'more' with random int from range 4-10
 
 ```{r}
-data$children <-as.numeric(as.character(data$children))
-data[is.na(data)] <-  round(runif(sum(is.na(data)), min = 4, max = 10),0)
+data$children <- as.numeric(as.character(data$children))
+data[is.na(data)] <- round(runif(sum(is.na(data)), min = 4, max = 10), 0)
 unique(data$children)
 ```
 
@@ -48,35 +48,35 @@ unique(data$children)
 #### ACRO Crosstab
 
 ```{r}
-index = data[, c("recommend")]
-columns = data[, c("parents")]
-values = data[, c("children")]
+index <- data[, c("recommend")]
+columns <- data[, c("parents")]
+values <- data[, c("children")]
 
 # convert the values to an array
-values = matrix(values, ncol=1)
+values <- matrix(values, ncol = 1)
 
-table = acro_crosstab(index = index, columns= columns, values = values,  aggfunc = "sum")
+table <- acro_crosstab(index = index, columns = columns, values = values, aggfunc = "sum")
 table
 ```
 
 #### ACRO table
 
 ```{r}
-index = data[, c("parents")]
-columns = data[, c("social")]
+index <- data[, c("parents")]
+columns <- data[, c("social")]
 
-table = acro_table(index=index, columns=columns, deparse.level=1)
+table <- acro_table(index = index, columns = columns, deparse.level = 1)
 table
 ```
 
 #### ACRO pivot table
 
 ```{r}
-index = "parents"
-values = "children"
-aggfunc = list("mean", "std")
+index <- "parents"
+values <- "children"
+aggfunc <- list("mean", "std")
 
-table = acro_pivot_table(data, values=values, index=index, aggfunc=aggfunc)
+table <- acro_pivot_table(data, values = values, index = index, aggfunc = aggfunc)
 table
 ```
 #### ACRO histogram
@@ -91,9 +91,9 @@ In this example a different data set will be used. The lung dataset from the sur
 ```{r}
 # Load the lung dataset
 data(lung)
-#head(lung)
+# head(lung)
 
-acro_surv_func(time=lung$time, status=lung$status, output ="plot")
+acro_surv_func(time = lung$time, status = lung$status, output = "plot")
 ```
 
 ### Examples of producing regression outputs using acro
@@ -104,27 +104,27 @@ acro_surv_func(time=lung$time, status=lung$status, output ="plot")
 
 ```{r}
 data$recommend <- as.character(data$recommend)
-data$recommend[which(data$recommend=="not_recom")] <- "0"
-data$recommend[which(data$recommend=="recommend")] <- "1"
-data$recommend[which(data$recommend=="very_recom")] <- "2"
-data$recommend[which(data$recommend=="priority")] <- "3"
-data$recommend[which(data$recommend=="spec_prior")] <- "4"
+data$recommend[which(data$recommend == "not_recom")] <- "0"
+data$recommend[which(data$recommend == "recommend")] <- "1"
+data$recommend[which(data$recommend == "very_recom")] <- "2"
+data$recommend[which(data$recommend == "priority")] <- "3"
+data$recommend[which(data$recommend == "spec_prior")] <- "4"
 data$recommend <- as.numeric(data$recommend)
 ```
 
 ```{r}
 # extract relevant columns
-df = data[, c("recommend", "children")]
+df <- data[, c("recommend", "children")]
 # drop rows with missing values
-df = df[complete.cases(df), ]
+df <- df[complete.cases(df), ]
 # formula to fit
-formula = "recommend ~ children"
+formula <- "recommend ~ children"
 ```
 
 #### ACRO Linear Model
 
 ```{r}
-acro_lm(formula=formula, data=df)
+acro_lm(formula = formula, data = df)
 ```
 
 #### ACRO Logit Model
@@ -133,25 +133,25 @@ We use a different combination of variables from the original dataset.
 
 ```{r}
 # extract relevant columns
-df = data[, c("finance", "children")]
+df <- data[, c("finance", "children")]
 # drop rows with missing values
-df = df[complete.cases(df), ]
+df <- df[complete.cases(df), ]
 # convert finance to numeric
-df = transform(df, finance = as.numeric(finance))
+df <- transform(df, finance = as.numeric(finance))
 # subtract 1 to make 1s and 2S into 0a and 1s
-df$finance <- df$finance -1
+df$finance <- df$finance - 1
 # formula to fit
-formula = "finance ~ children"
+formula <- "finance ~ children"
 ```
 
 ```{r}
-acro_glm(formula=formula, data=df, family="logit")
+acro_glm(formula = formula, data = df, family = "logit")
 ```
 
 #### ACRO Probit Model
 
 ```{r}
-acro_glm(formula=formula, data=df, family="probit")
+acro_glm(formula = formula, data = df, family = "probit")
 ```
 
 ### Examples of functionality to let users manage their output
@@ -185,12 +185,12 @@ acro_add_comments("output_1", "This is a crosstab on the nursery dataset.")
 ```
 
 #### Finalise
-- The users must call finalise() at the end of each session.  
-- Each output is saved to a CSV file.    
-- The SDC analysis for each output is saved to a json file or Excel file  
+- The users must call finalise() at the end of each session.
+- Each output is saved to a CSV file.
+- The SDC analysis for each output is saved to a json file or Excel file
   (depending on the extension of the name of the file provided as an input to the function)
 
 ```{r}
-#acro_finalise("RTEST", "xlsx")
+# acro_finalise("RTEST", "xlsx")
 acro_finalise("RTEST", "json")
 ```
