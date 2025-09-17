@@ -31,6 +31,8 @@ Install the **acro** package from CRAN as follows:
 install.packages("acro")
 ```
 
+If you are having problems installing the package, please see the more detailed [installation guide](INSTALL.md).
+
 ### Usage
 
 Before using any function from the package, an acro object should be initialised using the following R code:
