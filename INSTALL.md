@@ -107,13 +107,13 @@ The [R documentation for doing this](https://rstudio.github.io/reticulate/articl
 ### Option 1- For individuals using RStudio
 If you follow the menu items from ```Tools->Project Options ->Python``` or ```Tools->Global Options->Python``` you can tell it to use the version of python from the virtual environment you create in step 1, either for a specific R project or for all your sessions as shown below
 
-![This is what it looks like: step0](./imgs-for-installation-guides/settingpython-rstudio-step0.png)
+![This is what it looks like: step0](./images/settingpython-rstudio-step0.png)
 
-![This is what it looks like: step1](./imgs-for-installation-guides/settingpython-rstudio-step1.png)
+![This is what it looks like: step1](./images/settingpython-rstudio-step1.png)
 
-![This is what it looks like: step2](./imgs-for-installation-guides/settingpython-rstudio-step2.png)
+![This is what it looks like: step2](./images/settingpython-rstudio-step2.png)
 
-![This is what it looks like: step3](./imgs-for-installation-guides/settingpython-rstudio-step3.png)
+![This is what it looks like: step3](./images/settingpython-rstudio-step3.png)
 
 ### Option 2 - Adding code to an individual project file
     you add add one of the following lines at the start of your file
