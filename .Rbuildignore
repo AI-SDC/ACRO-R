@@ -5,11 +5,11 @@
 ^\.github$
 ^_pkgdown\.yml$
 ^acro\.Rproj$
-^charity_data$
 ^cran-comments\.md$
 ^dev_history\.R$
 ^example-notebook\.Rmd$
 ^example-notebook\.nb\.html$
 ^lib$
-^nursery_data$
+^data/nursery.arff$
+^data/charity.dta$
 ^prepare_to_submit_to_CRAN\.R$
