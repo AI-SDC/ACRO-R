@@ -10,6 +10,6 @@
 ^example-notebook\.Rmd$
 ^example-notebook\.nb\.html$
 ^lib$
-^data/nursery.arff$
-^data/charity.dta$
+^data/nursery\.arff$
+^data/charity\.dta$
 ^prepare_to_submit_to_CRAN\.R$
