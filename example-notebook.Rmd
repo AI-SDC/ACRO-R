@@ -29,7 +29,7 @@ acro_init()
 - The code below reads the data from a folder called "nursery_data" which we assume is at the same level as the folder where you are working.
 - The path might need to be changed if the data has been downloaded and stored elsewhere.
 ```{r}
-data <- farff::readARFF("nursery_data/nursery.arff")
+data <- farff::readARFF("data/nursery.arff")
 data <- as.data.frame(data)
 
 names(data)[names(data) == "class"] <- "recommend"
