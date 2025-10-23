@@ -1,0 +1,211 @@
+---
+title: "acro R Notebook"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{acro R Notebook}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  eval = FALSE
+)
+```
+
+### Check if acro is installed and if it is not install it from CRAN
+
+```{r eval=FALSE}
+# Check if acro is installed
+if (!requireNamespace("acro", quietly = TRUE)) {
+  # If not installed, install it
+  install.packages("acro")
+}
+```
+
+### Load the acro package
+
+```{r eval=FALSE}
+library("acro")
+```
+
+### Initiate acro
+First of all, we need to call acro_init() to initialise an acro object. This function takes the parameter suppress which can be TRUE or FALSE to choose whether to automatically apply suppression to the results or not. The default is no suppression.
+```{r eval=FALSE}
+acro_init()
+```
+
+### Load the data
+- The dataset used in this example notebook is the nursery dataset from OpenML.
+- The code below reads the data from a folder called "nursery_data" which we assume is at the same level as the folder where you are working.
+- The path might need to be changed if the data has been downloaded and stored elsewhere.
+```{r eval=FALSE}
+data <- farff::readARFF("data/nursery.arff")
+data <- as.data.frame(data)
+
+names(data)[names(data) == "class"] <- "recommend"
+```
+
+- Convert the children column to integers, replacing 'more' with random int from range 4-10
+
+```{r eval=FALSE}
+data$children <- as.numeric(as.character(data$children))
+data[is.na(data)] <- round(runif(sum(is.na(data)), min = 4, max = 10), 0)
+unique(data$children)
+```
+
+### Examples of producing tabular output using acro
+
+#### ACRO Crosstab
+
+```{r eval=FALSE}
+index <- data[, c("recommend")]
+columns <- data[, c("parents")]
+values <- data[, c("children")]
+
+# convert the values to an array
+values <- matrix(values, ncol = 1)
+
+table <- acro_crosstab(index = index, columns = columns, values = values, aggfunc = "sum")
+table
+```
+
+#### ACRO table
+
+```{r eval=FALSE}
+index <- data[, c("parents")]
+columns <- data[, c("social")]
+
+table <- acro_table(index = index, columns = columns, deparse.level = 1)
+table
+```
+
+#### ACRO pivot table
+
+```{r eval=FALSE}
+index <- "parents"
+values <- "children"
+aggfunc <- list("mean", "std")
+
+table <- acro_pivot_table(data, values = values, index = index, aggfunc = aggfunc)
+table
+```
+#### ACRO histogram
+
+```{r eval=FALSE}
+acro_hist(data, "children")
+```
+
+#### ACRO survival analysis
+In this example a different data set will be used. The lung dataset from the survival package is used.
+
+```{r eval=FALSE}
+# Load the lung dataset
+data(lung)
+# head(lung)
+
+acro_surv_func(time = lung$time, status = lung$status, output = "plot")
+```
+
+### Examples of producing regression outputs using acro
+
+#### Start by manipulating the nursery data to get two numeric variables
+
+-   The 'recommend' column is converted to an integer scale
+
+```{r eval=FALSE}
+data$recommend <- as.character(data$recommend)
+data$recommend[which(data$recommend == "not_recom")] <- "0"
+data$recommend[which(data$recommend == "recommend")] <- "1"
+data$recommend[which(data$recommend == "very_recom")] <- "2"
+data$recommend[which(data$recommend == "priority")] <- "3"
+data$recommend[which(data$recommend == "spec_prior")] <- "4"
+data$recommend <- as.numeric(data$recommend)
+```
+
+```{r eval=FALSE}
+# extract relevant columns
+df <- data[, c("recommend", "children")]
+# drop rows with missing values
+df <- df[complete.cases(df), ]
+# formula to fit
+formula <- "recommend ~ children"
+```
+
+#### ACRO Linear Model
+
+```{r eval=FALSE}
+acro_lm(formula = formula, data = df)
+```
+
+#### ACRO Logit Model
+This is an example of logit regression using ACRO
+We use a different combination of variables from the original dataset.
+
+```{r eval=FALSE}
+# extract relevant columns
+df <- data[, c("finance", "children")]
+# drop rows with missing values
+df <- df[complete.cases(df), ]
+# convert finance to numeric
+df <- transform(df, finance = as.numeric(finance))
+# subtract 1 to make 1s and 2S into 0a and 1s
+df$finance <- df$finance - 1
+# formula to fit
+formula <- "finance ~ children"
+```
+
+```{r eval=FALSE}
+acro_glm(formula = formula, data = df, family = "logit")
+```
+
+#### ACRO Probit Model
+
+```{r eval=FALSE}
+acro_glm(formula = formula, data = df, family = "probit")
+```
+
+### Examples of functionality to let users manage their output
+
+#### Rename Output
+This function can be used to rename the outputs to a more descriptive name.
+
+```{r eval=FALSE}
+acro_rename_output("output_0", "crosstab")
+```
+
+#### Remove Output
+This function can be used to delete outputs from the acro object.
+
+```{r eval=FALSE}
+acro_remove_output("output_3")
+```
+
+#### Display Outputs
+This function can be used to list all the outputs created so far
+
+```{r eval=FALSE}
+acro_print_outputs()
+```
+
+#### Add Comments to Output
+This function is used to add comments to the outputs. It can be used to provide a description or to pass additional information to the output checkers.
+
+```{r eval=FALSE}
+acro_add_comments("output_1", "This is a crosstab on the nursery dataset.")
+```
+
+#### Finalise
+- The users must call finalise() at the end of each session.
+- Each output is saved to a CSV file.
+- The SDC analysis for each output is saved to a json file or Excel file
+  (depending on the extension of the name of the file provided as an input to the function)
+
+```{r eval=FALSE}
+# acro_finalise("RTEST", "xlsx")
+acro_finalise("RTEST", "json")
+```
