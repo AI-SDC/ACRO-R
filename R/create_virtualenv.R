@@ -1,6 +1,6 @@
-acro_venv <- "r-acro-0.4.9"
-acro_package <- "acro==0.4.9"
-python_version <- ">=3.9"
+acro_venv <- "r-acro-0.4.11"
+acro_package <- "acro==0.4.11"
+python_version <- ">=3.10"
 
 
 #' Install acro
