@@ -46,7 +46,7 @@ Before using any function from the package, an acro object should be initialised
 
 ### Try Online with MyBinder
 
-Try an example notebook in RStudio online on [MyBinder.org](https://mybinder.org/v2/gh/AI-SDC/ACRO-R/main?urlpath=rstudio).
+Try an example notebook in [RStudio online](https://mybinder.org/v2/gh/AI-SDC/ACRO-R/main?urlpath=rstudio) on MyBinder.org.
 
 Select the `example-notebook.Rmd` in the bottom-right pane after loading.
 
