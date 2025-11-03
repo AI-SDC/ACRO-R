@@ -1,3 +1,7 @@
+# acro 0.1.6
+
+* Upgrade ACRO Python backend to v0.4.10, supporting Python 3.14.
+
 # acro 0.1.5
 
 * Upgrade ACRO Python backend to v0.4.9, addressing installation problems due to scipy dependency update.
