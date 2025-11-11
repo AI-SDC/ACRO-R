@@ -4,6 +4,7 @@
 ^\.Rproj\.user$
 ^\.github$
 ^_pkgdown\.yml$
+^.ipynb_checkpoints$
 ^acro\.Rproj$
 ^cran-comments\.md$
 ^dev_history\.R$
