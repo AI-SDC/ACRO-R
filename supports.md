@@ -100,7 +100,7 @@ This page provides a comprehensive overview of ACRO’s capabilities for researc
 
 ### Output Formats
 
-**What ACRO Produces:** - Standard CSV files for tables - JSON metadata files for automation - Excel workbooks for human reviewers - PDF reports for output checkers - HTML summaries for researchers
+**What ACRO Produces:** - Standard CSV files for tables - JSON metadata files for automation - Excel workbooks for human reviewers 
 
 **Review Process Support:** Compatible with SACRO-Viewer for interactive output review by data controllers and compliance officers.
 
