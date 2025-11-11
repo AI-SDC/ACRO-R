@@ -1,4 +1,4 @@
-acro_venv <- "r-acro" #-0.4.11"
+acro_venv <- "r-acro" 
 acro_package <- "acro==0.4.11"
 python_version <- ">=3.10"
 
@@ -10,7 +10,7 @@ python_version <- ">=3.10"
 #'
 #' @return No return value, called for side effects
 
-#was envname= "r-acro"
+
 install_acro <- function(envname = "r-acro", ...) {
   # create Python virtual environment
   reticulate::virtualenv_create(
