@@ -30,7 +30,7 @@ Prerequisite: you must have [Python](https://www.python.org) pre-installed.
 Install the **acro** package from CRAN as follows:
 
 ``` r
-install.packages("acro" )
+install.packages("acro")
 ```
 
 If you are having problems installing the package, please see the more detailed [installation guide](inst/INSTALL.md).
@@ -41,7 +41,7 @@ Before using any function from the package, an acro object should be initialised
 
 ``` r
 >>> library("acro")
->>> acro_init(suppress = TRUE )
+>>> acro_init(suppress = TRUE)
 ```
 
 ### Try Online with MyBinder

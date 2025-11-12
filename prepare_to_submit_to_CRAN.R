@@ -8,8 +8,8 @@ install.packages("admiraldev")
 install.packages("spelling")
 library(devtools)
 library(covr)
-#library(reticulate)
-#use_condaenv("r-acro")
+# library(reticulate)
+# use_condaenv("r-acro")
 # check that there are no errors, warnings or notes
 devtools::check()
 

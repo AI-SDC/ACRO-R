@@ -1,4 +1,4 @@
-acro_venv <- "r-acro" 
+acro_venv <- "r-acro"
 acro_package <- "acro==0.4.11"
 python_version <- ">=3.10"
 
