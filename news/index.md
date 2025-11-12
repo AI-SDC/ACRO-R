@@ -2,6 +2,8 @@
 
 ## acro 0.1.6
 
+CRAN release: 2025-11-11
+
 - Upgrade ACRO Python backend to v0.4.11, supporting Python 3.14.
 
 ## acro 0.1.5

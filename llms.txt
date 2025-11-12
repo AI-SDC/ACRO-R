@@ -53,7 +53,7 @@ pre-installed.
 Install the **acro** package from CRAN as follows:
 
 ``` r
-install.packages("acro" )
+install.packages("acro")
 ```
 
 If you are having problems installing the package, please see the more
@@ -67,7 +67,7 @@ initialised using the following R code:
 
 ``` r
 >>> library("acro")
->>> acro_init(suppress = TRUE )
+>>> acro_init(suppress = TRUE)
 ```
 
 ### Try Online with MyBinder
