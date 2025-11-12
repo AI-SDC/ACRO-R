@@ -2,6 +2,7 @@
 ^CONTRIBUTING\.md$
 ^LICENSE\.md$
 ^\.Rproj\.user$
+^\.binder$
 ^\.github$
 ^_pkgdown\.yml$
 ^.ipynb_checkpoints$
