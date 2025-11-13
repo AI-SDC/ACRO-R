@@ -1,6 +1,6 @@
 Package: acro
 Title: A Tool for Semi-Automating the Statistical Disclosure Control of Research Outputs
-Version: 0.1.5
+Version: 0.1.6
 Authors@R: c(
   person("Jim", "Smith", role = c("cre","ctb"),
          email = "James.Smith@uwe.ac.uk", comment = c(ORCID = "0000-0001-7908-1859")),
@@ -14,7 +14,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-SystemRequirements: Python (>= 3.9)
+SystemRequirements: Python (>= 3.10)
 Imports:
     reticulate,
     admiraldev,

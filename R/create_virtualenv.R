@@ -1,6 +1,6 @@
-acro_venv <- "r-acro-0.4.9"
-acro_package <- "acro==0.4.9"
-python_version <- ">=3.9"
+acro_venv <- "r-acro"
+acro_package <- "acro==0.4.11"
+python_version <- ">=3.10"
 
 
 #' Install acro
@@ -9,6 +9,7 @@ python_version <- ">=3.9"
 #' @param ... Any other parameters.
 #'
 #' @return No return value, called for side effects
+
 
 install_acro <- function(envname = "r-acro", ...) {
   # create Python virtual environment
