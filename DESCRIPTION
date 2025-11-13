@@ -23,9 +23,12 @@ Depends:
     R (>= 2.10)
 LazyData: true
 Suggests:
+    knitr,
+    rmarkdown,
     spelling,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Language: en-US
 URL: https://github.com/AI-SDC/ACRO-R
 BugReports: https://github.com/AI-SDC/ACRO-R/issues
+VignetteBuilder: knitr
