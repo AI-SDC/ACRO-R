@@ -1,6 +1,6 @@
 ---
 title: "acro R Notebook"
-output: 
+output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
