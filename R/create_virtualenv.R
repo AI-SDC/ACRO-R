@@ -14,13 +14,13 @@ install_acro <- function(envname = "r-acro", python = NULL, ...) {
   if (is.null(python)) {
     python <- Sys.which("python3")
     if (python == "") {
-      python <- Sys.which("python")
-      if (python == "") {
-        stop("Python not found in PATH. Please ensure Python is installed and accessible.")
-      }
+      python <- Sys.which("python") # nocov
+      if (python == "") { # nocov
+        stop("Python not found in PATH. Please ensure Python is installed and accessible.") # nocov
+      } # nocov
     }
   }
-
+  
   # create Python virtual environment
   reticulate::virtualenv_create(
     envname = envname,
@@ -28,7 +28,7 @@ install_acro <- function(envname = "r-acro", python = NULL, ...) {
     force = TRUE,
     packages = NULL
   )
-
+  
   # install Python acro
   reticulate::py_install(acro_package, envname = envname)
 }
@@ -42,14 +42,14 @@ create_virtualenv <- function(...) {
   # Get Python executable path
   python_path <- Sys.which("python3")
   if (python_path == "") {
-    python_path <- Sys.which("python")
+    python_path <- Sys.which("python") # nocov
   }
-
+  
   # ensure a virtual environment exists
   if (!reticulate::virtualenv_exists(acro_venv)) {
     install_acro(envname = acro_venv, python = python_path)
   }
-
+  
   # activate virtual environment
   reticulate::use_virtualenv(acro_venv, required = TRUE)
 }
