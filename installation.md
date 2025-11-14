@@ -24,7 +24,7 @@ devtools::install_github("AI-SDC/ACRO-R")
 
 ACRO-R requires:
 - R version 4.0 or higher
-- Python 3.8 or higher with the ACRO Python package installed
+- Python 3.10+ or higher with the ACRO Python package installed
 
 ## Python ACRO Installation
 
