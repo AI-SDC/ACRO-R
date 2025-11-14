@@ -31,9 +31,9 @@ jobs:
       MPLBACKEND: Agg # https://github.com/orgs/community/discussions/26434
     steps:
       - name: Checkout ACRO
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
       - name: Setup pandoc
@@ -48,8 +48,8 @@ jobs:
 
       - name: Configure reticulate Python
         run: |
-          echo "RETICULATE_PYTHON=$(which python)" >> $GITHUB_ENV
-          echo "RETICULATE_PYTHON_ENV=$(which python)" >> $GITHUB_ENV
+          python -c "import sys; print(sys.executable)" > python_path.txt
+          echo "RETICULATE_PYTHON=$(cat python_path.txt)" >> $GITHUB_ENV
         shell: bash
 
       - name: Install R dependencies
