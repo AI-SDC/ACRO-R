@@ -15,3 +15,12 @@
 ^data/nursery\.arff$
 ^data/charity\.dta$
 ^prepare_to_submit_to_CRAN\.R$
+^pkgdown$
+^index\.md$
+^examples\.md$
+^installation\.md$
+^supports\.md$
+^welcome\.md$
+^\.vscode$
+^.*\.swp$
+^\.Rdata$
