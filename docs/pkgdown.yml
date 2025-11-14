@@ -1,0 +1,6 @@
+pandoc: '3.8'
+pkgdown: 2.1.3
+pkgdown_sha: ~
+articles:
+  example-notebook: example-notebook.html
+last_built: 2025-11-14T13:30Z

@@ -149,3 +149,5 @@ stata/various_stata_development__files
 /outputs/
 /test.xlsx
 inst/doc
+/doc/
+/Meta/

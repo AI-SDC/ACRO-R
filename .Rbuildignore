@@ -24,3 +24,5 @@
 ^\.vscode$
 ^.*\.swp$
 ^\.Rdata$
+^doc$
+^Meta$

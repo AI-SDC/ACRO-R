@@ -51,7 +51,7 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
-      # - name: Check R Package
-      #   # uses: r-lib/actions/check-r-package@v2
-      #   with:
-      #     upload-snapshots: true
+      - name: Check R Package
+        uses: r-lib/actions/check-r-package@v2
+        with:
+          upload-snapshots: true
