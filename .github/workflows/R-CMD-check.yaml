@@ -22,7 +22,6 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
       MPLBACKEND: Agg
-      RETICULATE_PYTHON_ENV: ${{ matrix.python }}
     steps:
       - name: Checkout ACRO
         uses: actions/checkout@v4
