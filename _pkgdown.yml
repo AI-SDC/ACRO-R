@@ -1,5 +1,27 @@
----
-url: https://AI-SDC.github.io/ACRO-R/
 template:
+  light-switch: true
   bootstrap: 5
-...
+  bslib:
+    primary: "#0051a5"
+
+navbar:
+  structure:
+    left: [home, reference, welcome, supports, installation, examples]
+    right: [search, github, lightswitch]
+  left:
+  - text: "Home"
+    href: index.html
+  - text: "Reference"
+    href: reference/index.html
+  - text: "Welcome to ACRO-R"
+    href: welcome.html
+  - text: "What ACRO-R Supports"
+    href: supports.html
+  - text: "Installation"
+    href: installation.html
+  - text: "Examples"
+    href: examples.html
+  right:
+  - icon: fab-github
+    href: https://github.com/AI-SDC/ACRO-R
+    aria-label: GitHub

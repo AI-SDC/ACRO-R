@@ -12,7 +12,7 @@ test_that("acro_add_comments works", {
   acro_finalise("test", "json")
 
   # Read the file content
-  file_content <- readLines(file.path("..", "testthat", "test", "results.json"))
+  file_content <- readLines(file.path("..", "testthat", "test", "results.json"), warn = FALSE)
 
   # Check the comment exists in the results
   expect_true(any(grepl(comment, file_content)))
