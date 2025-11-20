@@ -58,6 +58,8 @@ Additionally, see our [paper describing the SACRO framework](https://doi.org/10.
 
 ### Acknowledgement
 
-This work was funded by UK Research and Innovation under Grant Numbers MC_PC_21033 and MC_PC_23006 as part of Phase 1 of the Data and Analytics Research Environments UK ([DARE UK](https://dareuk.org.uk/)) programme, delivered in partnership with Health Data Research UK (HDR UK) and Administrative Data Research UK (ADR UK). The specific projects were Semi-Automatic checking of Research Outputs (SACRO; MC_PC_23006) and Guidelines and Resources for AI Model Access from Trusted Research environments (GRAIMATTER; MC_PC_21033). This project has also been supported by MRC and EPSRC [grant number MR/S010351/1].
+This work was funded by UK Research and Innovation under  as part  of the [DARE UK](https://dareuk.org.uk) (Data and Analytics Research Environments UK) programme, delivered in partnership with Health Data Research UK (HDR UK) and Administrative Data Research UK (ADR UK). The specific projects were:
+- Semi-Automatic Checking of Research Outputs (SACRO) [Grant Number MC_PC_23006] - a phase 1 Driver project
+- TREvolution [Grant Number MC_PC_24038] - phase 2:Transformative Components.
 
 <img src="inst/Images/UK_Research_and_Innovation_logo.svg" alt="Alt Text" width="20%"> <img src="inst/Images/health-data-research-uk-hdr-uk-logo-vector.png" alt="Alt Text" width="20%"> <img src="inst/Images/logo_print.png" alt="Alt Text" width="20%">
