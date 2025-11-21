@@ -4,10 +4,12 @@
 \alias{install_acro}
 \title{Install acro}
 \usage{
-install_acro(envname = "r-acro", ...)
+install_acro(envname = "r-acro", python = NULL, ...)
 }
 \arguments{
 \item{envname}{the name of the Python virtual environment}
+
+\item{python}{the path to Python executable}
 
 \item{...}{Any other parameters.}
 }
