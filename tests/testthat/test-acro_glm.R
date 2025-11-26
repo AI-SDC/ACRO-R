@@ -16,24 +16,23 @@ df$finance <- df$finance - 1
 # formula to fit
 formula <- "finance ~ children"
 test_that("acro_glm without initialising ACRO object first", {
-  skip_on_ci()
   acroEnv$ac <- NULL
   expect_error(acro_glm(formula = formula, data = df, family = "probit"), "ACRO has not been initialised. Please first call acro_init()")
 })
 test_that("acro_glm with probit as a family works", {
-  skip_on_ci()
+  testthat::skip_on_cran()
   acro_init()
   model <- acro_glm(formula = formula, data = df, family = "probit")
   expect_s3_class(model, "statsmodels.iolib.summary.Summary")
 })
 test_that("acro_glm with logit as a family works", {
-  skip_on_ci()
+  testthat::skip_on_cran()
   acro_init()
   model <- acro_glm(formula = formula, data = df, family = "logit")
   expect_s3_class(model, "statsmodels.iolib.summary.Summary")
 })
 test_that("acro_glm through an error if the family is not recognised", {
-  skip_on_ci()
+  testthat::skip_on_cran()
   acro_init()
   expect_error(acro_glm(formula = formula, data = df, family = "mean"), "Invalid family. Options for family are: logit or probit")
 })
