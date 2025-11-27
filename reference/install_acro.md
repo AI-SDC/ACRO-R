@@ -5,7 +5,7 @@ Install acro
 ## Usage
 
 ``` r
-install_acro(envname = "r-acro", ...)
+install_acro(envname = "r-acro", python = NULL, ...)
 ```
 
 ## Arguments
@@ -13,6 +13,10 @@ install_acro(envname = "r-acro", ...)
 - envname:
 
   the name of the Python virtual environment
+
+- python:
+
+  the path to Python executable
 
 - ...:
 
