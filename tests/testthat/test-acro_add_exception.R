@@ -11,7 +11,7 @@ test_that("add_exceptions works", {
   acro_finalise("test", "json")
 
   # Read the file content
-  file_content <- readLines(file.path("..", "testthat", "test", "results.json"))
+  file_content <- readLines(file.path("..", "testthat", "test", "results.json"), warn = FALSE)
   # Check the exception exists in the results
   expect_true(any(grepl("The disclosive cells are structural zeros and not actually disclosive", file_content)))
 })
