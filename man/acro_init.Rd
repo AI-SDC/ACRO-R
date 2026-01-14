@@ -4,13 +4,17 @@
 \alias{acro_init}
 \title{Initialise an ACRO object}
 \usage{
-acro_init(suppress = FALSE)
+acro_init(suppress = FALSE, envname = acro_venv, use_conda = FALSE)
 }
 \arguments{
 \item{suppress}{Whether to automatically apply suppression.}
+
+\item{envname}{Name of the Python environment to use.}
+
+\item{use_conda}{Whether to use a Conda environment (\code{TRUE}) or venv (\code{FALSE}).}
 }
 \value{
-No return value, called for side effects
+Invisibly returns the ACRO object, which is used internally.
 }
 \description{
 Initialise an ACRO object
