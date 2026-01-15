@@ -4,9 +4,16 @@
 \alias{acro_init}
 \title{Initialise an ACRO object}
 \usage{
-acro_init(suppress = FALSE, envname = acro_venv, use_conda = NULL)
+acro_init(
+  config = "default",
+  suppress = FALSE,
+  envname = acro_venv,
+  use_conda = NULL
+)
 }
 \arguments{
+\item{config}{Name of a yaml configuration file with safe parameters.}
+
 \item{suppress}{Whether to automatically apply suppression.}
 
 \item{envname}{Name of the Python environment to use.}

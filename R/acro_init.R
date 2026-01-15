@@ -64,6 +64,7 @@ get_use_conda <- function(use_conda = NULL) {
 
 #' Initialise an ACRO object
 #'
+#' @param config Name of a yaml configuration file with safe parameters.
 #' @param suppress Whether to automatically apply suppression.
 #' @param envname Name of the Python environment to use.
 #' @param use_conda Whether to use a Conda environment.
@@ -72,7 +73,7 @@ get_use_conda <- function(use_conda = NULL) {
 #'
 #' @return Invisibly returns the ACRO object, which is used internally.
 #' @export
-acro_init <- function(suppress = FALSE, envname = acro_venv, use_conda = NULL) {
+acro_init <- function(config = "default", suppress = FALSE, envname = acro_venv, use_conda = NULL) {
   # define the environment
   use_conda <- get_use_conda(use_conda)
 
@@ -89,7 +90,7 @@ acro_init <- function(suppress = FALSE, envname = acro_venv, use_conda = NULL) {
 
   # import the acro package and instantiate an object
   acro <- reticulate::import("acro", delay_load = TRUE)
-  acroEnv$ac <- acro$ACRO(suppress = suppress)
+  acroEnv$ac <- acro$ACRO(config = config, suppress = suppress)
 
   invisible(acroEnv$ac)
 }
