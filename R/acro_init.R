@@ -55,7 +55,7 @@ get_use_conda <- function(use_conda = NULL) {
   use_conda <- isTRUE(use_conda) # default FALSE
 
   if (use_conda && is.null(reticulate::conda_binary())) { # nocov
-    stop("Conda requested but no Miniconda installation found", call. = FALSE) # nocov
+    stop("Conda requested but no conda installation found", call. = FALSE) # nocov
   }
 
   return(use_conda)
