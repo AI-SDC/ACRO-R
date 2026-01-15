@@ -4,9 +4,7 @@ acro_pkg <- "acro==0.4.11"
 ch <- "conda-forge"
 
 
-#' Resolve Python executable
-#'
-#' @return String path to a Python executable.
+# Internal helper: resolve Python executable
 ## nocov start
 get_python <- function() {
   python <- Sys.which("python3")
@@ -21,9 +19,7 @@ get_python <- function() {
 ## nocov end
 
 
-#' Install ACRO in a conda environment
-#'
-#' @param envname Name of the conda environment
+# Internal helper: install ACRO in a Conda environment
 ## nocov start
 install_conda <- function(envname) { # nocov
   if (!reticulate::condaenv_exists(envname = envname, conda = "auto")) {
@@ -34,9 +30,7 @@ install_conda <- function(envname) { # nocov
 ## nocov end
 
 
-#' Initialise ACRO in a Python virtual environment
-#'
-#' @param envname Name of the virtual environment
+# Internal helper: install ACRO in a Python virtual environment
 install_venv <- function(envname = acro_venv) {
   if (!reticulate::virtualenv_exists(envname)) {
     python <- get_python()
@@ -53,15 +47,35 @@ install_venv <- function(envname = acro_venv) {
 }
 
 
+# Internal helper: resolve whether Conda should be used
+get_use_conda <- function(use_conda = NULL) {
+  if (is.null(use_conda)) {
+    use_conda <- tolower(Sys.getenv("ACRO_USE_CONDA")) %in% c("1", "true", "yes")
+  }
+  use_conda <- isTRUE(use_conda) # default FALSE
+
+  if (use_conda && is.null(reticulate::conda_binary())) { # nocov
+    stop("Conda requested but no Miniconda installation found", call. = FALSE) # nocov
+  }
+
+  return(use_conda)
+}
+
+
 #' Initialise an ACRO object
 #'
 #' @param suppress Whether to automatically apply suppression.
 #' @param envname Name of the Python environment to use.
-#' @param use_conda Whether to use a Conda environment (`TRUE`) or venv (`FALSE`).
+#' @param use_conda Whether to use a Conda environment.
+#'   If `NULL`, looks for environment variable `ACRO_USE_CONDA`,
+#'   defaults to `FALSE` if unset.
 #'
 #' @return Invisibly returns the ACRO object, which is used internally.
 #' @export
-acro_init <- function(suppress = FALSE, envname = acro_venv, use_conda = FALSE) {
+acro_init <- function(suppress = FALSE, envname = acro_venv, use_conda = NULL) {
+  # define the environment
+  use_conda <- get_use_conda(use_conda)
+
   # initialise the environment
   if (!reticulate::py_available(initialize = FALSE)) {
     if (use_conda) { # nocov
