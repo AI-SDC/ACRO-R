@@ -1,4 +1,8 @@
-## ACRO: Tools for the Semi-Automatic Checking of Research Outputs
+# Welcome to ACRO-R
+
+## Welcome to ACRO-R
+
+### ACRO: Tools for the Semi-Automatic Checking of Research Outputs
 
 [![IEEE
 Xplore](https://img.shields.io/badge/IEEE%20Xplore-10.1109/TP.2025.3566052-blue)](https://doi.org/10.1109/TP.2025.3566052)
@@ -19,9 +23,9 @@ control](https://en.wikipedia.org/wiki/Statistical_disclosure_control)
 is designed to assist human checkers rather than seeking to replace them
 as with current automated rules-based approaches.
 
-The ACRO package is a lightweight Python tool that sits over well-known
-analysis tools that produce outputs such as tables, plots, and
-statistical models. This package adds functionality to:
+The ACRO package sits over well-known analysis tools that produce
+outputs such as tables, plots, and statistical models. This package adds
+functionality to:
 
 - automatically identify potentially disclosive outputs against a range
   of commonly used disclosure tests;
@@ -41,24 +45,6 @@ checkers by displaying the requested output and results of the checks in
 an immediately accessible format, highlighting identified issues,
 potential mitigation options, and tracking decisions made.
 
-Additional programming languages such as this R package are supported by
-providing front-end packages that interface with the core ACRO Python
-back-end.
-
-### Installation
-
-Prerequisite: you must have [Python](https://www.python.org)
-pre-installed.
-
-Install the **acro** package from CRAN as follows:
-
-``` r
-install.packages("acro")
-```
-
-If you are having problems installing the package, please see the more
-detailed [installation guide](inst/INSTALL.md).
-
 ### Usage
 
 Before using any function from the package, an acro object should be
@@ -68,15 +54,6 @@ initialised using the following R code:
 library("acro")
 acro_init(suppress = TRUE)
 ```
-
-### Try Online with MyBinder
-
-Try an example notebook in [RStudio
-online](https://mybinder.org/v2/gh/AI-SDC/ACRO-R/main?urlpath=rstudio)
-on MyBinder.org.
-
-Select the `example-notebook.Rmd` in the bottom-right pane after
-loading.
 
 ### Documentation
 
@@ -89,15 +66,17 @@ principles-based SDC methodology and usage.
 
 ### Acknowledgement
 
-This work was funded by UK Research and Innovation under as part of the
-[DARE UK](https://dareuk.org.uk) (Data and Analytics Research
-Environments UK) programme, delivered in partnership with Health Data
-Research UK (HDR UK) and Administrative Data Research UK (ADR UK). The
-specific projects were: - Semi-Automatic Checking of Research Outputs
-(SACRO) \[Grant Number MC_PC_23006\] - a phase 1 Driver project -
-TREvolution \[Grant Number MC_PC_24038\] - phase 2:Transformative
-Components.
+This work was funded by UK Research and Innovation under Grant Numbers
+MC_PC_21033 and MC_PC_23006 as part of Phase 1 of the Data and Analytics
+Research Environments UK ([DARE UK](https://dareuk.org.uk/)) programme,
+delivered in partnership with Health Data Research UK (HDR UK) and
+Administrative Data Research UK (ADR UK). The specific projects were
+Semi-Automatic checking of Research Outputs (SACRO; MC_PC_23006) and
+Guidelines and Resources for AI Model Access from Trusted Research
+environments (GRAIMATTER; MC_PC_21033). This project has also been
+supported by MRC and EPSRC \[grant number MR/S010351/1\].
 
-![Alt Text](inst/Images/UK_Research_and_Innovation_logo.svg)![Alt
-Text](inst/Images/health-data-research-uk-hdr-uk-logo-vector.png)![Alt
-Text](inst/Images/logo_print.png)
+![UK Research and
+Innovation](../inst/Images/UK_Research_and_Innovation_logo.svg)![Health
+Data Research
+UK](../inst/Images/health-data-research-uk-hdr-uk-logo-vector.png)![Logo](../inst/Images/logo_print.png)
