@@ -40,8 +40,8 @@ If you are having problems installing the package, please see the more detailed 
 Before using any function from the package, an acro object should be initialised using the following R code:
 
 ``` r
->>> library("acro")
->>> acro_init(suppress = TRUE)
+library("acro")
+acro_init(suppress = TRUE)
 ```
 
 ### Try Online with MyBinder

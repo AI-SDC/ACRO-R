@@ -1,3 +1,7 @@
+---
+title: "Installation Guide"
+---
+
 # Installation Guide
 
 ## Install from CRAN
@@ -24,19 +28,22 @@ devtools::install_github("AI-SDC/ACRO-R")
 
 ACRO-R requires:
 - R version 4.0 or higher
-- Python 3.10+ or higher with the ACRO Python package installed
+- Python 3.10+ or higher
 
-## Python ACRO Installation
+## Initialization
 
-The R package interfaces with the Python ACRO library. Install it using:
+The package interfaces with the Python ACRO library. Use `acro_init()` to automatically handle the Python environment setup:
 
-```bash
-pip install acro
+```r
+library("acro")
+acro_init(suppress = TRUE)
 ```
+
+This will create a virtual environment and install the required Python packages if they are missing.
 
 ## Troubleshooting
 
-If you are having problems installing the package, please see the more detailed [installation guide](INSTALL.md) or check the [GitHub issues](https://github.com/AI-SDC/ACRO-R/issues).
+If you are having problems installing the package, please see the simplified steps above or check the [GitHub issues](https://github.com/AI-SDC/ACRO-R/issues).
 
 ## Verification
 
