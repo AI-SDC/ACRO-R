@@ -9,7 +9,7 @@ So please email sacro.contact@uwe.ac.uk, or [raise an issue on the GitHub reposi
  - the steps outlined below do not work for you,
 
 **Please note**: most of the scenarios below assume that
-- you have a working version of Python 3 (version 3.9 or higher) on your system
+- you have a working version of Python 3 (version 3.10 or higher) on your system
 - you are able to access a terminal or command prompt to write and execute some commands.
 
 ---
