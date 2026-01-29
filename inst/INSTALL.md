@@ -9,7 +9,7 @@ So please email sacro.contact@uwe.ac.uk, or [raise an issue on the GitHub reposi
  - the steps outlined below do not work for you,
 
 **Please note**: most of the scenarios below assume that
-- you have a working version of Python 3 (version 3.9 or higher) on your system
+- you have a working version of Python 3 (version 3.10 or higher) on your system
 - you are able to access a terminal or command prompt to write and execute some commands.
 
 ---
@@ -87,7 +87,7 @@ These commands should work whether you are
 - working on a machine outside the TRE: in which case packages should install from a mirror of the CRAN service
 - working on a machine inside a TRE: in which case the administrator should have set up a local mirror of approved packages from CRAN
 
-**For individual users** without permission to make site-wide or machine-wide changes
+**For individual users**  without permission to make site-wide or machine-wide changes
 Open your preferred R interface - for  example, RStudio, and in a R window type
 ```R
 install.packages*("reticulate")
@@ -107,13 +107,13 @@ The [R documentation for doing this](https://rstudio.github.io/reticulate/articl
 ### Option 1- For individuals using RStudio
 If you follow the menu items from ```Tools->Project Options ->Python``` or ```Tools->Global Options->Python``` you can tell it to use the version of python from the virtual environment you create in step 1, either for a specific R project or for all your sessions as shown below
 
-![This is what it looks like: step0](./images/settingpython-rstudio-step0.png)
+![This is what it looks like: step0](Images/settingpython-rstudio-step0.png)
 
-![This is what it looks like: step1](./images/settingpython-rstudio-step1.png)
+![This is what it looks like: step1](Images/settingpython-rstudio-step1.png)
 
-![This is what it looks like: step2](./images/settingpython-rstudio-step2.png)
+![This is what it looks like: step2](Images/settingpython-rstudio-step2.png)
 
-![This is what it looks like: step3](./images/settingpython-rstudio-step3.png)
+![This is what it looks like: step3](Images/settingpython-rstudio-step3.png)
 
 ### Option 2 - Adding code to an individual project file
     you add add one of the following lines at the start of your file

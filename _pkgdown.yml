@@ -14,13 +14,13 @@ navbar:
   - text: "Reference"
     href: reference/index.html
   - text: "Welcome to ACRO-R"
-    href: welcome.html
+    href: articles/welcome.html
   - text: "What ACRO-R Supports"
-    href: supports.html
+    href: articles/supports.html
   - text: "Installation"
-    href: installation.html
+    href: articles/installation.html
   - text: "Examples"
-    href: examples.html
+    href: articles/examples.html
   right:
   - icon: fab-github
     href: https://github.com/AI-SDC/ACRO-R

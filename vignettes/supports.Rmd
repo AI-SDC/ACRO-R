@@ -1,0 +1,100 @@
+---
+title: "What ACRO-R Supports"
+---
+
+# What ACRO-R Supports
+
+This page provides a comprehensive overview of ACRO’s capabilities. ACRO supports a wide range of statistical analysis functions with automated disclosure control.
+
+## Supported Data Analysis Functions
+
+### Table Creation & Cross-tabulation
+
+**For Researchers:** Create frequency tables and cross-tabulations with automatic cell suppression for small counts.
+
+**What ACRO Supports:**
+
+* **`crosstab()`** - Cross-tabulation of two or more variables with frequency counting
+* **`pivot_table()`** - Spreadsheet-style pivot tables with aggregation functions
+* **`table()`** - Simple frequency tables for categorical data (R interface only)
+
+**Technical Details:**
+
+- ACRO suppresses, and reports the reason why, the value of an aggregation statistic (mean, median, variance, etc.) for any cell is deemed to be sensitive.
+- The current version of ACRO supports the three most common tests for sensitivity: ensuring the number of contributors is above a frequency threshold, and testing for dominance via N-K rules.
+    - **N-K Rule**: A dominance test where if the top N contributors account for more than K% of the total, the cell is considered disclosive.
+    - **Frequency Threshold**: Cells with fewer than a specified number of contributors are suppressed.
+- All thresholds are configurable via YAML configuration files.
+- For detailed methodology, see our [research paper](https://doi.org/10.1109/TP.2025.3566052).
+- Automatic flagging of negative or missing values for human review.
+
+**Example Use Cases:**
+- Survey response analysis by demographics
+- Clinical trial outcome tables
+- Market research cross-tabulations
+- Educational assessment reporting
+
+### Statistical Modeling
+
+**For Researchers:** Run regression analyses with automated checks on model outputs and residual degrees of freedom.
+
+**What ACRO Supports:**
+
+* **`ols()`** - Ordinary Least Squares linear regression
+* **`logit()`** - Logistic regression for binary outcomes
+* **`probit()`** - Probit regression for binary outcomes
+
+**Technical Details:**
+- For regressions such as linear, probit, and logit, the tests verify that the number of residual degrees of freedom exceeds a threshold.
+- The functionality acts as a wrapper around standard statistical packages.
+
+**Example Use Cases:**
+- Economic modeling and policy analysis
+- Medical research and clinical studies
+- Social science research
+- Business analytics and forecasting
+
+## Disclosure Control Features
+
+### Automated Sensitivity Testing
+
+**What ACRO Checks:**
+
+**For Tables:**
+- Minimum cell counts (frequency thresholds)
+- Dominance rules (N-K rules for concentration)
+- Presence of negative or missing values
+
+**For Statistical Models:**
+- Residual degrees of freedom thresholds
+- Model fit diagnostics
+- Parameter significance testing
+
+**For Non-Technical Users:**
+ACRO automatically identifies when research outputs might reveal sensitive information about individuals or organizations, applying industry-standard privacy protection rules without requiring manual review of every result.
+
+### Output Management
+
+**What ACRO Provides:**
+
+* **Suppression Masks** - Clear indication of which results are hidden and why
+* **Summary Reports** - Detailed explanation of all disclosure checks performed
+* **Audit Trails** - Complete record of all analysis steps and decisions
+* **Exception Handling** - Process for requesting release of flagged outputs
+
+**Workflow Integration:**
+The `finalise()` function will:
+1. Check that each output with “fail” or “review” status has an exception (if not you will be asked to enter one).
+2. Write the outputs to a directory. This directory contains everything that the output checkers need to make a decision.
+
+## Supported Environments
+
+### Research Environments
+
+**Where ACRO Works:**
+- Trusted Research Environments (TREs)
+- Data safe havens
+- Secure data centers
+- Academic research computing facilities
+- Government statistical offices
+- Healthcare research environments

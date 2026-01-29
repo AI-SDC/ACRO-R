@@ -1,10 +1,14 @@
+---
+title: "Examples"
+---
+
 # Examples
 
 ## Interactive Notebook
 
 For comprehensive examples and tutorials, see our interactive R notebook:
 
-[Example Notebook](articles/example-notebook.html)
+[Example Notebook](example-notebook.html)
 
 ## Quick Start Examples
 
@@ -37,4 +41,4 @@ print(result)
 acro_finalise()
 ```
 
-For more detailed examples and use cases, please refer to the [Example Notebook](articles/example-notebook.html).
+For more detailed examples and use cases, please refer to the [Example Notebook](example-notebook.html).
