@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout ACRO
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Miniconda
         if: matrix.backend == 'conda'
