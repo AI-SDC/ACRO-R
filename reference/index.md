@@ -24,8 +24,5 @@
 - [`acro_surv_func()`](acro_surv_func.md) : Survival analysis
 - [`acro_table()`](acro_table.md) : Compute a simple cross tabulation of
   two (or more) factors.
-- [`create_virtualenv()`](create_virtualenv.md) : Create a python
-  virtual environment
-- [`install_acro()`](install_acro.md) : Install acro
 - [`lung`](lung.md) : Lung Cancer Survival Data
 - [`nursery_data`](nursery_data.md) : Nursery Database
