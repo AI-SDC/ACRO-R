@@ -1,5 +1,6 @@
 ADR
 Acknowledgement
+AddedSupport
 Analytics
 Conda
 EPSRC
@@ -20,6 +21,9 @@ YAML
 analytics
 auditable
 codecov
+conda
+config
+crosstab
 disclosive
 github
 https
