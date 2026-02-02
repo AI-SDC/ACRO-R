@@ -2,9 +2,9 @@
 
 ## What ACRO-R Supports
 
-This page provides a comprehensive overview of ACRO’s capabilities. ACRO
-supports a wide range of statistical analysis functions with automated
-disclosure control.
+This page provides a comprehensive overview of the capabilities ACRO
+supports. ACRO supports a wide range of statistical analysis functions
+with automated disclosure control.
 
 ### Supported Data Analysis Functions
 

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">acro</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.7</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,6 +34,20 @@
       <small>Source: <a href="https://github.com/AI-SDC/ACRO-R/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.1.7" id="acro-017">acro 0.1.7<a class="anchor" aria-label="anchor" href="#acro-017"></a></h2>
+<ul><li>Added support for installation via conda</li>
+<li>Added support for specifying config files when acro session is started</li>
+<li>Added support for specifying whether suppression is on or off when acro session is started</li>
+<li>Added support for toggling suppression dynamically during session via <code>acro_enable_supression()</code> and <code><a href="../reference/acro_disable_suppression.html">acro_disable_suppression()</a></code>
+</li>
+<li>Improved documentation in package and at <a href="sacro-tools.org">sacro-tools.org</a>
+</li>
+<li>Added Support for variable names with spaces when calling crosstab</li>
+<li>Set status of disclosive outputs to ‘review’ (previously ‘fail’) when suppression has been applied</li>
+<li>Automatically add exception message when applying suppression to an output</li>
+<li>Make <code><a href="../reference/acro_finalise.html">acro_finalise()</a></code> non-interactive by default (interactive is now option at call time)</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.6" id="acro-016">acro 0.1.6<a class="anchor" aria-label="anchor" href="#acro-016"></a></h2><p class="text-muted">CRAN release: 2025-11-11</p>
 <ul><li>Upgrade ACRO Python backend to v0.4.11, supporting Python 3.14.</li>

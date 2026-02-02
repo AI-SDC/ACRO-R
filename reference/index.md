@@ -10,6 +10,10 @@
   tabulation of two (or more) factors.
 - [`acro_custom_output()`](acro_custom_output.md) : Adds an unsupported
   output to the results dictionary
+- [`acro_disable_suppression()`](acro_disable_suppression.md) : Turns
+  suppression off during a session
+- [`acro_enable_suppression()`](acro_enable_suppression.md) : Turns
+  suppression on during a session
 - [`acro_finalise()`](acro_finalise.md) : Creates a results file for
   checking.
 - [`acro_glm()`](acro_glm.md) : Fits Logit or Probit model.

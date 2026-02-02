@@ -17,12 +17,12 @@ Source:
 
 Albashir M, Preen R (2026). *acro: A Tool for Semi-Automating the
 Statistical Disclosure Control of Research Outputs*. R package version
-0.1.6, <https://github.com/AI-SDC/ACRO-R>.
+0.1.7, <https://github.com/AI-SDC/ACRO-R>.
 
     @Manual{,
       title = {acro: A Tool for Semi-Automating the Statistical Disclosure Control of Research Outputs},
       author = {Maha Albashir and Richard John Preen},
       year = {2026},
-      note = {R package version 0.1.6},
+      note = {R package version 0.1.7},
       url = {https://github.com/AI-SDC/ACRO-R},
     }
