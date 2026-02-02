@@ -1,4 +1,3 @@
-# acro 0.1.8
 
 # acro 0.1.7
 * Added support for installation via conda
