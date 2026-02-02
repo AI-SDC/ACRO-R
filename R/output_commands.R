@@ -100,7 +100,7 @@ acro_finalise <- function(path, ext) {
 }
 
 
-#' Turns suppresssion on during a session
+#' Turns suppression on during a session
 #'
 #' @return No return value, called for side effects
 #' @export
@@ -112,7 +112,7 @@ acro_enable_suppression <- function() {
   acroEnv$ac$enable_suppression()
 }
 
-#' Turns suppresssion off during a session
+#' Turns suppression off during a session
 #'
 #' @return No return value, called for side effects
 #' @export
