@@ -52,7 +52,7 @@ Select the `example-notebook.Rmd` in the bottom-right pane after loading.
 
 ### Documentation
 
-The github-pages contains pre-built [documentation](https://ai-sdc.github.io/ACRO-R/).
+The github-pages contains pre-built [documentation](https://acro-r.sacro-tools.org/).
 
 Additionally, see our [paper describing the SACRO framework](https://doi.org/10.1109/TP.2025.3566052) to learn about its principles-based SDC methodology and usage.
 

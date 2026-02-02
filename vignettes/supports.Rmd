@@ -1,5 +1,10 @@
 ---
 title: "What ACRO-R Supports"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{What ACRO-R Supports}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 # What ACRO-R Supports
