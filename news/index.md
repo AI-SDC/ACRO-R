@@ -9,8 +9,7 @@
 - Added support for toggling suppression dynamically during session via
   `acro_enable_supression()` and
   [`acro_disable_suppression()`](../reference/acro_disable_suppression.md)
-- Improved documentation in package and at
-  [sacro-tools.org](sacro-tools.org)
+- Improved documentation in package and at <https://sacro-tools.org/>
 - Added Support for variable names with spaces when calling crosstab
 - Set status of disclosive outputs to ‘review’ (previously ‘fail’) when
   suppression has been applied

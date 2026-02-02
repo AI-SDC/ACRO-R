@@ -81,7 +81,7 @@ loading.
 ### Documentation
 
 The github-pages contains pre-built
-[documentation](https://ai-sdc.github.io/ACRO-R/).
+[documentation](https://acro-r.sacro-tools.org/).
 
 Additionally, see our [paper describing the SACRO
 framework](https://doi.org/10.1109/TP.2025.3566052) to learn about its
