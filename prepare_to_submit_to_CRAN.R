@@ -23,7 +23,7 @@ devtools::test()
 spelling::spell_check_package()
 
 # check your package on several platforms
-rhub::check_for_cran()
+#rhub::check_for_cran()
 
 # If you would like to add comments to CRAN team
 # Creates cran-comments.md, a template for your communications with CRAN when submitting a package.
