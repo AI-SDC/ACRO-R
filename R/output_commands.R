@@ -98,3 +98,30 @@ acro_finalise <- function(path, ext) {
   }
   acroEnv$ac$finalise(path, ext)
 }
+
+
+#' Turns suppresssion on during a session
+#'
+#' @return No return value, called for side effects
+#' @export
+
+acro_enable_suppression <- function() {
+  if (is.null(acroEnv$ac)) {
+    stop("ACRO has not been initialised. Please first call acro_init().")
+  }
+  acroEnv$ac$enable_suppression()
+}
+
+#' Turns suppresssion off during a session
+#'
+#' @return No return value, called for side effects
+#' @export
+
+acro_disable_suppression <- function() {
+  if (is.null(acroEnv$ac)) {
+    stop("ACRO has not been initialised. Please first call acro_init().")
+  }
+  acroEnv$ac$disable_suppression()
+}
+
+

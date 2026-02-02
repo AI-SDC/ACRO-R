@@ -1,6 +1,6 @@
 # Globals -----------------------------------------------------------------
 acro_venv <- "r-acro"
-acro_pkg <- "acro==0.4.11"
+acro_pkg <- "acro==0.4.12"
 ch <- "conda-forge"
 
 
