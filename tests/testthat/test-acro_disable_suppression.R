@@ -6,7 +6,7 @@ test_that("acro_enable_suppression without initialising ACRO object first", {
 test_that("acro_disable_suppression works", {
   testthat::skip_on_cran()
   acro_init()
-  foo  <- acro_disable_suppression()
+  foo <- acro_disable_suppression()
   table <- acro_crosstab(index = nursery_data[, c("recommend")], columns = nursery_data[, c("parents")])
   output <- acro_print_outputs()
   status <- "fail"

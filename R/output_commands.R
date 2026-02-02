@@ -123,5 +123,3 @@ acro_disable_suppression <- function() {
   }
   acroEnv$ac$disable_suppression()
 }
-
-
