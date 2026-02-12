@@ -73,3 +73,11 @@ writeLines(pak::pkg_system_requirements("devtools", "ubuntu", "22.04"))
 
 To remove the local virtual Python environment, delete the `r-acro` folder.
 On GNU/Linux this is typically located in `~/.virtualenvs`
+
+## CRAN Submission
+
+A useful command to run before submitting:
+
+```shell
+R CMD build . && R CMD check --as-cran $(ls -t . | head -n1)
+```

@@ -35,8 +35,7 @@ usethis::use_version(which = c("patch", "minor", "major", "dev")[1])
 # When you are happy with the package and want to submit it to CRAN, you can do this manually by converting the package source directory into a single bundled file and submit this file to CRAN (https://xmpalantir.wu.ac.at/cransubmit/)
 devtools::build()
 
-#good idea to run
-R CMD build . && R CMD check --as-cran $(ls -t . | head -n1)
+# Good idea to run: see CONTRIBUTING.md
 
 # Or if you decide to do the release automatically then you can run this command
 # devtools::release()

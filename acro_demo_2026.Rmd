@@ -1,0 +1,497 @@
+---
+title: "acro R demonstration 2026"
+editor_options:
+  markdown:
+    wrap: 90
+  chunk_output_type: inline
+---
+
+# ACRO Demonstration
+
+This is a simple notebook to get you started with using the `acro` package to add
+disclosure risk control to your analysis.
+
+## A: The basic concepts
+
+### 1: A research *session*:
+
+by which we mean the activity of running a series of commands (interactively or via a
+script) that: - ingest some data, - manipulate it, and then - produce (and store) some
+outputs.
+
+### 2: Types of commands:
+
+Whether interactive, or just running a final script, we can think of the commands that get
+run in a session as dividing into:
+
+\- *manipulation* commands that load and transform data into the shape you want
+
+\- *feedback* commands that report on your data - but are never intended to be exported.
+For example, running a `head()` command to make sure your manipulations have got the data
+into the format you want.
+
+\- *query* commands that produce an output from your data (table/plot/regression model
+etc.) that you might want to export from the Trusted Research Environment (TRE)
+
+### 3: Risk Assessment vs decision making:
+
+SACRO stands for Semi-Automated Checking of Research Outputs.\
+
+-   The prefix 'Semi' is important here - because in a principles-based system humans
+    should make *decisions* about output requests.
+
+-   To help with that we provide the SACRO-Viewer, which collates all the relevant
+    information for them.
+
+A key part of that information is the *Risk Assessment*.
+
+-   Since it involves calculating metrics and comparing them to thresholds (the TRE's risk
+    appetite) it can be done automatically, at the time an output query runs on the data.
+
+-   This is what the ACRO package does when you use it as part of your workflow.
+
+### 4: What acro does
+
+The acro package aims to support you in producing *Safe Outputs* within minimal changes to
+your work flow. To do that we provide:
+
+1.  drop-in replacements for the most commonly used *output commands*,
+
+-   keeping the same syntax as the originals, and
+
+-   supporting as many of the options as we can (features supported will increase over
+    time in response demand).
+
+2.  a set of *session-management* commands to help you manage the set of files you request
+    for output.
+
+**Important to note** that currently acro outputs results (tables, details of regression
+models etc.) as `.csv` files.\
+In other words we separate the processes of:
+
+-   *creating* outputs - which *must* be done *inside* the TRE.
+-   *formatting* them for publication - which can be done outside the TRE with your
+    preferred toolchain.
+
+acro currently handles creation. We are interested in hearing from researchers whether it
+is important to support them with formatting
+
+But if you format your outputs, and save them to your preferred type of file, you can add
+them to your acro session as `custom_outputs`, including a comment to the reviewer to say
+which of the risk-assessed outputs they are derived from.
+
+### 5: How acro works in R
+
+There are obvious benefits to maintaining a single *point of truth* for the key
+functionality of the code base:
+
+-   it makes it easier to maintain and extend.
+-   it makes it possible to validate the disclosure -control process against a published
+    ontology
+-   it enables rapid and consistent support for other languages
+
+Therefore the `acro` in R acts like a *skin* that communicates with the underlying python
+via R's `reticulate` package. So behind-the scenes:
+
+-   For **regressions** and other statistics acro uses the *statsmodels* package - which
+    has the benefit of happily accepting R-style equations.
+
+-   For **tables** acro uses the industry standard *pandas* package, in particular the
+    *pivot_table()* and *crosstab()* functions.
+
+This approach lets acro:
+
+-   support R's `help()` functions and and vignettes
+
+-   provide acro versions of standard R commands like `table` (this directly maps on
+    directly onto `crosstab()` queries)
+
+-   provide R users with access to powerful table-building commands like crosstab:
+
+    -   There are hundreds (thousands?) of web sites showing how to do this.\
+
+    -   You can make (hierarchical) 2-D tables (or 1-D if you add a 'dummy' variable
+        containing the same value for each row)
+
+    -   You can specify what the table cells contain by specifying which variable to
+        report on and what statistic to report- for example: mean, count, std deviation,
+        median etc.(pandas calls these *aggregation functions*)
+
+**The acro version does not reimplement any statistical commands**. Instead it reuses
+them - but it adds extra code that checks for disclosure risks depending on the statistic
+you ask for
+
+## B: Getting Started with the demonstration
+
+### Step 1: Check if acro is installed and if it is not install it from CRAN
+
+```{r}
+# Check if acro is installed
+if (!requireNamespace("acro", quietly = TRUE)) {
+  # If not installed, install it
+  install.packages("acro")
+}
+```
+
+### Step 2: Starting an ACRO session
+
+First of all, we need to load the package and then call acro_init() to initialise an acro
+session. This function takes two optional parameters:
+
+-   suppress which can be TRUE or FALSE (default) to choose whether to automatically apply
+    suppression to the results or not.
+
+-   config: the name of a file in .yaml format the TRE may have given you to over-ride the
+    default risk appetite parameters.
+
+Note that when the cell runs it should report (possibly in a different coloured
+font/background):
+
+-   what version of acro is running: *this should be 0.4.12*
+
+-   the TRE's risk appetite: that define the rules your outputs will be checked against.
+
+-   whether suppression is automatically applied to disclosive outputs.
+
+#### Load the acro package
+
+```{r}
+library("acro")
+```
+
+#### Initiate acro
+
+```{r}
+acro_init()
+```
+
+### Step 3: Load the data
+
+-   The dataset used in this example notebook is the nursery dataset from OpenML.
+-   The code below reads the data from a folder called "nursery_data" which we assume is
+    at the same level as the folder where you are working.
+-   The path might need to be changed if the data has been downloaded and stored
+    elsewhere.
+
+**There is no change to your usual workflow here** This is just loading and manipulating
+data.
+
+```{r}
+data <- farff::readARFF("data/nursery.arff")
+data <- as.data.frame(data)
+
+names(data)[names(data) == "class"] <- "recommendation"
+```
+
+Convert the children column to integers, replacing 'more' with random int from range 4-10
+
+```{r}
+data$children <- as.numeric(as.character(data$children))
+data[is.na(data)] <- round(runif(sum(is.na(data)), min = 4, max = 10), 0)
+unique(data$children)
+```
+
+Example of a Feedback command
+
+```{r}
+head(data)
+```
+
+## C: Producing tables that are 'Safe Outputs'
+
+### Example 1: A simple 2-D table of frequencies stratified by two variables
+
+#### Using the acro version of R's table command
+
+We will produce a simple cross-tabulation of the number of records, stratified by values
+for the *recommendation* and *parents* variables.
+
+```{r}
+rows <- data[, c("recommendation")]
+columns <- data[, c("parents")]
+
+table <- acro_table(index = rows, columns = columns, deparse.level = 1)
+table
+```
+
+#### How to understand this output
+
+The output in the console (or click on left thumbnail above) is the risk analysis produced
+by acro. It is telling us that:
+
+-   the overall summary status is *fail* because 4 cells are failing the 'minimum
+    threshold' check
+
+-   which cells failed so you can choose how to respond
+
+-   finally it is telling us that is has saved the table and risk assessment to our acro
+    session with id "output_0"
+
+The part in the data.frame window (or click or right thumbnail above) is the normal output
+produced by the R *table* function.
+
+-   As this is such a small table it is not hard to spot the four problematic cells with
+    zero or low counts.
+
+-   But of course this might be harder for a bigger table.
+
+#### How to respond to this input
+
+There are basically three choices:
+
+1.  You might decide these low numbers reveal something where the public interest
+    outweighs the disclosure risk.
+
+-   Rather than being a strict rules-based system, acro lets you attach an 'exception
+    request' to an output, to send a message to the output checkers. For example, you
+    could type:
+
+```
+acro.add_exception('output_0',"I think you should let me have this because...")
+```
+
+2.  You could redesign/recode the data so that table so that none of the cells in the
+    resulting table represent fewer than *n* people (10 for the default risk appetite).
+
+-   For example, you could recode *'very_recommend'* and *'priority'* into one label.But
+    maybe it is revealing that the *'recommend'* value is not used?
+
+3.  You can redact the disclosive cells - and **acro will do this for you**.
+
+    We simply enable the option to suppress disclosive cells and re-run the query.
+
+The code below shows option 3. When you run the cell below you should see that a new
+output is created and added to the session:
+
+-   the status now changes to `review` (so the output-checker knows what has been applied)
+
+-   the code automatically adds an exception request saying that suppression has been
+    applied
+
+-   and, most importantly, the cells are redacted.
+
+```{r}
+acro_enable_suppression()
+table <- acro_table(index = rows, columns = columns, deparse.level = 1)
+table
+```
+
+#### ACRO Crosstab
+
+According to R's documentation, the \`table' command is typically only used to produce
+contingency tables - i.e. report on frequencies.
+
+We could have produced the table above using the command
+`table2 <- acro_crosstab(index=rows,columns=columns)`
+
+To illustrate the sort of tables that `crosstab()` can easily produce, the example below
+produces something more complex. Going through the parameters in order:
+
+-   passing a list of variable names to `index` (rather than a single variable/column
+    name) tells it we want a hierarchy within the rows.
+
+    -   we can do the same to columns as well (or instead) if we want to
+
+-   to specify the cell contents we:
+
+    -   set `values` to be the column `children` to identify what variable to report on
+
+    -   setting `aggfunc<-"mean"` to specify the statistic to use.
+
+    -   In this case the mean number of children per sub-group. This introduces additional
+        risks of *dominance* for which there are two widely used tests.
+
+-
+
+```{r}
+myrows <- list(data[, c("parents")], data[, c("finance")])
+mycolumns <- data[, c("recommendation")]
+myvalues <- data[, c("children")]
+# convert the values to an array
+myvalues <- matrix(myvalues, ncol = 1)
+
+
+table4 <- acro_crosstab(
+  index = myrows,
+  columns = mycolumns,
+  values = myvalues,
+  aggfunc <- list("mean")
+)
+table4
+```
+
+## D: What other sorts of analysis does ACRO currently support?
+
+We are continually adding support for more types of analysis as users prioritise them.
+
+ACRO currently supports:
+
+-   **Tables** via `acro_table()`, `acro_crosstab()` and `acro_pivot_table()`.
+
+    -   supported aggregation functions are: *mean*, *median*, *sum*, *std*, *count*, and
+        *mode*.
+    -   you can also pass a list of aggregation functions e.g.
+        `aggfunc <-list("mean","median")`
+    -   NB we have recently had reports of instability when automatically suppressing
+        tables with multiple aggregation functions, one of which is "std". A fix for this
+        will be issued shortly.
+
+-   **Survival analysis** via: `acro_surv_function()`,
+
+-   **Histograms** via:`acro_hist()`
+
+-   **Regression** via: `acro_ols()`, `acro_logit()`,`acro_probit()`
+
+You can get help on using any of these using the standard R `help()` syntax as shown in
+the next cell.
+
+In RStudio this opens the help menu for the package in the sidebar.
+
+```{r}
+help(package = "acro")
+```
+
+## E: ACRO functionality to let users manage their outputs
+
+As explained above, you need to create an "acro session" whenever your code is run.
+
+After that, every time you run an acro \`query' command both the output and the risk
+assessment are saved as part of the acro session.
+
+But we recognise that:
+
+-   You may not want to request release of all your outputs - for example, the first table
+    we produced above.
+
+-   It is good practice to provide a more informative name than just *output_n* for the
+    .csv files that acro produces
+
+-   It helps the output checker if you provide some comments saying what the outputs are.
+
+-   You might want to add more things to the bundles of files you want to take out, such
+    as:
+
+    -   outputs from analyses that acro doesn't currently support
+
+    -   your code itself (which many journals want)
+
+    -   maybe a version of your paper in pdf/word format etc.
+
+Therefore acro provides the following commands for 'session management'
+
+### 1: Listing the current contents of an ACRO session
+
+This output is not beautiful (there's a GUI coming soon) but it should let you identify
+outputs you want to rename,comment on, or delete.
+
+```{r}
+details <- acro_print_outputs()
+```
+
+### 2: Remove some ACRO outputs before finalising
+
+At the start of this demo we made a disclosive output -it's the first one with status
+*fail*.
+
+We don't want to waste the output checker's time so lets remove it.
+
+```{r}
+acro_remove_output("output_0")
+```
+
+### 3: Rename ACRO outputs before finalising
+
+It's always a good idea to rename the outputs to provide more descriptive names.
+
+```{r}
+acro_rename_output("output_1", " crosstab_recommendation_vs_parents")
+acro_rename_output("output_2", "mean_children_by_parents_finance_vs_recommendation")
+```
+
+### 4: Add a comment to output
+
+This is an example of adding a comment to outputs.\
+It can be used to provide a description or to pass additional information to the TRE
+staff.
+
+They will see it alongside your file in the output checking viewer - rather than having it
+in an email somewhere.
+
+```{r}
+acro_add_comments(
+  "mean_children_by_parents_finance_vs_recommendation",
+  "too few cases of recommend to report"
+)
+```
+
+### 5. Request an exception
+
+An example of providing a reason why an exception should be made.
+
+There are none in this example but this is the syntax
+
+```
+acro_add_exception("output_n", "This is evidence of systematic bias?")
+```
+
+### 6: Adding a custom output.
+
+As mentioned above you might want to request release of all sorts of things - including
+your code, - or outputs from analyses *acro* doesn't support (yet)
+
+In ACRO we can add a file to our session with a comment describing what it is.
+
+The following example includes the R code extracted from this notebook using knit::purl().
+
+```{r}
+acro_custom_output("acro_demo_2026.R", "This is the code that produced this session")
+```
+
+## F: Finishing your session and producing a folder of files to release.
+
+This is an example of the function *finalise()* which the users must call at the end of
+each session. This function:
+
+-   takes each output and saves it to a CSV file (or the original file type for custom
+    outputs)
+
+-   saves the risk appetite used (minimum cell thresholds etc.) to a file called
+    *config.json*
+
+-   saves the SDC analysis for each output to a json file *results.json*
+
+-   adds checksums for everything - so we know they've not been edited.
+
+-   puts all the above in a folder with the name you supply.
+
+**ACRO will not overwrite previous sessions**
+
+So every time you call finalise on a session you need to either:
+
+-   manually delete the previous folder, or
+
+-   provide a new folder name, or
+
+-   create a unique string variable in your code and pass that to `finalise()` as shown
+    below.
+
+```{r}
+myfolder <- "Routputs"
+suffix <- format(Sys.time(), "%e_%m_%Y_%H_%M")
+foldername <- paste(myfolder, suffix, sep = "_")
+acro_finalise(foldername, ext = "json")
+```
+
+## G: Reminder about getting help while you work
+
+-   If you can't remember the name of the command, from the R prompt type:
+    `help(package="acro")`
+
+    -   in RStudio this will open the interactive sidebar
+
+    -   from a terminal this will list the commands present in the acro package
+
+-   If you can know the name of the command and want an explanation or to explain the
+    syntax, from the R prompt type: `` help(topic=`acro_command_name`, package="acro") ``
+
+    for example: `` help(topic=`acro_crosstab`,package="acro") ``
