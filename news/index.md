@@ -2,6 +2,8 @@
 
 ## acro 0.1.7
 
+CRAN release: 2026-02-02
+
 - Added support for installation via conda
 - Added support for specifying config files when acro session is started
 - Added support for specifying whether suppression is on or off when
