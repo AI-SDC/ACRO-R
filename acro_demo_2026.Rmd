@@ -487,7 +487,7 @@ acro_finalise(foldername, ext = "json")
 -   If you can't remember the name of the command, from the R prompt type:
     `help(package="acro")`
 
-    -   in Rstudio this will open the interactive sidebar
+    -   in RStudio this will open the interactive sidebar
 
     -   from a terminal this will list the commands present in the acro package
 
