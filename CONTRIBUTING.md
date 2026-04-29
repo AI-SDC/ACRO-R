@@ -128,7 +128,7 @@ The configuration lives in `cliff.toml` at the repository root. It automatically
 
 - Converts `(#NNN)` PR references into markdown links.
 - Skips noise commits (pre-commit auto-fixes, changelog and release-prep commits).
-- Filters out commits that do not follow Conventional Commits (see [Pull Request Titles](#pull-request-titles)).
+- Groups commits that do not follow Conventional Commits under an "Other" heading so nothing is dropped (see [Pull Request Titles](#pull-request-titles)).
 
 ## CRAN Submission
 
