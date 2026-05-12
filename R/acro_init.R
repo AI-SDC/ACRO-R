@@ -33,7 +33,8 @@ install_conda <- function(envname) { # nocov
 # Internal helper: install ACRO in a Python virtual environment
 install_venv <- function(envname = acro_venv) {
   if (!reticulate::virtualenv_exists(envname)) {
-    python <- reticulate::virtualenv_starter() %||% get_python()
+    python <- reticulate::virtualenv_starter()
+    if (is.null(python)) python <- get_python()
 
     reticulate::virtualenv_create(
       envname = envname,
