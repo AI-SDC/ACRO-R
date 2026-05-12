@@ -34,7 +34,7 @@ install_conda <- function(envname) { # nocov
 install_venv <- function(envname = acro_venv) {
   if (!reticulate::virtualenv_exists(envname)) {
     python <- reticulate::virtualenv_starter()
-    if (is.null(python)) python <- get_python()
+    if (is.null(python)) python <- get_python() # nocov
 
     reticulate::virtualenv_create(
       envname = envname,
