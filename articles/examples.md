@@ -14,6 +14,7 @@ notebook:
 #### Basic Usage
 
 ``` r
+
 library("acro")
 
 # Initialize ACRO
@@ -26,6 +27,7 @@ acro_init(suppress = TRUE)
 #### Creating Safe Tables
 
 ``` r
+
 # Example of creating a cross-tabulation with ACRO
 result <- acro_crosstab(data$variable1, data$variable2)
 
@@ -36,6 +38,7 @@ print(result)
 #### Finalizing Your Session
 
 ``` r
+
 # When you're done with your analysis
 acro_finalise()
 ```

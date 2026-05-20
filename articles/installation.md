@@ -7,6 +7,7 @@
 Install the **acro** package from CRAN as follows:
 
 ``` r
+
 install.packages("acro")
 ```
 
@@ -15,6 +16,7 @@ install.packages("acro")
 To install the development version from GitHub:
 
 ``` r
+
 # Install devtools if you haven't already
 install.packages("devtools")
 
@@ -33,6 +35,7 @@ The package interfaces with the Python ACRO library. Use
 Python environment setup:
 
 ``` r
+
 library("acro")
 acro_init(suppress = TRUE)
 ```
@@ -51,6 +54,7 @@ issues](https://github.com/AI-SDC/ACRO-R/issues).
 To verify your installation works correctly:
 
 ``` r
+
 library("acro")
 acro_init(suppress = TRUE)
 ```

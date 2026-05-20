@@ -51,6 +51,7 @@ Before using any function from the package, an acro object should be
 initialised using the following R code:
 
 ``` r
+
 library("acro")
 acro_init(suppress = TRUE)
 ```
