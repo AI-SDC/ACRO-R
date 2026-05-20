@@ -1,0 +1,49 @@
+[changelog]
+header = ""
+body = """
+{% if version %}\
+# acro {{ version | trim_start_matches(pat="V") }} ({{ timestamp | date(format="%b %d, %Y") }})
+{% else %}\
+# Unreleased
+{% endif %}\
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group }}
+{% for commit in commits -%}
+*   {% if commit.scope %}**{{ commit.scope }}:** {% endif %}{{ commit.message | trim }}
+{% endfor %}
+{%- endfor %}
+"""
+trim = false
+footer = ""
+
+[git]
+conventional_commits = true
+filter_unconventional = false
+# Only matches uppercase V tags (V0.1.7+); older lowercase tags
+# (v0.1.1–v0.1.6) are excluded — their NEWS.md entries were hand-written.
+tag_pattern = "V[0-9]+\\.[0-9]+\\.[0-9]+"
+
+commit_preprocessors = [
+    { pattern = ' \(#(\d+)\)', replace = ' ([#$1](https://github.com/AI-SDC/ACRO-R/pull/$1))' },
+    { pattern = 'Signed-off-by:.*', replace = '' },
+    { pattern = '\n[\s\S]*', replace = '' },
+]
+
+commit_parsers = [
+    { message = "^\\[pre-commit", skip = true },
+    { message = "^docs: update changelog", skip = true },
+    { message = "^docs: update citation", skip = true },
+    { message = "^chore: prepare", skip = true },
+    { message = "^feat", group = "Features" },
+    { message = "^fix", group = "Bug Fixes" },
+    { message = "^docs", group = "Documentation" },
+    { message = "^perf", group = "Performance" },
+    { message = "^refactor", group = "Refactoring" },
+    { message = "^build", group = "Build" },
+    { message = "^test", group = "Testing" },
+    { message = "^ci", group = "CI" },
+    { message = "^style", group = "Style" },
+    { message = "^chore", group = "Chore" },
+    { message = "^revert", group = "Reverts" },
+    { message = ".*", group = "Other" },
+]
