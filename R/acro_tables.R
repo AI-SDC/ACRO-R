@@ -12,7 +12,8 @@ acro_crosstab <- function(index, columns, values = NULL, aggfunc = NULL) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  table <- acroEnv$ac$crosstab(index, columns, values = values, aggfunc = aggfunc)
+  py_table <- acroEnv$ac$crosstab(index, columns, values = values, aggfunc = aggfunc)
+  table <-reticulate::py_to_r(py_table)
   return(table)
 }
 
@@ -22,12 +23,14 @@ acro_crosstab <- function(index, columns, values = NULL, aggfunc = NULL) {
 #' @param columns Values to group by in the columns.
 #' @param dnn The names to be given to the dimensions in the result
 #' @param deparse.level Controls how the default `dnn` is constructed.
+#' @param exclude levels to remove for all factors in index/columns
+#' @param useNA whether to include NA values in the table
 #' @param ... Any other parameters.
 #'
 #' @return Cross tabulation of the data
 #' @export
 
-acro_table <- function(index, columns, dnn = NULL, deparse.level = 0, ...) {
+acro_table <- function(index, columns, dnn = NULL, deparse.level = 0, useNA = "no", exclude = NULL, ...) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
@@ -55,20 +58,73 @@ acro_table <- function(index, columns, dnn = NULL, deparse.level = 0, ...) {
           acroEnv$col_names <- list("")
         }
       )
-    } else if (deparse.level == 2) {
-      acroEnv$row_names <- list(deparse((substitute(index))))
-      acroEnv$col_names <- list(deparse(substitute(columns)))
     }
   } else {
     acroEnv$row_names <- list(dnn[1])
     acroEnv$col_names <- list(dnn[2])
   }
 
-  table <- acroEnv$ac$crosstab(index, columns, rownames = acroEnv$row_names, colnames = acroEnv$col_names)
+  #Handling the exclude parameter
+  if (useNA != "no" && !is.null(exclude)) {
+    if (any(is.na(exclude))) warning("'exclude' containing NA and 'useNA' != \"no\"' are a bit contradicting")
+
+    # Remove the NA and NaN from the exclude list, if they exist
+    exclude <- exclude[!(is.na(exclude) | is.nan(exclude))]
+    if (length(exclude) == 0) exclude <- NULL  # nocov
+  }
+
+  if (!is.null(exclude)) {
+    #Exclude everything in the exclude list from the data
+    keep_mask <- !(is_excluded(index, exclude) | is_excluded(columns, exclude))
+
+    index <- index[keep_mask]
+    columns <- columns[keep_mask]
+
+    # Delete any dropped levels
+    if (is.factor(index)) index <- droplevels(index)
+    if (is.factor(columns)) columns <- droplevels(columns)
+  }
+
+  # Handling the useNA parameter
+  if (useNA == "no") {
+    # Remove any NA or NaN from the data
+    keep_mask <- !(is_invalid(index) | is_invalid(columns))
+
+    index <- index[keep_mask]
+    columns <- columns[keep_mask]
+  }
+
+  # Create factors
+  index   <- create_factors(index, useNA)
+  columns <- create_factors(columns, useNA)
+
+  # Manually convert index and columns to pandas categorical to convert the R fcators to python categories
+  pd <- reticulate::import("pandas", convert = FALSE)
+  index   <- to_pandas_categorical(index, pd)
+  columns <- to_pandas_categorical(columns, pd)
+
+  py_table <- acroEnv$ac$crosstab(index, columns, rownames = acroEnv$row_names, colnames = acroEnv$col_names)
   # Check for any unused arguments
   if (length(list(...)) > 0) {
     warning("Unused arguments were provided: ", paste0(names(list(...)), collapse = ", "), "\n", "Please use the help command to learn more about the function.")
   }
+  # Reset the index and keep the old indexes in a column
+  py_table <- py_table$reset_index()
+
+  # Manually translate the table to R
+  r_dataframe <- reticulate::py_to_r(py_table)
+  table <- as.matrix(r_dataframe[, -1])
+
+  # Convert the string "NA" to the R empty values <NA>
+  index_names <- as.character(r_dataframe[[1]])
+  column_names <- colnames(r_dataframe)[-1]
+
+  index_names[index_names %in% "NA"] <- NA
+  column_names[column_names %in% "NA"] <- NA
+
+  rownames(table) <- index_names
+  colnames(table) <- column_names
+
   return(table)
 }
 
@@ -87,7 +143,8 @@ acro_pivot_table <- function(data, values = NULL, index = NULL, columns = NULL, 
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  table <- acroEnv$ac$pivot_table(data, values = values, index = index, columns = columns, aggfunc = aggfunc)
+  py_table <- acroEnv$ac$pivot_table(data, values = values, index = index, columns = columns, aggfunc = aggfunc)
+  table <- reticulate::py_to_r(py_table)
   return(table)
 }
 
@@ -107,7 +164,8 @@ acro_hist <- function(data, column, breaks = 10, freq = TRUE, col = NULL, filena
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  histogram <- acroEnv$ac$hist(data = data, column = column, bins = as.integer(breaks), density = freq, color = col, filename = filename)
+  py_histogram <- acroEnv$ac$hist(data = data, column = column, bins = as.integer(breaks), density = freq, color = col, filename = filename)
+  histogram <- reticulate::py_to_r(py_histogram)
   # Load the saved histogram
   image <- png::readPNG(histogram)
   grid::grid.raster(image)
@@ -128,7 +186,8 @@ acro_surv_func <- function(time, status, output, filename = "kaplan-meier.png") 
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  results <- acroEnv$ac$surv_func(time = time, status = status, output = output, filename = filename)
+  py_results <- acroEnv$ac$surv_func(time = time, status = status, output = output, filename = filename)
+  results <- reticulate::py_to_r(py_results)
   if (output == "plot") {
     # Load the saved survival plot
     image <- png::readPNG(results[[2]])
