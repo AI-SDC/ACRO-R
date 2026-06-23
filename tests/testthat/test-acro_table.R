@@ -210,9 +210,9 @@ test_that("acro_table works with useNA = 'no'", {
   testthat::skip_on_cran()
   acro_init()
 
-  #Inject NAs in the index and columns
+  # Inject NAs in the index and columns
   index_data <- replace(nursery_data[, "recommend"], 10:14, NA)
-  cols_data  <- replace(nursery_data[, "parents"], 16:20, NA)
+  cols_data <- replace(nursery_data[, "parents"], 16:20, NA)
 
   actual_table <- acro_table(
     index = index_data,
@@ -242,9 +242,9 @@ test_that("acro_table works with usena = 'ifany'", {
   testthat::skip_on_cran()
   acro_init()
 
-  #Inject NAs in the index and columns
+  # Inject NAs in the index and columns
   index_data <- replace(nursery_data[, "recommend"], 10:15, NA)
-  cols_data  <- replace(nursery_data[, "parents"], 16:20, NA)
+  cols_data <- replace(nursery_data[, "parents"], 16:20, NA)
 
   actual_table <- acro_table(
     index = index_data,
@@ -275,7 +275,7 @@ test_that("acro_table works with usena = 'always'", {
   acro_init()
 
   index_data <- nursery_data[, "recommend"]
-  cols_data  <- nursery_data[, "parents"]
+  cols_data <- nursery_data[, "parents"]
 
   actual_table <- acro_table(
     index = index_data,

@@ -13,7 +13,7 @@ acro_crosstab <- function(index, columns, values = NULL, aggfunc = NULL) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
   py_table <- acroEnv$ac$crosstab(index, columns, values = values, aggfunc = aggfunc)
-  table <-reticulate::py_to_r(py_table)
+  table <- reticulate::py_to_r(py_table)
   return(table)
 }
 
@@ -64,17 +64,17 @@ acro_table <- function(index, columns, dnn = NULL, deparse.level = 0, useNA = "n
     acroEnv$col_names <- list(dnn[2])
   }
 
-  #Handling the exclude parameter
+  # Handling the exclude parameter
   if (useNA != "no" && !is.null(exclude)) {
     if (any(is.na(exclude))) warning("'exclude' containing NA and 'useNA' != \"no\"' are a bit contradicting")
 
     # Remove the NA and NaN from the exclude list, if they exist
     exclude <- exclude[!(is.na(exclude) | is.nan(exclude))]
-    if (length(exclude) == 0) exclude <- NULL  # nocov
+    if (length(exclude) == 0) exclude <- NULL # nocov
   }
 
   if (!is.null(exclude)) {
-    #Exclude everything in the exclude list from the data
+    # Exclude everything in the exclude list from the data
     keep_mask <- !(is_excluded(index, exclude) | is_excluded(columns, exclude))
 
     index <- index[keep_mask]
@@ -95,12 +95,12 @@ acro_table <- function(index, columns, dnn = NULL, deparse.level = 0, useNA = "n
   }
 
   # Create factors
-  index   <- create_factors(index, useNA)
+  index <- create_factors(index, useNA)
   columns <- create_factors(columns, useNA)
 
   # Manually convert index and columns to pandas categorical to convert the R fcators to python categories
   pd <- reticulate::import("pandas", convert = FALSE)
-  index   <- to_pandas_categorical(index, pd)
+  index <- to_pandas_categorical(index, pd)
   columns <- to_pandas_categorical(columns, pd)
 
   py_table <- acroEnv$ac$crosstab(index, columns, rownames = acroEnv$row_names, colnames = acroEnv$col_names)
