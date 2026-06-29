@@ -4,7 +4,19 @@
 \alias{acro_crosstab}
 \title{Compute a simple cross tabulation of two (or more) factors.}
 \usage{
-acro_crosstab(index, columns, values = NULL, aggfunc = NULL)
+acro_crosstab(
+  index,
+  columns,
+  values = NULL,
+  rownames = NULL,
+  colnames = NULL,
+  aggfunc = NULL,
+  margins = FALSE,
+  margins_name = "All",
+  dropna = TRUE,
+  normalize = FALSE,
+  show_suppressed = FALSE
+)
 }
 \arguments{
 \item{index}{Values to group by in the rows.}
@@ -13,7 +25,21 @@ acro_crosstab(index, columns, values = NULL, aggfunc = NULL)
 
 \item{values}{Array of values to aggregate according to the factors. Requires \code{aggfunc} be specified.}
 
+\item{rownames}{If passed, must match number of row arrays passed.}
+
+\item{colnames}{If passed, must match number of column arrays passed.}
+
 \item{aggfunc}{If specified, requires \code{values} be specified as well.}
+
+\item{margins}{dd row/column margins (subtotals).}
+
+\item{margins_name}{Name of the row/column that will contain the totals when margins is True.}
+
+\item{dropna}{Do not include columns whose entries are all NaN.}
+
+\item{normalize}{Normalize by dividing all values by the sum of values.}
+
+\item{show_suppressed}{how the totals are being calculated when the suppression is true}
 }
 \value{
 Cross tabulation of the data
