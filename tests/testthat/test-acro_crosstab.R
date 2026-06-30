@@ -18,3 +18,13 @@ test_that("acro_crosstab works", {
   table <- acro_crosstab(index = nursery_data[, c("health")], columns = nursery_data[, c("finance")])
   expect_equal(table[, -1, drop = FALSE], expected_table[, -1, drop = FALSE])
 })
+
+test_that("acro_crosstab works with margins", {
+  acro_init()
+  p_table <- acro_crosstab(index = nursery_data[, c("health")], columns = nursery_data[, c("finance")], margins = TRUE)
+
+  # Create an R table with margins
+  r_table <- addmargins(table(nursery_data[, c("health")], columns = nursery_data[, c("finance")]))
+
+  expect_equal(unname(as.matrix(r_table)), unname(as.matrix(p_table)))
+})
