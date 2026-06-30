@@ -89,7 +89,7 @@ acro_init <- function(config = "default", suppress = FALSE, envname = acro_venv,
   }
 
   # import the acro package and instantiate an object
-  acro <- reticulate::import("acro", delay_load = TRUE)
+  acro <- reticulate::import("acro", delay_load = TRUE, convert = FALSE)
   acroEnv$ac <- acro$ACRO(config = config, suppress = suppress)
 
   invisible(acroEnv$ac)
