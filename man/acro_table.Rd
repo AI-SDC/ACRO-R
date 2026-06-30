@@ -4,7 +4,15 @@
 \alias{acro_table}
 \title{Compute a simple cross tabulation of two (or more) factors.}
 \usage{
-acro_table(index, columns, dnn = NULL, deparse.level = 0, ...)
+acro_table(
+  index,
+  columns,
+  dnn = NULL,
+  deparse.level = 0,
+  useNA = "no",
+  exclude = NULL,
+  ...
+)
 }
 \arguments{
 \item{index}{Values to group by in the rows.}
@@ -14,6 +22,10 @@ acro_table(index, columns, dnn = NULL, deparse.level = 0, ...)
 \item{dnn}{The names to be given to the dimensions in the result}
 
 \item{deparse.level}{Controls how the default \code{dnn} is constructed.}
+
+\item{useNA}{whether to include NA values in the table}
+
+\item{exclude}{levels to remove for all factors in index/columns}
 
 \item{...}{Any other parameters.}
 }
