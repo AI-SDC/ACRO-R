@@ -29,8 +29,12 @@
 <url><loc>/reference/acro_rename_output.html</loc></url>
 <url><loc>/reference/acro_surv_func.html</loc></url>
 <url><loc>/reference/acro_table.html</loc></url>
+<url><loc>/reference/create_factors.html</loc></url>
 <url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/is_excluded.html</loc></url>
+<url><loc>/reference/is_invalid.html</loc></url>
 <url><loc>/reference/lung.html</loc></url>
 <url><loc>/reference/nursery_data.html</loc></url>
+<url><loc>/reference/to_pandas_categorical.html</loc></url>
 </urlset>
 

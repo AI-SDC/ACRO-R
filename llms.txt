@@ -134,8 +134,16 @@ Text](inst/Images/logo_print.png)
 - [`acro_surv_func()`](acro_surv_func.md) : Survival analysis
 - [`acro_table()`](acro_table.md) : Compute a simple cross tabulation of
   two (or more) factors.
+- [`create_factors()`](create_factors.md) : Convert data to factors and
+  manage NA levels
+- [`is_excluded()`](is_excluded.md) : Identify values to be excluded
+  from an object
+- [`is_invalid()`](is_invalid.md) : Identify empty values; NA or NaN in
+  an object
 - [`lung`](lung.md) : Lung Cancer Survival Data
 - [`nursery_data`](nursery_data.md) : Nursery Database
+- [`to_pandas_categorical()`](to_pandas_categorical.md) : Convert an R
+  factor to a Pandas Categorical
 
 # Articles
 

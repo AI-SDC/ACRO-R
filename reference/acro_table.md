@@ -5,7 +5,15 @@ Compute a simple cross tabulation of two (or more) factors.
 ## Usage
 
 ``` r
-acro_table(index, columns, dnn = NULL, deparse.level = 0, ...)
+acro_table(
+  index,
+  columns,
+  dnn = NULL,
+  deparse.level = 0,
+  useNA = "no",
+  exclude = NULL,
+  ...
+)
 ```
 
 ## Arguments
@@ -25,6 +33,14 @@ acro_table(index, columns, dnn = NULL, deparse.level = 0, ...)
 - deparse.level:
 
   Controls how the default `dnn` is constructed.
+
+- useNA:
+
+  whether to include NA values in the table
+
+- exclude:
+
+  levels to remove for all factors in index/columns
 
 - ...:
 
