@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout ACRO
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -46,7 +46,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Upload Report to Codecov
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@v7
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
