@@ -3,17 +3,26 @@
 #' @param index Values to group by in the rows.
 #' @param columns Values to group by in the columns.
 #' @param values  Array of values to aggregate according to the factors. Requires `aggfunc` be specified.
+#' @param rownames If passed, must match number of row arrays passed.
+#' @param colnames If passed, must match number of column arrays passed.
 #' @param aggfunc If specified, requires `values` be specified as well.
+#' @param margins dd row/column margins (subtotals).
+#' @param margins_name Name of the row/column that will contain the totals when margins is True.
+#' @param dropna Do not include columns whose entries are all NaN.
+#' @param normalize Normalize by dividing all values by the sum of values.
+#' @param show_suppressed how the totals are being calculated when the suppression is true
 #'
 #' @return Cross tabulation of the data
 #' @export
 
-acro_crosstab <- function(index, columns, values = NULL, aggfunc = NULL) {
+acro_crosstab <- function(index, columns, values = NULL, rownames = NULL, colnames = NULL, aggfunc = NULL, margins = FALSE, margins_name = "All", dropna = TRUE, normalize = FALSE, show_suppressed = FALSE) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  py_table <- acroEnv$ac$crosstab(index, columns, values = values, aggfunc = aggfunc)
+
+  py_table <- acroEnv$ac$crosstab(index, columns, values = values, rownames = rownames, colnames = colnames, aggfunc = aggfunc, margins = margins, margins_name = margins_name, dropna = dropna, normalize = normalize, show_suppressed = show_suppressed)
   table <- reticulate::py_to_r(py_table)
+
   return(table)
 }
 
