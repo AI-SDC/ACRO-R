@@ -57,3 +57,16 @@ test_that("acro_crosstab throws an error for unsupported aggregation functions",
     "Unsupported aggregation function provided"
   )
 })
+
+test_that("acro_crosstab throws an error for missing values", {
+  acro_init()
+  expect_error(
+    acro_crosstab(
+      index = nursery_data$health,
+      columns = nursery_data$finance,
+      aggfunc = "mean"
+    ),
+    "If you pass an aggregation function to crosstab"
+  )
+})
+
