@@ -20,11 +20,41 @@ acro_crosstab <- function(index, columns, values = NULL, rownames = NULL, colnam
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
 
-  py_table <- acroEnv$ac$crosstab(index, columns, values = values, rownames = rownames, colnames = colnames, aggfunc = aggfunc, margins = margins, margins_name = margins_name, dropna = dropna, normalize = normalize, show_suppressed = show_suppressed)
+  # Convert the values into a NumPy array so that the Python ACRO crosstab function accepts them
+  np <- reticulate::import("numpy", convert = TRUE)
+  py_values <- if (!is.null(values)) np$array(values) else NULL
+
+  py_table <- tryCatch(
+    {
+      acroEnv$ac$crosstab(index, columns, values = py_values, rownames = rownames, colnames = colnames, aggfunc = aggfunc, margins = margins, margins_name = margins_name, dropna = dropna, normalize = normalize, show_suppressed = show_suppressed)
+    },
+    error = function(e) {
+      # Check if Python threw the ValueError about an unsupported aggfunc
+      if (grepl("ValueError: aggfunc", e$message)) {
+        stop(
+          sprintf("Unsupported aggregation function provided: '%s'. Allowed functions are: mean, median, sum, std, count, mode.", aggfunc),
+          call. = FALSE
+        )
+      }
+      # 2. Check if Python threw the missing values column error
+      else if (grepl("If you pass an aggregation function to crosstab", e$message)) {
+        stop(
+          "If you pass an aggregation function to crosstab, you must also specify a single values column to aggregate over.",
+          call. = FALSE
+        )
+      }
+      # any other unexpected errors
+      else {
+        stop(e) # nocov
+      }
+    }
+  )
+
   table <- reticulate::py_to_r(py_table)
 
   return(table)
 }
+
 
 #' Compute a simple cross tabulation of two (or more) factors.
 #'
@@ -152,7 +182,23 @@ acro_pivot_table <- function(data, values = NULL, index = NULL, columns = NULL, 
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  py_table <- acroEnv$ac$pivot_table(data, values = values, index = index, columns = columns, aggfunc = aggfunc)
+
+  py_table <- tryCatch(
+    {
+      acroEnv$ac$pivot_table(data, values = values, index = index, columns = columns, aggfunc = aggfunc)
+    },
+    error = function(e) {
+      if (grepl("aggfunc", e$message, ignore.case = TRUE)) {
+        stop(
+          sprintf("Unsupported aggregation function provided: '%s'. Allowed functions are: mean, median, sum, std, count, mode.", aggfunc),
+          call. = FALSE
+        )
+      } else {
+        stop(e) # nocov
+      }
+    }
+  )
+
   table <- reticulate::py_to_r(py_table)
   return(table)
 }
