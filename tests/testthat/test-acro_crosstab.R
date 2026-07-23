@@ -69,4 +69,3 @@ test_that("acro_crosstab throws an error for missing values", {
     "If you pass an aggregation function to crosstab"
   )
 })
-

@@ -34,14 +34,15 @@ acro_crosstab <- function(index, columns, values = NULL, rownames = NULL, colnam
         stop(
           sprintf("Unsupported aggregation function provided: '%s'. Allowed functions are: mean, median, sum, std, count, mode.", aggfunc),
           call. = FALSE
-        )}
+        )
+      }
       # 2. Check if Python threw the missing values column error
       else if (grepl("If you pass an aggregation function to crosstab", e$message)) {
         stop(
           "If you pass an aggregation function to crosstab, you must also specify a single values column to aggregate over.",
           call. = FALSE
         )
-      } 
+      }
       # any other unexpected errors
       else {
         stop(e) # nocov
