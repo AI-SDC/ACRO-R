@@ -19,3 +19,16 @@ test_that("acro_pivot_table works", {
   table <- acro_pivot_table(data = nursery_data, index = "parents", values = "children", aggfunc = list("mean", "std"))
   expect_equal(table[, -1, drop = FALSE], expected_table[, -1, drop = FALSE])
 })
+
+test_that("acro_pivot_table throws an error for unsupported aggregation functions", {
+  acro_init()
+  expect_error(
+    acro_pivot_table(
+      data = nursery_data,
+      index = nursery_data$parents,
+      values = nursery_data$children,
+      aggfunc = "max"
+    ),
+    "Unsupported aggregation function provided"
+  )
+})
