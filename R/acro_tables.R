@@ -220,9 +220,9 @@ acro_summarise <- function(.data, ..., .groups = NULL, .by = NULL) {
   }
 
   # Uncomment this when supporting the count function n()
-  #if (length(values[[1]]) == 0) {
+  # if (length(values[[1]]) == 0) {
   # values <- NULL
-  #}
+  # }
 
   # Handling ungrouped data via a dummy grouping column
   if (length(index) == 0) {
