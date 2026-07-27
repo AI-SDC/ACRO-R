@@ -1,9 +1,16 @@
+test_that("acro_summarise throws an error if the ACRO object was not initialised first", {
+  acroEnv$ac <- NULL
+  expect_error(acro_summarise(acro_summarise(nursery_data, mean_children = mean(children), .by = recommend)), "ACRO has not been initialised. Please first call acro_init()")
+})
+
+
 test_that("acro_summarise works with one grouping parameter", {
   # table produces by summarise function from dplyr package
   R_table <- dplyr::summarise(nursery_data, mean_children = mean(children), .by = recommend) |>
     dplyr::arrange(recommend)
 
   # table produces by acro_summarise function
+  acro_init()
   acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = recommend) |>
     dplyr::arrange(recommend)
 
@@ -16,6 +23,7 @@ test_that("acro_summarise works with two grouping parameters", {
     dplyr::arrange(parents, recommend)
 
   # table produces by acro_summarise function
+  acro_init()
   acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = c(parents, recommend)) |>
     dplyr::arrange(parents, recommend)
 
@@ -27,6 +35,7 @@ test_that("acro_summarise works with no grouping parameter calculate the summary
   R_table <- dplyr::summarise(nursery_data, mean_children = mean(children))
 
   # table produces by acro_summarise function
+  acro_init()
   acro_table <- acro_summarise(nursery_data, mean_children = mean(children))
 
   expect_equal(acro_table, R_table, tolerance = 1e-5, ignore_attr = TRUE)
@@ -40,11 +49,17 @@ test_that("acro_summarise works with two summary functions for the same variable
 
 
   # table produces by acro_summarise function
+  acro_init()
   acro_table <- acro_summarise(nursery_data, mean_children = mean(children), sd_children = sd(children), .by = recommend) |>
     dplyr::arrange(recommend)
 
 
   expect_equal(acro_table, R_table, tolerance = 1e-5, ignore_attr = TRUE)
+})
+
+test_that("acro_summarise throws an error when different aggreagtion functions used for different values", {
+  acro_init()
+  expect_error(acro_summarise(nursery_data, mean_children = mean(children), sd_children = sd(parents), .by = recommend), "ACRO currently doesn not support different aggreagtion functions for different values.")
 })
 
 test_that("acro_summarise works with piping", {
@@ -55,6 +70,7 @@ test_that("acro_summarise works with piping", {
     dplyr::arrange(parents, recommend)
 
   # table produces by acro_summarise function
+  acro_init()
   acro_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
     acro_summarise(mean_children = mean(children), sd_children = sd(children)) %>%
@@ -72,6 +88,7 @@ test_that("acro_summarise works with .groups = drop_last", {
     dplyr::arrange(parents, recommend)
 
   # table produces by acro_summarise function
+  acro_init()
   acro_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
     acro_summarise(mean_children = mean(children), .groups = "drop_last") %>%
@@ -88,6 +105,7 @@ test_that("acro_summarise works with .groups = drop", {
     dplyr::arrange(parents, recommend)
 
   # table produces by acro_summarise function
+  acro_init()
   acro_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
     acro_summarise(mean_children = mean(children), .groups = "drop") %>%
@@ -104,6 +122,7 @@ test_that("acro_summarise works with .groups = drop", {
     dplyr::arrange(parents, recommend)
 
   # table produces by acro_summarise function
+  acro_init()
   acro_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
     acro_summarise(mean_children = mean(children), .groups = "drop") %>%
@@ -120,10 +139,37 @@ test_that("acro_summarise works with .groups = keep", {
     dplyr::arrange(parents, recommend)
 
   # table produces by acro_summarise function
+  acro_init()
   acro_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
     acro_summarise(mean_children = mean(children), .groups = "keep") %>%
     dplyr::arrange(parents, recommend)
+
+  expect_equal(dplyr::group_vars(R_table), dplyr::group_vars(acro_table))
+})
+
+test_that("acro_summarise works with .groups = keep when there is no grouping provided", {
+  # table produces by summarise function from dplyr package
+  R_table <- nursery_data %>%
+    dplyr::summarise(mean_children = mean(children), .groups = "keep")
+
+  # table produces by acro_summarise function
+  acro_init()
+  acro_table <- nursery_data %>%
+    acro_summarise(mean_children = mean(children), .groups = "keep")
+
+  expect_equal(dplyr::group_vars(R_table), dplyr::group_vars(acro_table))
+})
+
+test_that("acro_summarise works with .groups = rowwise when there is no grouping provided", {
+  # table produces by summarise function from dplyr package
+  R_table <- nursery_data %>%
+    dplyr::summarise(mean_children = mean(children), .groups = "rowwise")
+
+  # table produces by acro_summarise function
+  acro_init()
+  acro_table <- nursery_data %>%
+    acro_summarise(mean_children = mean(children), .groups = "rowwise")
 
   expect_equal(dplyr::group_vars(R_table), dplyr::group_vars(acro_table))
 })
@@ -136,12 +182,23 @@ test_that("acro_summarise works with .groups = rowwise", {
     dplyr::arrange(parents, recommend)
 
   # table produces by acro_summarise function
+  acro_init()
   acro_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
     acro_summarise(mean_children = mean(children), .groups = "rowwise") %>%
     dplyr::arrange(parents, recommend)
 
   expect_equal(dplyr::group_vars(R_table), dplyr::group_vars(acro_table))
+})
+
+test_that("acro_summarise throws an error with .groups is assigned to a not valid option", {
+  acro_init()
+  expect_error(
+    nursery_data %>%
+      dplyr::group_by(parents, recommend) %>%
+      acro_summarise(mean_children = mean(children), .groups = "columns"),
+    "`.groups` must be one of 'drop', 'drop_last', 'keep', or 'rowwise'."
+  )
 })
 
 test_that("acro_summarise gives error when both .by and .groups are provided", {

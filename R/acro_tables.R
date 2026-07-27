@@ -167,7 +167,7 @@ acro_table <- function(index, columns, dnn = NULL, deparse.level = 0, useNA = "n
   return(table)
 }
 
-#' Title
+#' creates a new data frame. It returns one row for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input
 #'
 #' @param .data A data frame or a data frame extension
 #' @param ...  Name-value pairs of summary functions. The name will be the name of the variable in the result
@@ -219,9 +219,10 @@ acro_summarise <- function(.data, ..., .groups = NULL, .by = NULL) {
     python_aggfuncs <- unique(unname(python_aggfuncs))
   }
 
-  if (length(values[[1]]) == 0) {
-    values <- NULL
-  }
+  # Uncomment this when supporting the count function n()
+  # if (length(values[[1]]) == 0) {
+  #  values <- NULL
+  # }
 
   # Handling ungrouped data via a dummy grouping column
   if (length(index) == 0) {
@@ -252,6 +253,9 @@ acro_summarise <- function(.data, ..., .groups = NULL, .by = NULL) {
   # Remove the dummy column if it exists
   if ("acro_dummy_all" %in% names(r_output)) {
     r_output <- r_output[, names(r_output) != "acro_dummy_all"]
+  }
+  if (identical(index, "acro_dummy_all")) {
+    index <- NULL
   }
 
   # Convert to tibble
@@ -285,7 +289,6 @@ acro_summarise <- function(.data, ..., .groups = NULL, .by = NULL) {
     }
   } else {
     stop("`.groups` must be one of 'drop', 'drop_last', 'keep', or 'rowwise'.", call. = FALSE)
-    r_output <- dplyr::rowwise(r_output)
   }
 
 
