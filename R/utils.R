@@ -78,3 +78,36 @@ to_pandas_categorical <- function(Values, pd) {
     ordered = is.ordered(Values)
   )
 }
+
+parse_summary_expression <- function(quo) {
+  expr <- rlang::quo_get_expr(quo)
+
+  # Ensure it is a function call (e.g., mean(disp))
+  if (!rlang::is_call(expr)) {
+    return(NULL)
+  }
+
+  # Get the R function name
+  r_agg_funcs <- as.character(expr[[1]])
+
+  mapping <- c(mean = "mean", median = "median", mode = "mode", sd = "std", sum = "sum")
+
+  # Check if the function is supported
+  if (r_agg_funcs == "n") {
+    stop(paste("Function", r_agg_funcs, "is not supported, but it will be available soon. Please use: mean, median, mode, sd or sum."))
+  } else if (!(r_agg_funcs %in% names(mapping))) {
+    stop(paste("Function", r_agg_funcs, "is not supported. Please use: mean, median, mode, sd or sum."))
+  }
+
+  # Translate to Python agg function
+  py_agg_funcs <- mapping[r_agg_funcs]
+
+  # Get all arguments
+  args <- rlang::call_match(expr, get(r_agg_funcs))
+
+  list(
+    values = as.character(args$x),
+    agg_funcs = py_agg_funcs,
+    na.rm = isTRUE(args$na.rm)
+  )
+}

@@ -167,6 +167,131 @@ acro_table <- function(index, columns, dnn = NULL, deparse.level = 0, useNA = "n
   return(table)
 }
 
+#' Title
+#'
+#' @param .data A data frame or a data frame extension
+#' @param ...  Name-value pairs of summary functions. The name will be the name of the variable in the result
+#' @param .groups  Grouping structure of the result
+#' @param .by Optionally, a selection of columns to group by for just this operation, functioning as an alternative to group_by()
+#'
+#' @returns Summary of the data
+#' @export
+
+acro_summarise <- function(.data, ..., .groups = NULL, .by = NULL) {
+  if (is.null(acroEnv$ac)) {
+    stop("ACRO has not been initialised. Please first call acro_init()")
+  }
+
+  by_expr <- rlang::enquo(.by)
+
+  if (!is.null(.groups) && !rlang::quo_is_null(by_expr)) {
+    stop("Can't supply both `.by` and `.groups`.", call. = FALSE)
+  }
+
+  if (dplyr::is_grouped_df(.data) && !rlang::quo_is_null(by_expr)) {
+    stop("Can't supply `.by` when `.data` is a grouped data frame.", call. = FALSE)
+  }
+
+  # Handling the index parameter for the pivot_table
+  if (!rlang::quo_is_null(by_expr)) {
+    # Use the .by provided by the user
+    index <- tidyselect::vars_select(names(.data), {{ .by }})
+  } else {
+    # Use the existing groups from group_by()
+    index <- dplyr::group_vars(.data)
+  }
+
+  # Handling the agg_func and the value parameters for the pivot_table
+  summary_funcs <- rlang::enquos(..., .named = TRUE)
+
+  summary_funcs <- purrr::map(summary_funcs, parse_summary_expression)
+
+
+  values <- unname(purrr::map(summary_funcs, "values"))
+  python_aggfuncs <- purrr::map(summary_funcs, "agg_funcs")
+
+  if (length(unique(values)) > 1 && length(unique(python_aggfuncs)) > 1) {
+    # Create the dictionary for the agg functions
+    # Uncomment this when the acro pivot table is accepting dictionaries for the agg_func parameter ie. is handling different agg_funcs with different values
+    # python_aggfuncs <- stats::setNames(python_aggfuncs, values)
+    stop("ACRO currently doesn not support different aggreagtion functions for different values.", call. = FALSE)
+  } else {
+    python_aggfuncs <- unique(unname(python_aggfuncs))
+  }
+
+  if (length(values[[1]]) == 0) {
+    values <- NULL
+  }
+
+  # Handling ungrouped data via a dummy grouping column
+  if (length(index) == 0) {
+    .data$acro_dummy_all <- "All Data"
+    index <- "acro_dummy_all"
+  }
+
+  # Call the python pivot table
+  pd <- reticulate::import("pandas", convert = FALSE)
+  py_df <- reticulate::r_to_py(.data)
+  python_aggfuncs <- reticulate::r_to_py(python_aggfuncs)
+
+  py_result <- acroEnv$ac$pivot_table(
+    data = py_df,
+    index = index,
+    values = unique(values),
+    aggfunc = python_aggfuncs
+  )
+
+  # Clean and rename Columns for the python dataframe
+  py_result <- py_result$reset_index()
+  new_col_names <- c(index, names(summary_funcs))
+
+  # Convert to R dataframe
+  r_output <- reticulate::py_to_r(py_result)
+  colnames(r_output) <- new_col_names
+
+  # Remove the dummy column if it exists
+  if ("acro_dummy_all" %in% names(r_output)) {
+    r_output <- r_output[, names(r_output) != "acro_dummy_all"]
+  }
+
+  # Convert to tibble
+  r_output <- tibble::as_tibble(r_output)
+
+  # Handling the .group parameter
+  if (is.null(.groups)) {
+    .groups <- "drop_last"
+  }
+
+  if (.groups == "drop") {
+    r_output <- dplyr::ungroup(r_output)
+  } else if (.groups == "drop_last") {
+    if (length(index) > 1) {
+      new_index <- utils::head(index, -1)
+      r_output <- dplyr::group_by(r_output, dplyr::across(dplyr::all_of(new_index)))
+    } else {
+      r_output <- dplyr::ungroup(r_output)
+    }
+  } else if (.groups == "keep") {
+    if (length(index) > 0) {
+      r_output <- dplyr::group_by(r_output, dplyr::across(dplyr::all_of(index)))
+    } else {
+      r_output <- dplyr::ungroup(r_output)
+    }
+  } else if (.groups == "rowwise") {
+    if (length(index) > 0) {
+      r_output <- dplyr::group_by(r_output, dplyr::across(dplyr::all_of(index)))
+    } else {
+      r_output <- dplyr::ungroup(r_output)
+    }
+  } else {
+    stop("`.groups` must be one of 'drop', 'drop_last', 'keep', or 'rowwise'.", call. = FALSE)
+    r_output <- dplyr::rowwise(r_output)
+  }
+
+
+  return(r_output)
+}
+
 #' Pivot table
 #'
 #' @param data The data to operate on.
