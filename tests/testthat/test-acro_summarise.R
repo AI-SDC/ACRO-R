@@ -217,3 +217,21 @@ test_that("acro_summarise gives error when .by is provided on a grouped datafram
     "Can't supply `\\.by` when `\\.data` is a grouped data frame\\."
   )
 })
+
+test_that("acro_summarise gives error when aggregation function is n()", {
+  expect_error(
+    nursery_data %>%
+      dplyr::group_by(recommend) %>%
+      acro_summarise(count_children = n()),
+    "Function n is not supported, but it will be available soon. Please use: mean, median, mode, sd or sum."
+  )
+})
+
+test_that("acro_summarise gives error when aggregation function is not provided", {
+  expect_error(
+    nursery_data %>%
+      dplyr::group_by(recommend) %>%
+      acro_summarise(max_children = max()),
+    "Function max is not supported. Please use: mean, median, mode, sd or sum."
+  )
+})

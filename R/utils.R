@@ -84,7 +84,7 @@ parse_summary_expression <- function(quo) {
 
   # Ensure it is a function call (e.g., mean(disp))
   if (!rlang::is_call(expr)) {
-    return(NULL)
+    return(NULL) # nocov
   }
 
   # Get the R function name

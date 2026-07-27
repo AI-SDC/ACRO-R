@@ -167,7 +167,7 @@ acro_table <- function(index, columns, dnn = NULL, deparse.level = 0, useNA = "n
   return(table)
 }
 
-#' creates a new data frame. It returns one row for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input
+#' Creates a new data frame. It returns one row for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input
 #'
 #' @param .data A data frame or a data frame extension
 #' @param ...  Name-value pairs of summary functions. The name will be the name of the variable in the result
@@ -220,9 +220,9 @@ acro_summarise <- function(.data, ..., .groups = NULL, .by = NULL) {
   }
 
   # Uncomment this when supporting the count function n()
-  # if (length(values[[1]]) == 0) {
-  #  values <- NULL
-  # }
+  #if (length(values[[1]]) == 0) {
+  # values <- NULL
+  #}
 
   # Handling ungrouped data via a dummy grouping column
   if (length(index) == 0) {
