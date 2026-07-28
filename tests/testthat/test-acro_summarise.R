@@ -59,7 +59,7 @@ test_that("acro_summarise works with two summary functions for the same variable
 
 test_that("acro_summarise throws an error when different aggreagtion functions used for different values", {
   acro_init()
-  expect_error(acro_summarise(nursery_data, mean_children = mean(children), sd_children = sd(parents), .by = recommend), "ACRO currently doesn not support different aggreagtion functions for different values.")
+  expect_error(acro_summarise(nursery_data, mean_children = mean(children), sd_parents = sd(parents), .by = recommend), "ACRO currently does not support different aggregation functions for different values.")
 })
 
 test_that("acro_summarise works with piping", {
