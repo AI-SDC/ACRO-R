@@ -214,15 +214,15 @@ acro_summarise <- function(.data, ..., .groups = NULL, .by = NULL) {
     # Create the dictionary for the agg functions
     # Uncomment this when the acro pivot table is accepting dictionaries for the agg_func parameter ie. is handling different agg_funcs with different values
     # python_aggfuncs <- stats::setNames(python_aggfuncs, values)
-    stop("ACRO currently doesn not support different aggreagtion functions for different values.", call. = FALSE)
+    stop("ACRO currently does not support different aggregation functions for different values.", call. = FALSE)
   } else {
     python_aggfuncs <- unique(unname(python_aggfuncs))
   }
 
   # Uncomment this when supporting the count function n()
-  #if (length(values[[1]]) == 0) {
+  # if (length(values[[1]]) == 0) {
   # values <- NULL
-  #}
+  # }
 
   # Handling ungrouped data via a dummy grouping column
   if (length(index) == 0) {

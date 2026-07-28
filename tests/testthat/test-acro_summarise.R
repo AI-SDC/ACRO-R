@@ -59,7 +59,7 @@ test_that("acro_summarise works with two summary functions for the same variable
 
 test_that("acro_summarise throws an error when different aggreagtion functions used for different values", {
   acro_init()
-  expect_error(acro_summarise(nursery_data, mean_children = mean(children), sd_children = sd(parents), .by = recommend), "ACRO currently doesn not support different aggreagtion functions for different values.")
+  expect_error(acro_summarise(nursery_data, mean_children = mean(children), sd_parents = sd(parents), .by = recommend), "ACRO currently does not support different aggregation functions for different values.")
 })
 
 test_that("acro_summarise works with piping", {
@@ -234,4 +234,44 @@ test_that("acro_summarise gives error when aggregation function is not provided"
       acro_summarise(max_children = max()),
     "Function max is not supported. Please use: mean, median, mode, sd or sum."
   )
+})
+
+test_that("acro_summarise returns the status of the SDC checks as pass when the output is safe", {
+  acro_init()
+  acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = parents)
+
+  # Access the python results object
+  py_results <- acro:::acroEnv$ac$results
+  output <- py_results$get_index(as.integer(0))
+
+  # Verify summary string matches expected SDC risk assessment
+  correct_summary <- "pass"
+  expect_equal(as.character(output$summary), correct_summary)
+})
+
+test_that("acro_summarise returns the status of the SDC checks as fail when the output is unsafe", {
+  acro_init()
+  acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = c(parents, recommend))
+
+  # Access the python results object
+  py_results <- acro:::acroEnv$ac$results
+  output <- py_results$get_index(as.integer(0))
+
+  # Verify summary string matches expected SDC risk assessment
+  correct_summary <- "fail; threshold: 1 cells may need suppressing; p-ratio: 1 cells may need suppressing; nk-rule: 1 cells may need suppressing; "
+  expect_equal(as.character(output$summary), correct_summary)
+})
+
+test_that("acro_summarise returns the summary as review when suppression is enabled", {
+  acro_init()
+  acro_enable_suppression()
+  acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = c(parents, recommend))
+
+  # Access the python results object
+  py_results <- acro:::acroEnv$ac$results
+  output <- py_results$get_index(as.integer(0))
+
+  # Verify summary string matches expected SDC risk assessment
+  correct_summary <- "review; threshold: 1 cells suppressed; p-ratio: 1 cells suppressed; nk-rule: 1 cells suppressed; "
+  expect_equal(as.character(output$summary), correct_summary)
 })
