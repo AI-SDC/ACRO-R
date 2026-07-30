@@ -203,9 +203,7 @@ acro_summarise <- function(.data, ..., .groups = NULL, .by = NULL) {
 
   # Handling the agg_func and the value parameters for the pivot_table
   summary_funcs <- rlang::enquos(..., .named = TRUE)
-
   summary_funcs <- purrr::map(summary_funcs, parse_summary_expression)
-
 
   values <- unname(purrr::map(summary_funcs, "values"))
   python_aggfuncs <- purrr::map(summary_funcs, "agg_funcs")

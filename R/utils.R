@@ -102,12 +102,17 @@ parse_summary_expression <- function(quo) {
   # Translate to Python agg function
   py_agg_funcs <- mapping[r_agg_funcs]
 
-  # Get all arguments
-  args <- rlang::call_match(expr, get(r_agg_funcs))
+  # Get the values
+  call_args <- rlang::call_args(expr)
+
+  values <- if (length(call_args) > 0) {
+    as.character(call_args[[1]])
+  } else {
+    NULL
+  }
 
   list(
-    values = as.character(args$x),
-    agg_funcs = py_agg_funcs,
-    na.rm = isTRUE(args$na.rm)
+    values = values,
+    agg_funcs = py_agg_funcs
   )
 }
