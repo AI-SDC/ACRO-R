@@ -108,7 +108,7 @@ parse_summary_expression <- function(quo) {
   values <- if (length(call_args) > 0) {
     as.character(call_args[[1]])
   } else {
-    NULL
+    NULL # nocov
   }
 
   list(
