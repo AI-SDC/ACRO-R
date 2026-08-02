@@ -244,9 +244,9 @@ test_that("acro_summarise returns the status of the SDC checks as pass when the 
   py_results <- acro:::acroEnv$ac$results
   output <- py_results$get_index(as.integer(0))
 
-  # Verify summary string matches expected SDC risk assessment
-  correct_summary <- "pass"
-  expect_equal(as.character(output$summary), correct_summary)
+  # Verify status matches expected SDC risk assessment
+  correct_status <- "pass"
+  expect_equal(as.character(output$status), correct_status)
 })
 
 test_that("acro_summarise returns the status of the SDC checks as fail when the output is unsafe", {
@@ -257,9 +257,9 @@ test_that("acro_summarise returns the status of the SDC checks as fail when the 
   py_results <- acro:::acroEnv$ac$results
   output <- py_results$get_index(as.integer(0))
 
-  # Verify summary string matches expected SDC risk assessment
-  correct_summary <- "fail; threshold: 1 cells may need suppressing; p-ratio: 1 cells may need suppressing; nk-rule: 1 cells may need suppressing; "
-  expect_equal(as.character(output$summary), correct_summary)
+  # Verify status matches expected SDC risk assessment
+  correct_status <- "fail"
+  expect_equal(as.character(output$status), correct_status)
 })
 
 test_that("acro_summarise returns the summary as review when suppression is enabled", {
@@ -271,9 +271,11 @@ test_that("acro_summarise returns the summary as review when suppression is enab
   py_results <- acro:::acroEnv$ac$results
   output <- py_results$get_index(as.integer(0))
 
-  # Verify summary string matches expected SDC risk assessment
-  correct_summary <- "review; threshold: 1 cells suppressed; p-ratio: 1 cells suppressed; nk-rule: 1 cells suppressed; "
-  expect_equal(as.character(output$summary), correct_summary)
+  # Verify status matches expected SDC risk assessment
+  correct_status <- "review"
+  correct_exception <- "Suppression automatically applied where needed"
+  expect_equal(as.character(output$status), correct_status)
+  expect_equal(as.character(output$exception), correct_exception)
 })
 
 test_that("acro_summarise() suppression for the threshold matches R summarise() on the dataset filtered for the threshold", {
@@ -317,8 +319,6 @@ test_that("acro_summarise() suppression for the p-ratio rule matches R summarise
         !(cyl == 8 & gear == 5)
     ) %>%
     dplyr::arrange(cyl, gear)
-  print("£££££££££££££££££33")
-  print(safe_pratio_p)
   # Manually filter out the specific dominant rows in mtcars that trigger the p-ratio failure
   mtcars_filtered <- mtcars %>%
     dplyr::group_by(cyl, gear) %>%
