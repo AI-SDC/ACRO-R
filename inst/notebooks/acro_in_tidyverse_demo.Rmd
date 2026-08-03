@@ -1,0 +1,91 @@
+---
+title: "acro-in_tidyverse_demo"
+output: html_document
+---
+
+# ACRO in the tidyverse world
+
+This is a simple notebook to help you understand where acro fits in your tidyverse work flow.
+
+## Where does acro stand in the tidyverse world?
+ACRO is designed to be a seamless addition to your existing tidyverse habits:
+
+-  What stays the same: You will keep using your favorite functions (like filter(), select(), or mutate()) to prep your data exactly as you always have.
+
+-  What ACRO adds: It steps in at the very end of your code pipeline to check your final outputs, ensuring your results meet the statistical disclosure control (SDC) checks
+
+## Example:
+### Step 1: Check if acro is installed and if it is not install it from CRAN
+
+```{r}
+# Check if acro is installed
+if (!requireNamespace("acro", quietly = TRUE)) {
+  # If not installed, install it
+  install.packages("acro")
+}
+```
+
+### Step 2: Starting an ACRO session
+#### Load the acro package
+
+```{r}
+library("acro")
+```
+
+#### Initiate acro
+
+```{r}
+acro_init()
+```
+
+### Step 3: Load the data
+-   The dataset used in this example notebook is the nursery dataset from OpenML.
+-   The code below reads the data from a folder called data which we assume is located relative to your project           directory.
+-   The path might need to be changed if the data has been downloaded and stored
+    elsewhere.
+
+```{r}
+library(tidyverse)
+library(farff)
+
+# 1. Read the ARFF file and rename 'class' to 'recommendation'
+nursery_data <- readARFF("../../data/nursery.arff") %>%
+  as_tibble() %>%
+  rename(recommendation = class)
+```
+
+### Step 4: Data Preparation & Exploration
+In this step we are going to use some tidyverse verses to clean and prep the data.
+
+-   *mutate()* are used to format the children column
+-   *setcet()* is used to keep only specific column
+
+You can see that nothing has changed in the syntax or workflow up to this step
+```{r}
+# Convert children column to integers, replacing 'more' with a random int (4-10)
+nursery_data <- nursery_data %>%
+  mutate(
+    children = suppressWarnings(as.numeric(as.character(children))),
+    children = if_else(
+      is.na(children),
+      round(runif(n(), min = 4, max = 10), 0),
+      children
+    )
+  ) %>%
+  select(parents, children, finance, recommendation)
+```
+
+### Step 4: Producing outputs
+-  Now, let us produce a summary table that calculates the mean of the children column for the nursery dataset grouped by parents and recommendation.
+-   Instead of using the standard tidyverse *summarise()* function, we prefix it with acro_ to make it *acro_summarise()*. That is the primary change to your workflow needed to let ACRO perform disclosure control checks
+
+```{r}
+# Generate a summary table using ACRO
+nursery_data %>%
+  group_by(parents, recommendation) %>%
+  acro_summarise(
+    mean_children = mean(children)
+  )
+```
+
+You can see that the output is not just the summary table but also the risk analysis produced by acro. You can then decide what are the steps you are going to make to remove the discolsive cells as discussed in the [acro_demo_2026.Rmd file](acro_demo_2026.Rmd) document.
