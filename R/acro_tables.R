@@ -334,7 +334,7 @@ acro_pivot_table <- function(data, values = NULL, index = NULL, columns = NULL, 
 #' @param data The object holding the data.
 #' @param column The column that will be used to plot the histogram.
 #' @param breaks Number of histogram bins to be used.
-#' @param freq If False, the result will contain the number of samples in each bin. If True, the result is the value of the probability density function at the bin.
+#' @param freq If True, the result will contain the number of samples in each bin. If False, the result is the value of the probability density function at the bin.
 #' @param col The color of the plot.
 #' @param filename The name of the file where the plot will be saved.
 #'
@@ -345,7 +345,7 @@ acro_hist <- function(data, column, breaks = 10, freq = TRUE, col = NULL, filena
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  py_histogram <- acroEnv$ac$hist(data = data, column = column, bins = as.integer(breaks), density = freq, color = col, filename = filename)
+  py_histogram <- acroEnv$ac$hist(data = data, column = column, bins = as.integer(breaks), density = !freq, color = col, filename = filename)
   histogram <- reticulate::py_to_r(py_histogram)
   # Load the saved histogram
   image <- png::readPNG(histogram)
