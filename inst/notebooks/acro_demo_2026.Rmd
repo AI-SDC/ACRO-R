@@ -276,7 +276,7 @@ table <- acro_table(index = rows, columns = columns, deparse.level = 1)
 table
 ```
 
-#### ACRO Crosstab
+### ACRO Crosstab
 
 According to R's documentation, the \`table' command is typically only used to produce
 contingency tables - i.e. report on frequencies.
@@ -319,6 +319,10 @@ table4 <- acro_crosstab(
 )
 table4
 ```
+
+### ACRO Summarise
+
+We also support the summarise() function from the tidy verse. Please see here for a separate example notebook about acro in the tidy verse [acro_in_tidyverse_demo.Rmd file](acro_in_tidyverse_demo.Rmd).
 
 ## D: What other sorts of analysis does ACRO currently support?
 
