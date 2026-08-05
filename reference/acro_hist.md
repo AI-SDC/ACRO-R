@@ -31,9 +31,9 @@ acro_hist(
 
 - freq:
 
-  If False, the result will contain the number of samples in each bin.
-  If True, the result is the value of the probability density function
-  at the bin.
+  If True, the result will contain the number of samples in each bin. If
+  False, the result is the value of the probability density function at
+  the bin.
 
 - col:
 
