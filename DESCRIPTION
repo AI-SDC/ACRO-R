@@ -17,7 +17,12 @@ SystemRequirements: Python (>= 3.10)
 Imports:
     reticulate,
     admiraldev,
-    png
+    png,
+    dplyr,
+    purrr,
+    rlang,
+    tibble,
+    tidyselect
 Depends:
     R (>= 2.10)
 LazyData: true
