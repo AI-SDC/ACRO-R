@@ -276,6 +276,25 @@ table <- acro_table(index = rows, columns = columns, deparse.level = 1)
 table
 ```
 
+### ACRO Summarise
+
+- ACRO also supports the familiar summarise() function from the tidyverse package.
+Below is an example of a standard piping operation that uses acro_summarise() instead of tidyverse summarise().
+- In this example, the data is grouped by *parents* and *recommendation*, and we calculate *the mean number of children*.
+
+```{r}
+# Generate a summary table using ACRO
+data %>%
+  group_by(parents, recommendation) %>%
+  acro_summarise(
+    mean_children = mean(children)
+  )
+```
+
+As you can see from the outputs, acro_summarise() produces:
+- *The summary table*: Identical results to what standard tidyverse summarise() would generate.
+- *Disclosure metrics (counts and dominance)*: These are the Statistical Disclosure Control (SDC) checks that ACRO performs automatically in the background. They provide the evidence required by a Trusted Research Environment (TRE) output checker, saving you from having to calculate these checks manually.
+
 ### ACRO Crosstab
 
 According to R's documentation, the \`table' command is typically only used to produce
@@ -320,18 +339,14 @@ table4 <- acro_crosstab(
 table4
 ```
 
-### ACRO Summarise
-
-We also support the summarise() function from the tidy verse. Please see here for a separate example notebook about acro in the tidy verse [acro_in_tidyverse_demo.Rmd file](acro_in_tidyverse_demo.Rmd).
-
 ## D: What other sorts of analysis does ACRO currently support?
 
 We are continually adding support for more types of analysis as users prioritise them.
 
 ACRO currently supports:
 
--   **Tables** via `acro_table()`, `acro_crosstab()` and `acro_pivot_table()`.
-
+-   **Tables** via `acro_table()`, `acro_crosstab()`, `acro_pivot_table()` and `acro_summarise()`.
+      For the `acro_table()`, `acro_crosstab()`, `acro_pivot_table()`:
     -   supported aggregation functions are: *mean*, *median*, *sum*, *std*, *count*, and
         *mode*.
     -   you can also pass a list of aggregation functions e.g.
@@ -339,6 +354,13 @@ ACRO currently supports:
     -   NB we have recently had reports of instability when automatically suppressing
         tables with multiple aggregation functions, one of which is "std". A fix for this
         will be issued shortly.
+
+      For acro_summarise():
+    -   supported aggregation functions are: *mean*, *median*, *sum*, *std*, and
+        *mode*. The support for *n()* will be available shortly.
+    -   ACRO currently does not support different aggregation functions for different values. It will be available shortly.
+    -   acro_summarise() support standard R piping.
+
 
 -   **Survival analysis** via: `acro_surv_function()`,
 

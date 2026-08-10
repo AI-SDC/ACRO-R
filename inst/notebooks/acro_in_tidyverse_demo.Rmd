@@ -58,7 +58,7 @@ nursery_data <- readARFF("../../data/nursery.arff") %>%
 In this step we are going to use some tidyverse verses to clean and prep the data.
 
 -   *mutate()* are used to format the children column
--   *setcet()* is used to keep only specific column
+-   *select()* is used to keep only specific column
 
 You can see that nothing has changed in the syntax or workflow up to this step
 ```{r}
@@ -88,4 +88,4 @@ nursery_data %>%
   )
 ```
 
-You can see that the output is not just the summary table but also the risk analysis produced by acro. You can then decide what are the steps you are going to make to remove the discolsive cells as discussed in the [acro_demo_2026.Rmd file](acro_demo_2026.Rmd) document.
+You can see that the output is not just the summary table but also the risk analysis produced by acro. You can then decide what are the steps you are going to make to remove the disclosive cells as discussed in the [acro_demo_2026.Rmd file](acro_demo_2026.Rmd) document.

@@ -2,7 +2,7 @@
 % Please edit documentation in R/acro_tables.R
 \name{acro_summarise}
 \alias{acro_summarise}
-\title{Title}
+\title{Create a summary data frame}
 \usage{
 acro_summarise(.data, ..., .groups = NULL, .by = NULL)
 }
@@ -19,5 +19,5 @@ acro_summarise(.data, ..., .groups = NULL, .by = NULL)
 Summary of the data
 }
 \description{
-Title
+Creates a new data frame. It returns one row for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input
 }

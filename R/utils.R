@@ -3,7 +3,7 @@
 #' @param Values to check for empty values in it
 #'
 #' @returns logical vector that shows the places of the empty values
-#' @export
+#' @noRd
 
 is_invalid <- function(Values) {
   # Check for NA or NaN in the object
@@ -16,7 +16,7 @@ is_invalid <- function(Values) {
 #' @param exclude_list Items to exclude from the values
 #'
 #' @returns logical vector that shows the places of the items that needs to be excluded
-#' @export
+#' @noRd
 
 is_excluded <- function(Values, exclude_list) {
   # Catch everything in the exclude list
@@ -43,7 +43,7 @@ is_excluded <- function(Values, exclude_list) {
 #' @param useNA  whether to include NA values in the table
 #'
 #' @returns R vector factor
-#' @export
+#' @noRd
 
 create_factors <- function(Values, useNA) {
   # Check for NAs
@@ -68,7 +68,7 @@ create_factors <- function(Values, useNA) {
 #' @param pd Reference to the Python `pandas` module
 #'
 #' @returns A Python `pandas.Categorical` object
-#' @export
+#' @noRd
 
 to_pandas_categorical <- function(Values, pd) {
   # Build the Pandas Categorical
