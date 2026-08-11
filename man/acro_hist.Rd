@@ -20,7 +20,7 @@ acro_hist(
 
 \item{breaks}{Number of histogram bins to be used.}
 
-\item{freq}{If False, the result will contain the number of samples in each bin. If True, the result is the value of the probability density function at the bin.}
+\item{freq}{If True, the result will contain the number of samples in each bin. If False, the result is the value of the probability density function at the bin.}
 
 \item{col}{The color of the plot.}
 
