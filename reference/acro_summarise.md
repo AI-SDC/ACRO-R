@@ -1,6 +1,8 @@
-# Title
+# Creates a new data frame. It returns one row for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input
 
-Title
+Creates a new data frame. It returns one row for each combination of
+grouping variables; if there are no grouping variables, the output will
+have a single row summarising all observations in the input
 
 ## Usage
 

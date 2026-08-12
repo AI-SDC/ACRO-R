@@ -25,7 +25,10 @@
   results dictionary.
 - [`acro_remove_output()`](acro_remove_output.md) : Remove outputs
 - [`acro_rename_output()`](acro_rename_output.md) : Rename outputs
-- [`acro_summarise()`](acro_summarise.md) : Title
+- [`acro_summarise()`](acro_summarise.md) : Creates a new data frame. It
+  returns one row for each combination of grouping variables; if there
+  are no grouping variables, the output will have a single row
+  summarising all observations in the input
 - [`acro_surv_func()`](acro_surv_func.md) : Survival analysis
 - [`acro_table()`](acro_table.md) : Compute a simple cross tabulation of
   two (or more) factors.

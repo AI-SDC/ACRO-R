@@ -8,7 +8,7 @@ Histogram
 acro_hist(
   data,
   column,
-  breaks = 10,
+  breaks = "sturges",
   freq = TRUE,
   col = NULL,
   filename = "histogram.png"
