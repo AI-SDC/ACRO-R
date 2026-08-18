@@ -167,6 +167,8 @@ acro_table <- function(index, columns, dnn = NULL, deparse.level = 0, useNA = "n
   return(table)
 }
 
+#' Create a summary data frame
+#'
 #' Creates a new data frame. It returns one row for each combination of grouping variables; if there are no grouping variables, the output will have a single row summarising all observations in the input
 #'
 #' @param .data A data frame or a data frame extension
