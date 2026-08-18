@@ -11,7 +11,7 @@ test_that("acro_pie works", {
 })
 
 test_that("acro_pie gives a warning on unused arguments", {
-expect_warning(
+  expect_warning(
     acro_pie(data = nursery_data, column = "children", fake_arg = 123),
     "Unused arguments were provided"
   )
