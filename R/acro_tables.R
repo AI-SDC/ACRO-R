@@ -380,9 +380,26 @@ acro_surv_func <- function(time, status, output, filename = "kaplan-meier.png") 
   return(results)
 }
 
-acro_pie <- function(data, column, radius = 0.8, clockwise= FALSE, init.angle = if(clockwise) 90 else 0, col= NULL, border = NULL,lty = NULL, filename = "pie.png", ...){
+#' Pie chart
+#'
+#' @param data The object holding the data.
+#' @param column The name of the column that will be used to plot the pie chart.
+#' @param radius The radius of the pie chart.
+#' @param clockwise logical indicating if slices are drawn clockwise or counter clockwise.
+#' @param init.angle number specifying the starting angle (in degrees) for the slices. Defaults to 0 (i.e., ‘3 o'clock’) unless clockwise is true where init.angle defaults to 90 (degrees), (i.e., ‘12 o'clock’).
+#' @param col colors to be used in filling or shading the slices
+#' @param border The color to draw the border.
+#' @param lty The line style.
+#' @param filename The name of the file where the pie chart will be saved.
+#' @param ... Any other parameters.
+#'
+#' @returns The pie chart
+#' @export
+
+acro_pie <- function(data, column, radius = 0.8, clockwise = FALSE, init.angle = if (clockwise) 90 else 0, col = NULL, border = NULL, lty = NULL, filename = "pie.png", ...) {
   if (is.null(acroEnv$ac)) {
-    stop("ACRO has not been initialised. Please first call acro_init()")}
+    stop("ACRO has not been initialised. Please first call acro_init()")
+  }
 
   # Check for any unused arguments
   if (length(list(...)) > 0) {
@@ -391,9 +408,9 @@ acro_pie <- function(data, column, radius = 0.8, clockwise= FALSE, init.angle = 
 
   # If labels is NULL, try to extract names or levels from the data column
   # This is commented because acro version 1.0.1 does not accept custom labels
-  #if (is.null(labels)) {
+  # if (is.null(labels)) {
   #  labels <- unique(data[[column]])
-  #}
+  # }
 
   # Handle the boarder and lty parameters
   wedgeprops <- NULL
@@ -406,8 +423,7 @@ acro_pie <- function(data, column, radius = 0.8, clockwise= FALSE, init.angle = 
   if (!is.null(lty)) {
     if (identical(lty, 0) || lty == "blank") {
       wedgeprops$linestyle <- "none"
-    }
-    else{
+    } else {
       lty_map <- c("solid", "dashed", "dotted", "dashdot")
       if (is.numeric(lty)) {
         if (lty >= 1 && lty <= length(lty_map)) {
@@ -416,9 +432,7 @@ acro_pie <- function(data, column, radius = 0.8, clockwise= FALSE, init.angle = 
           warning("Unsupported line type:", lty, ". Defaulting to solid.")
           wedgeprops$linestyle <- "solid"
         }
-      }
-
-      else if (is.character(lty)) {
+      } else if (is.character(lty)) {
         if (lty %in% c("solid", "dashed", "dotted", "dotdash", "none")) {
           wedgeprops$linestyle <- lty
         } else {
@@ -429,7 +443,7 @@ acro_pie <- function(data, column, radius = 0.8, clockwise= FALSE, init.angle = 
     }
   }
 
-  py_pie <- acroEnv$ac$pie(data = data, column = column, radius=radius, counterclock = !clockwise, startangle = init.angle, colors = col, wedgeprops = wedgeprops, filename = filename)
+  py_pie <- acroEnv$ac$pie(data = data, column = column, radius = radius, counterclock = !clockwise, startangle = init.angle, colors = col, wedgeprops = wedgeprops, filename = filename)
   r_pie <- reticulate::py_to_r(py_pie)
 
   # Load the saved pie
