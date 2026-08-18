@@ -116,3 +116,18 @@ parse_summary_expression <- function(quo) {
     agg_funcs = py_agg_funcs
   )
 }
+
+get_offset_hist_breaks <- function(data, column, breaks = "sturges") {
+  # Extract the column from the data
+  r_column <- data[[column]]
+  # Extract the  R's break boundaries
+  hist_parameters <- graphics::hist(r_column, breaks = breaks, plot = FALSE)
+  breaks <- hist_parameters$breaks
+  # 3. Add a small offset to the upper bounds (everything except the first break)
+  # This forces pandas hist() half-open intervals to capture boundary values like R does
+  if (length(breaks) > 1) {
+    offset <- 1e-7
+    breaks[-1] <- breaks[-1] + offset
+  }
+  return(breaks)
+}

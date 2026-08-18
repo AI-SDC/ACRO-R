@@ -343,11 +343,14 @@ acro_pivot_table <- function(data, values = NULL, index = NULL, columns = NULL, 
 #' @return The histogram.
 #' @export
 
-acro_hist <- function(data, column, breaks = 10, freq = TRUE, col = NULL, filename = "histogram.png") {
+acro_hist <- function(data, column, breaks = "sturges", freq = TRUE, col = NULL, filename = "histogram.png") {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
   }
-  py_histogram <- acroEnv$ac$hist(data = data, column = column, bins = as.integer(breaks), density = !freq, color = col, filename = filename)
+  # Get the offset breaks
+  breaks <- get_offset_hist_breaks(data, column, breaks) # nocov
+
+  py_histogram <- acroEnv$ac$hist(data = data, column = column, bins = breaks, density = !freq, color = col, filename = filename)
   histogram <- reticulate::py_to_r(py_histogram)
   # Load the saved histogram
   image <- png::readPNG(histogram)
