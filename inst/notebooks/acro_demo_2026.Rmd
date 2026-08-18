@@ -352,8 +352,8 @@ ACRO currently supports:
     -   you can also pass a list of aggregation functions e.g.
         `aggfunc <-list("mean","median")`
     -   NB we have recently had reports of instability when automatically suppressing
-        tables with multiple aggregation functions, one of which is "std". A fix for this
-        will be issued shortly.
+        tables with multiple aggregation functions, one of which is "std". This should be fixed in
+        versions 1.0 and above which implement suppression differently.
 
       For acro_summarise():
     -   supported aggregation functions are: *mean*, *median*, *sum*, *std*, and
