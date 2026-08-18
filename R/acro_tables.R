@@ -379,3 +379,61 @@ acro_surv_func <- function(time, status, output, filename = "kaplan-meier.png") 
   }
   return(results)
 }
+
+acro_pie <- function(data, column, radius = 0.8, clockwise= FALSE, init.angle = if(clockwise) 90 else 0, col= NULL, border = NULL,lty = NULL, filename = "pie.png", ...){
+  if (is.null(acroEnv$ac)) {
+    stop("ACRO has not been initialised. Please first call acro_init()")}
+
+  # Check for any unused arguments
+  if (length(list(...)) > 0) {
+    warning("Unused arguments were provided: ", paste0(names(list(...)), collapse = ", "), "\n", "Please use the help command to learn more about the function.")
+  }
+
+  # If labels is NULL, try to extract names or levels from the data column
+  # This is commented because acro version 1.0.1 does not accept custom labels
+  #if (is.null(labels)) {
+  #  labels <- unique(data[[column]])
+  #}
+
+  # Handle the boarder and lty parameters
+  wedgeprops <- NULL
+
+  if (!is.null(border)) {
+    wedgeprops <- list()
+    wedgeprops$edgecolor <- border
+  }
+
+  if (!is.null(lty)) {
+    if (identical(lty, 0) || lty == "blank") {
+      wedgeprops$linestyle <- "none"
+    }
+    else{
+      lty_map <- c("solid", "dashed", "dotted", "dashdot")
+      if (is.numeric(lty)) {
+        if (lty >= 1 && lty <= length(lty_map)) {
+          wedgeprops$linestyle <- lty_map[lty]
+        } else {
+          warning("Unsupported line type:", lty, ". Defaulting to solid.")
+          wedgeprops$linestyle <- "solid"
+        }
+      }
+
+      else if (is.character(lty)) {
+        if (lty %in% c("solid", "dashed", "dotted", "dotdash", "none")) {
+          wedgeprops$linestyle <- lty
+        } else {
+          warning(paste("Unsupported line type:", lty, ". Defaulting to solid."))
+          wedgeprops$linestyle <- "solid"
+        }
+      }
+    }
+  }
+
+  py_pie <- acroEnv$ac$pie(data = data, column = column, radius=radius, counterclock = !clockwise, startangle = init.angle, colors = col, wedgeprops = wedgeprops, filename = filename)
+  r_pie <- reticulate::py_to_r(py_pie)
+
+  # Load the saved pie
+  image <- png::readPNG(r_pie)
+  grid::grid.raster(image)
+  return(r_pie)
+}
