@@ -147,7 +147,7 @@ session. This function takes two optional parameters:
 Note that when the cell runs it should report (possibly in a different coloured
 font/background):
 
--   what version of acro is running: *this should be 0.4.12*
+-   what version of acro is running: *this should be 0.4.12 or above*
 
 -   the TRE's risk appetite: that define the rules your outputs will be checked against.
 
