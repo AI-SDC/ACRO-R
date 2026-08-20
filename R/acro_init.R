@@ -1,6 +1,6 @@
 # Globals -----------------------------------------------------------------
 acro_venv <- "r-acro"
-acro_pkg <- "acro==0.4.12"
+acro_pkg <- "acro==1.0.1"
 ch <- "conda-forge"
 
 
@@ -66,6 +66,9 @@ get_use_conda <- function(use_conda = NULL) {
 #'
 #' @param config Name of a yaml configuration file with safe parameters.
 #' @param suppress Whether to automatically apply suppression.
+#' @param mitigation  The disclosure-control strategy applied to outputs, one of "none","suppress", "round".
+#' @param round_base The base to round to when mitigation == "round".
+#' @param federated  Whether to run in federated mode.
 #' @param envname Name of the Python environment to use.
 #' @param use_conda Whether to use a Conda environment.
 #'   If `NULL`, looks for environment variable `ACRO_USE_CONDA`,
@@ -73,7 +76,7 @@ get_use_conda <- function(use_conda = NULL) {
 #'
 #' @return Invisibly returns the ACRO object, which is used internally.
 #' @export
-acro_init <- function(config = "default", suppress = FALSE, envname = acro_venv, use_conda = NULL) {
+acro_init <- function(config = "default", suppress = FALSE, mitigation = NULL, round_base = NULL, federated = NULL, envname = acro_venv, use_conda = NULL) {
   # define the environment
   use_conda <- get_use_conda(use_conda)
 
@@ -90,7 +93,7 @@ acro_init <- function(config = "default", suppress = FALSE, envname = acro_venv,
 
   # import the acro package and instantiate an object
   acro <- reticulate::import("acro", delay_load = TRUE, convert = FALSE)
-  acroEnv$ac <- acro$ACRO(config = config, suppress = suppress)
+  acroEnv$ac <- acro$ACRO(config = config, suppress = suppress, mitigation = mitigation, round_base = round_base, federated = federated)
 
   invisible(acroEnv$ac)
 }
