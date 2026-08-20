@@ -131,7 +131,7 @@ acro_disable_suppression <- function() {
 #' @return No return value, called for side effects
 #' @export
 
-acro_enable_rounding <- function(base=NULL) {
+acro_enable_rounding <- function(base = NULL) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init().")
   }
