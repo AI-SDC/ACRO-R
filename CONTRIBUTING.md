@@ -74,6 +74,43 @@ writeLines(pak::pkg_system_requirements("devtools", "ubuntu", "22.04"))
 To remove the local virtual Python environment, delete the `r-acro` folder.
 On GNU/Linux this is typically located in `~/.virtualenvs`
 
+## Pull Request Standards
+
+All PRs **must** meet the following requirements before being accepted.
+
+### Provenance and legal
+
+- Contributors assert copyright ownership and release their contribution under the [MIT License](../blob/main/LICENSE).
+- All contributor details are present in `CITATION.cff`. First-time contributors must add themselves.
+- If work is copied from another open source repository, the license must be checked and included.
+
+### Code quality
+
+- The PR is small and addresses a single specific issue.
+- Code is high quality. This includes: small focused functions and modules, no duplication, fully documented, extensive use of type hints, no unused arguments, no more than 3 levels of nesting except in rare justified cases, no bloat.
+- No inline pragmas. If a rule suppression is genuinely necessary, add a per-file setting to `pyproject.toml` to keep the source code clean.
+- New dependencies are added to `pyproject.toml`.
+- All [pre-commit checks](#pre-commit) pass, including automatic formatting and linting. Run pre-commit/prek locally before opening a PR.
+
+### Tests
+
+- All existing tests pass.
+- New code is accompanied by appropriate tests.
+- Code coverage is at least 90% statement coverage.
+- Tests verify real-world effects, not just that lines of code execute.
+- Run the full test suite locally before opening a PR. CI minutes are not unlimited.
+
+### Pull request description
+
+- The PR title follows [Conventional Commits](#pull-request-titles) format.
+- The description is **short**, written in your own words, and explains what changed and why. See the [AI Policy](AI_POLICY.md) for what this means in practice. AI-generated descriptions are not acceptable.
+- Do not add issue or PR numbers to the title manually. To close an issue automatically, add the closing keyword in a comment instead.
+
+### AI
+
+- Any use of AI tools to assist with code or documentation is disclosed in the opening PR comment, including the specific tool and version. See the [AI Policy](AI_POLICY.md) for the full requirements.
+
+
 ## Pull Request Titles
 
 Use [Conventional Commits](https://www.conventionalcommits.org) for PR titles (squash-merge messages). This allows automated changelog generation. Common prefixes:
