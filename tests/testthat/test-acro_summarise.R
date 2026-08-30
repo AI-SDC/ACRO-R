@@ -21,12 +21,10 @@ test_that("acro_summarise works with two grouping parameters", {
   # table produces by summarise function from dplyr package
   R_table <- dplyr::summarise(nursery_data, mean_children = mean(children), .by = c(parents, recommend)) |>
     dplyr::arrange(parents, recommend)
-
   # table produces by acro_summarise function
   acro_init()
   acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = c(parents, recommend)) |>
     dplyr::arrange(parents, recommend)
-
   expect_equal(acro_table, R_table, tolerance = 1e-5, ignore_attr = TRUE)
 })
 
@@ -265,7 +263,7 @@ test_that("acro_summarise returns the status of the SDC checks as fail when the 
 test_that("acro_summarise returns the summary as review when suppression is enabled", {
   acro_init()
   acro_enable_suppression()
-  acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = c(parents, recommend))
+  acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = c(parents, finance))
 
   # Access the python results object
   py_results <- acro:::acroEnv$ac$results

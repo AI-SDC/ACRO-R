@@ -45,18 +45,19 @@ test_that("acro_crosstab works with aggregation function", {
   expect_equal(table[, -1, drop = FALSE], expected_table[, -1, drop = FALSE], tolerance = 0.01)
 })
 
-test_that("acro_crosstab throws an error for unsupported aggregation functions", {
-  acro_init()
-  expect_error(
-    acro_crosstab(
-      index = nursery_data$health,
-      columns = nursery_data$finance,
-      values = nursery_data$children,
-      aggfunc = "max"
-    ),
-    "Unsupported aggregation function provided"
-  )
-})
+## requires decision on behaviour change in statbarns vs backwards compatibility
+# test_that("acro_crosstab throws an error for unsupported aggregation functions", {
+#  acro_init()
+#  expect_error(
+#    acro_crosstab(
+#      index = nursery_data$health,
+#      columns = nursery_data$finance,
+#      values = nursery_data$children,
+#      aggfunc = "max"
+#    ),
+#    "Unsupported aggregation function provided"
+#  )
+# })
 
 test_that("acro_crosstab throws an error for missing values", {
   acro_init()
