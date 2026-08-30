@@ -8,6 +8,9 @@ Initialise an ACRO object
 acro_init(
   config = "default",
   suppress = FALSE,
+  mitigation = NULL,
+  round_base = NULL,
+  federated = NULL,
   envname = acro_venv,
   use_conda = NULL
 )
@@ -22,6 +25,19 @@ acro_init(
 - suppress:
 
   Whether to automatically apply suppression.
+
+- mitigation:
+
+  The disclosure-control strategy applied to outputs, one of
+  "none","suppress", "round".
+
+- round_base:
+
+  The base to round to when mitigation == "round".
+
+- federated:
+
+  Whether to run in federated mode.
 
 - envname:
 

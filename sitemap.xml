@@ -16,13 +16,16 @@
 <url><loc>/reference/acro_add_exception.html</loc></url>
 <url><loc>/reference/acro_crosstab.html</loc></url>
 <url><loc>/reference/acro_custom_output.html</loc></url>
+<url><loc>/reference/acro_disable_rounding.html</loc></url>
 <url><loc>/reference/acro_disable_suppression.html</loc></url>
+<url><loc>/reference/acro_enable_rounding.html</loc></url>
 <url><loc>/reference/acro_enable_suppression.html</loc></url>
 <url><loc>/reference/acro_finalise.html</loc></url>
 <url><loc>/reference/acro_glm.html</loc></url>
 <url><loc>/reference/acro_hist.html</loc></url>
 <url><loc>/reference/acro_init.html</loc></url>
 <url><loc>/reference/acro_lm.html</loc></url>
+<url><loc>/reference/acro_pie.html</loc></url>
 <url><loc>/reference/acro_pivot_table.html</loc></url>
 <url><loc>/reference/acro_print_outputs.html</loc></url>
 <url><loc>/reference/acro_remove_output.html</loc></url>

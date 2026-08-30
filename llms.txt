@@ -116,8 +116,12 @@ Text](inst/Images/logo_print.png)
   tabulation of two (or more) factors.
 - [`acro_custom_output()`](acro_custom_output.md) : Adds an unsupported
   output to the results dictionary
+- [`acro_disable_rounding()`](acro_disable_rounding.md) : Turns rounding
+  off during a session
 - [`acro_disable_suppression()`](acro_disable_suppression.md) : Turns
   suppression off during a session
+- [`acro_enable_rounding()`](acro_enable_rounding.md) : Turns rounding
+  on during a session
 - [`acro_enable_suppression()`](acro_enable_suppression.md) : Turns
   suppression on during a session
 - [`acro_finalise()`](acro_finalise.md) : Creates a results file for
@@ -126,6 +130,7 @@ Text](inst/Images/logo_print.png)
 - [`acro_hist()`](acro_hist.md) : Histogram
 - [`acro_init()`](acro_init.md) : Initialise an ACRO object
 - [`acro_lm()`](acro_lm.md) : Fits Ordinary Least Squares Regression
+- [`acro_pie()`](acro_pie.md) : Pie chart
 - [`acro_pivot_table()`](acro_pivot_table.md) : Pivot table
 - [`acro_print_outputs()`](acro_print_outputs.md) : Prints the current
   results dictionary.
