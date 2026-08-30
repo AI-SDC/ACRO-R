@@ -57,7 +57,7 @@ test_that("acro_crosstab works with aggregation function", {
 #    ),
 #    "Unsupported aggregation function provided"
 #  )
-#})
+# })
 
 test_that("acro_crosstab throws an error for missing values", {
   acro_init()

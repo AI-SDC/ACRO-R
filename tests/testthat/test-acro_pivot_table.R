@@ -32,4 +32,4 @@ test_that("acro_pivot_table works", {
 #    ),
 #    "Unsupported aggregation function provided"
 #  )
-#})
+# })
