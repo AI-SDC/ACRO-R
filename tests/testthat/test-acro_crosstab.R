@@ -45,7 +45,7 @@ test_that("acro_crosstab works with aggregation function", {
   expect_equal(table[, -1, drop = FALSE], expected_table[, -1, drop = FALSE], tolerance = 0.01)
 })
 
-## requires decision on behaviour change in statbarns vs backwards compatability
+## requires decision on behaviour change in statbarns vs backwards compatibility
 #test_that("acro_crosstab throws an error for unsupported aggregation functions", {
 #  acro_init()
 #  expect_error(

@@ -20,7 +20,7 @@ test_that("acro_pivot_table works", {
   expect_equal(table[, -1, drop = FALSE], expected_table[, -1, drop = FALSE])
 })
 
-## requires decision on behaviour change in statbarns vs backwards compatability
+## requires decision on behaviour change in statbarns vs backwards compatibility
 #test_that("acro_pivot_table throws an error for unsupported aggregation functions", {
 #  acro_init()
 #  expect_error(
