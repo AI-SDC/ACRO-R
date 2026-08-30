@@ -290,7 +290,7 @@ acro_summarise <- function(.data, ..., .groups = NULL, .by = NULL) {
   }
 
 
-  return(r_output)
+  return(r_output[complete.cases(r_output), ])
 }
 
 #' Pivot table
