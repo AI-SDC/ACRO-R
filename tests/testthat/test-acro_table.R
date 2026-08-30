@@ -299,7 +299,7 @@ test_that("acro_table works with usena = 'always'", {
   ]
 
   names(dimnames(expected_table)) <- NULL
-  expect_equal(actual_table,expected_table)
-# no longer need to accoint for acro dropping NAs because it does not any more
-#  expect_equal(actual_table, expected_table <- expected_table[-nrow(expected_table), -ncol(expected_table), drop = FALSE])
+  expect_equal(actual_table, expected_table)
+  # no longer need to accoint for acro dropping NAs because it does not any more
+  #  expect_equal(actual_table, expected_table <- expected_table[-nrow(expected_table), -ncol(expected_table), drop = FALSE])
 })

@@ -46,7 +46,7 @@ test_that("acro_crosstab works with aggregation function", {
 })
 
 ## requires decision on behaviour change in statbarns vs backwards compatability
-#test_that("acro_crosstab throws an error for unsupported aggregation functions", {
+# test_that("acro_crosstab throws an error for unsupported aggregation functions", {
 #  acro_init()
 #  expect_error(
 #    acro_crosstab(
@@ -57,7 +57,7 @@ test_that("acro_crosstab works with aggregation function", {
 #    ),
 #    "Unsupported aggregation function provided"
 #  )
-#})
+# })
 
 test_that("acro_crosstab throws an error for missing values", {
   acro_init()

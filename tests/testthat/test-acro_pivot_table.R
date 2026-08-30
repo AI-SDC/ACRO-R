@@ -21,7 +21,7 @@ test_that("acro_pivot_table works", {
 })
 
 ## requires decision on behaviour change in statbarns vs backwards compatability
-#test_that("acro_pivot_table throws an error for unsupported aggregation functions", {
+# test_that("acro_pivot_table throws an error for unsupported aggregation functions", {
 #  acro_init()
 #  expect_error(
 #    acro_pivot_table(
@@ -32,4 +32,4 @@ test_that("acro_pivot_table works", {
 #    ),
 #    "Unsupported aggregation function provided"
 #  )
-#})
+# })
