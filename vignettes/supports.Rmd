@@ -22,6 +22,7 @@ This page provides a comprehensive overview of  the capabilities ACRO supports. 
 * **`crosstab()`** - Cross-tabulation of two or more variables with frequency counting
 * **`pivot_table()`** - Spreadsheet-style pivot tables with aggregation functions
 * **`table()`** - Simple frequency tables for categorical data (R interface only)
+* **`summarise()`** - Creates summary statistics for data frames (similar to tidyverse summarise()
 
 **Technical Details:**
 

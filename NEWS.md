@@ -1,3 +1,7 @@
+# acro 0.1.8
+* Added extended support to `acro_table()` to include all parameters from the base R `table()` function.
+* Added additional parameters to `acro_crosstab()`.
+* Introduced `acro_summarise()`, an ACRO wrapper for the tidyverse `summarise()` function.
 
 # acro 0.1.7
 * Added support for installation via conda
