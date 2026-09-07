@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="index.html">acro</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,6 +79,42 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/local_system_requirements.html" class="external-link">pkg_system_requirements</a></span><span class="op">(</span><span class="st">"devtools"</span>, <span class="st">"ubuntu"</span>, <span class="st">"22.04"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>To remove the local virtual Python environment, delete the <code>r-acro</code> folder. On GNU/Linux this is typically located in <code>~/.virtualenvs</code></p>
+</div>
+<div class="section level2">
+<h2 id="pull-request-standards">Pull Request Standards<a class="anchor" aria-label="anchor" href="#pull-request-standards"></a></h2>
+<p>All PRs <strong>must</strong> meet the following requirements before being accepted.</p>
+<div class="section level3">
+<h3 id="provenance-and-legal">Provenance and legal<a class="anchor" aria-label="anchor" href="#provenance-and-legal"></a></h3>
+<ul><li>Contributors assert copyright ownership and release their contribution under the <a href="../blob/main/LICENSE">MIT License</a>.</li>
+<li>All contributor details are present in <code>CITATION.cff</code>. First-time contributors must add themselves.</li>
+<li>If work is copied from another open source repository, the license must be checked and included.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="code-quality">Code quality<a class="anchor" aria-label="anchor" href="#code-quality"></a></h3>
+<ul><li>The PR is small and addresses a single specific issue.</li>
+<li>Code is high quality. This includes: small focused functions and modules, no duplication, fully documented, extensive use of type hints, no unused arguments, no more than 3 levels of nesting except in rare justified cases, no bloat.</li>
+<li>No inline pragmas. If a rule suppression is genuinely necessary, add a per-file setting to <code>pyproject.toml</code> to keep the source code clean.</li>
+<li>New dependencies are added to <code>pyproject.toml</code>.</li>
+<li>All <a href="#pre-commit">pre-commit checks</a> pass, including automatic formatting and linting. Run pre-commit/prek locally before opening a PR.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="tests">Tests<a class="anchor" aria-label="anchor" href="#tests"></a></h3>
+<ul><li>All existing tests pass.</li>
+<li>New code is accompanied by appropriate tests.</li>
+<li>Code coverage is at least 90% statement coverage.</li>
+<li>Tests verify real-world effects, not just that lines of code execute.</li>
+<li>Run the full test suite locally before opening a PR. CI minutes are not unlimited.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="pull-request-description">Pull request description<a class="anchor" aria-label="anchor" href="#pull-request-description"></a></h3>
+<ul><li>The PR title follows <a href="#pull-request-titles">Conventional Commits</a> format.</li>
+<li>The description is <strong>short</strong>, written in your own words, and explains what changed and why. See the <a href="AI_POLICY.html">AI Policy</a> for what this means in practice. AI-generated descriptions are not acceptable.</li>
+<li>Do not add issue or PR numbers to the title manually. To close an issue automatically, add the closing keyword in a comment instead.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="ai">AI<a class="anchor" aria-label="anchor" href="#ai"></a></h3>
+<ul><li>Any use of AI tools to assist with code or documentation is disclosed in the opening PR comment, including the specific tool and version. See the <a href="AI_POLICY.html">AI Policy</a> for the full requirements.</li>
+</ul></div>
 </div>
 <div class="section level2">
 <h2 id="pull-request-titles">Pull Request Titles<a class="anchor" aria-label="anchor" href="#pull-request-titles"></a></h2>
