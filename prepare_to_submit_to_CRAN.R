@@ -14,7 +14,7 @@ library(covr)
 devtools::check()
 
 # Check package coverage
-#covr::package_coverage()
+covr::package_coverage()
 
 # Run tests
 devtools::test()
