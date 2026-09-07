@@ -119,7 +119,7 @@ All PRs **must** meet the following requirements before being accepted.
 
 - Any use of AI tools to assist with code or documentation is disclosed
   in the opening PR comment, including the specific tool and version.
-  See the [AI Policy](AI_POLICY.md) for the full requirements.
+  See the [AI Policy](inst/AI_POLICY.md) for the full requirements.
 
 ## Pull Request Titles
 
