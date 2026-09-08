@@ -20,6 +20,7 @@ test_that("acro_crosstab works", {
 })
 
 test_that("acro_crosstab works with margins", {
+  testthat::skip_on_cran()
   acro_init()
   p_table <- acro_crosstab(index = nursery_data[, c("health")], columns = nursery_data[, c("finance")], margins = TRUE)
 
@@ -60,6 +61,7 @@ test_that("acro_crosstab works with aggregation function", {
 # })
 
 test_that("acro_crosstab throws an error for missing values", {
+  testthat::skip_on_cran()
   acro_init()
   expect_error(
     acro_crosstab(

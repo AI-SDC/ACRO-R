@@ -11,6 +11,7 @@ test_that("acro_pie works", {
 })
 
 test_that("acro_pie gives a warning on unused arguments", {
+  testthat::skip_on_cran()
   acro_init()
   expect_warning(
     acro_pie(data = nursery_data, column = "children", fake_arg = 123),
@@ -19,6 +20,7 @@ test_that("acro_pie gives a warning on unused arguments", {
 })
 
 test_that("acro_pie handles the border parameter", {
+  testthat::skip_on_cran()
   acro_init()
   result <- acro_pie(
     data = nursery_data,
@@ -30,6 +32,7 @@ test_that("acro_pie handles the border parameter", {
 })
 
 test_that("acro_pie handles the line (lty) parameter", {
+  testthat::skip_on_cran()
   acro_init()
   expect_silent(acro_pie(data = nursery_data, column = "children", lty = 0))
   expect_silent(acro_pie(data = nursery_data, column = "children", lty = "blank"))

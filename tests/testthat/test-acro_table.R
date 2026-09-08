@@ -196,6 +196,7 @@ test_that("acro_table works with the exclude parameter", {
 })
 
 test_that("warning is triggered and NAs are removed from exclude list", {
+  testthat::skip_on_cran()
   exclude_list <- c("usual", NA, NaN)
 
   acro_init()
