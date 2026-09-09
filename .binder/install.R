@@ -1,3 +1,6 @@
+
 install.packages("reticulate")
 install.packages("farff")
-install.packages(".", repos = NULL, type = "source")
+
+if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
+remotes::install_local(".", dependencies = TRUE, upgrade = "never")
