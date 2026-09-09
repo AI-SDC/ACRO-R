@@ -1,3 +1,3 @@
 install.packages("reticulate")
 install.packages("farff")
-install.packages("acro")
+install.packages(".", repos = NULL, type = "source")
