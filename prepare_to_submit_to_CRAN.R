@@ -29,7 +29,7 @@ devtools::test()
 spelling::spell_check_package()
 
 # check your package on several platforms
-# depreacted in rhubv2 rhub::check_for_cran()
+# deprecated in rhubv2 rhub::check_for_cran()
 devtools::check_win_devel()
 
 
