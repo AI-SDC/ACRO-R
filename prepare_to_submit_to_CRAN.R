@@ -35,10 +35,10 @@ devtools::check_win_devel()
 
 # If you would like to add comments to CRAN team
 # Creates cran-comments.md, a template for your communications with CRAN when submitting a package.
-#usethis::use_cran_comments(open = rlang::is_interactive())
+# usethis::use_cran_comments(open = rlang::is_interactive())
 
 # If you are submitting a new version to CRAN, Upgrade version number using this command or you can do it manually
-#usethis::use_version(which = c("patch", "minor", "major", "dev")[1])
+# usethis::use_version(which = c("patch", "minor", "major", "dev")[1])
 
 # When you are happy with the package and want to submit it to CRAN, you can do this manually by converting the package source directory into a single bundled file and submit this file to CRAN (https://xmpalantir.wu.ac.at/cransubmit/)
 devtools::build()
