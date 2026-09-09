@@ -14,6 +14,7 @@ test_that("acro_hist works", {
 unlink("acro_artifacts", recursive = TRUE)
 
 test_that("Python and R counts mismatch when using raw breaks (proving why the offset is needed)", {
+  testthat::skip_on_cran()
   # Define test data containing exact boundary values
   test_df <- data.frame(hours = c(0, 5, 10, 10, 15, 20, 20, 25, 30, 40))
 
@@ -33,6 +34,7 @@ test_that("Python and R counts mismatch when using raw breaks (proving why the o
 
 test_that("NumPy histogram counts match R counts when using the offset breaks", {
   # Define test data containing exact boundary values
+  testthat::skip_on_cran()
   test_df <- data.frame(hours = c(0, 5, 10, 10, 15, 20, 20, 25, 30, 40))
 
   # R histogram
@@ -53,6 +55,7 @@ test_that("NumPy histogram counts match R counts when using the offset breaks", 
 
 test_that("NumPy histogram counts match R counts with offset breaks using float data", {
   # Define a test data frame with floating-point values, including exact boundaries
+  testthat::skip_on_cran()
   test_df <- data.frame(hours = c(1.5, 5.2, 10.0, 12.4, 15.8, 20.0, 22.1, 27.5, 30.0, 38.6))
 
   # R histogram
@@ -72,6 +75,7 @@ test_that("NumPy histogram counts match R counts with offset breaks using float 
 
 test_that("NumPy histogram counts match R counts with offset breaks when breaks are the default (sturges)", {
   # Define a test data frame with floating-point values, including exact boundaries
+  testthat::skip_on_cran()
   test_df <- data.frame(hours = c(1.5, 5.2, 10.0, 12.4, 15.8, 20.0, 22.1, 27.5, 30.0, 38.6))
 
   # R histogram

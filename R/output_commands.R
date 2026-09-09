@@ -123,3 +123,29 @@ acro_disable_suppression <- function() {
   }
   acroEnv$ac$disable_suppression()
 }
+
+#' Turns rounding on during a session
+#'
+#' @param base The base to round to
+#'
+#' @return No return value, called for side effects
+#' @export
+
+acro_enable_rounding <- function(base = NULL) {
+  if (is.null(acroEnv$ac)) {
+    stop("ACRO has not been initialised. Please first call acro_init().")
+  }
+  acroEnv$ac$enable_rounding(base = base)
+}
+
+#' Turns rounding off during a session
+#'
+#' @return No return value, called for side effects
+#' @export
+
+acro_disable_rounding <- function() {
+  if (is.null(acroEnv$ac)) {
+    stop("ACRO has not been initialised. Please first call acro_init().")
+  }
+  acroEnv$ac$disable_rounding()
+}

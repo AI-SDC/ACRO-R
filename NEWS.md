@@ -1,3 +1,11 @@
+# acro 1.0.0
+* Added support for tidyverse e.g. piping and the summarise() method
+* Added support for rounding as a mitigation strategy for tables
+* Added support for pie charts
+* Improved compatibility between acro_hist() and R's histogram function
+* Improved support for options in crosstab() and pivot_table()
+* Improved support of functionality from R's built-in table() command and acro_table()
+* Support the ontology-driven version of acro (v1 onwards)
 
 # acro 0.1.7
 * Added support for installation via conda
@@ -5,7 +13,7 @@
 * Added support for specifying whether suppression is on or off when acro session is started
 * Added support for toggling suppression dynamically during session via   `acro_enable_supression()`
   and `acro_disable_suppression()`
-* Improved documentation in package and at [https://sacro-tools.org/](https://sacro-tools.org/)
+* Improved documentation in package and at 'https://acro-r.sacro-tools.org/'
 * Added Support for variable names with spaces when calling crosstab
 * Set status of disclosive outputs to 'review' (previously 'fail') when suppression has been applied
 * Automatically add exception message when applying suppression to an output
