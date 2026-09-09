@@ -2,6 +2,8 @@
 
 ## acro 1.0.0
 
+CRAN release: 2026-09-09
+
 - Added support for tidyverse e.g. piping and the summarise() method
 - Added support for rounding as a mitigation strategy for tables
 - Added support for pie charts
