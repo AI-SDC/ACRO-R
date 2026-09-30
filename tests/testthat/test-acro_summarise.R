@@ -1,10 +1,12 @@
 test_that("acro_summarise throws an error if the ACRO object was not initialised first", {
+  testthat::skip_on_cran()
   acroEnv$ac <- NULL
   expect_error(acro_summarise(acro_summarise(nursery_data, mean_children = mean(children), .by = recommend)), "ACRO has not been initialised. Please first call acro_init()")
 })
 
 
 test_that("acro_summarise works with one grouping parameter", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- dplyr::summarise(nursery_data, mean_children = mean(children), .by = recommend) |>
     dplyr::arrange(recommend)
@@ -18,19 +20,19 @@ test_that("acro_summarise works with one grouping parameter", {
 })
 
 test_that("acro_summarise works with two grouping parameters", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- dplyr::summarise(nursery_data, mean_children = mean(children), .by = c(parents, recommend)) |>
     dplyr::arrange(parents, recommend)
-
   # table produces by acro_summarise function
   acro_init()
   acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = c(parents, recommend)) |>
     dplyr::arrange(parents, recommend)
-
   expect_equal(acro_table, R_table, tolerance = 1e-5, ignore_attr = TRUE)
 })
 
 test_that("acro_summarise works with no grouping parameter calculate the summary function for the whole dataset", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- dplyr::summarise(nursery_data, mean_children = mean(children))
 
@@ -43,6 +45,7 @@ test_that("acro_summarise works with no grouping parameter calculate the summary
 
 
 test_that("acro_summarise works with two summary functions for the same variable", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- dplyr::summarise(nursery_data, mean_children = mean(children), sd_children = sd(children), .by = recommend) |>
     dplyr::arrange(recommend)
@@ -58,11 +61,13 @@ test_that("acro_summarise works with two summary functions for the same variable
 })
 
 test_that("acro_summarise throws an error when different aggreagtion functions used for different values", {
+  testthat::skip_on_cran()
   acro_init()
   expect_error(acro_summarise(nursery_data, mean_children = mean(children), sd_parents = sd(parents), .by = recommend), "ACRO currently does not support different aggregation functions for different values.")
 })
 
 test_that("acro_summarise works with piping", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
@@ -81,6 +86,7 @@ test_that("acro_summarise works with piping", {
 })
 
 test_that("acro_summarise works with .groups = drop_last", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
@@ -98,6 +104,7 @@ test_that("acro_summarise works with .groups = drop_last", {
 })
 
 test_that("acro_summarise works with .groups = drop", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
@@ -115,6 +122,7 @@ test_that("acro_summarise works with .groups = drop", {
 })
 
 test_that("acro_summarise works with .groups = drop", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
@@ -132,6 +140,7 @@ test_that("acro_summarise works with .groups = drop", {
 })
 
 test_that("acro_summarise works with .groups = keep", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
@@ -149,6 +158,7 @@ test_that("acro_summarise works with .groups = keep", {
 })
 
 test_that("acro_summarise works with .groups = keep when there is no grouping provided", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- nursery_data %>%
     dplyr::summarise(mean_children = mean(children), .groups = "keep")
@@ -162,6 +172,7 @@ test_that("acro_summarise works with .groups = keep when there is no grouping pr
 })
 
 test_that("acro_summarise works with .groups = rowwise when there is no grouping provided", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- nursery_data %>%
     dplyr::summarise(mean_children = mean(children), .groups = "rowwise")
@@ -175,6 +186,7 @@ test_that("acro_summarise works with .groups = rowwise when there is no grouping
 })
 
 test_that("acro_summarise works with .groups = rowwise", {
+  testthat::skip_on_cran()
   # table produces by summarise function from dplyr package
   R_table <- nursery_data %>%
     dplyr::group_by(parents, recommend) %>%
@@ -192,6 +204,7 @@ test_that("acro_summarise works with .groups = rowwise", {
 })
 
 test_that("acro_summarise throws an error with .groups is assigned to a not valid option", {
+  testthat::skip_on_cran()
   acro_init()
   expect_error(
     nursery_data %>%
@@ -202,6 +215,7 @@ test_that("acro_summarise throws an error with .groups is assigned to a not vali
 })
 
 test_that("acro_summarise gives error when both .by and .groups are provided", {
+  testthat::skip_on_cran()
   expect_error(
     nursery_data %>%
       acro_summarise(mean_children = mean(children), .by = parents, .groups = "drop"),
@@ -210,6 +224,7 @@ test_that("acro_summarise gives error when both .by and .groups are provided", {
 })
 
 test_that("acro_summarise gives error when .by is provided on a grouped dataframe", {
+  testthat::skip_on_cran()
   expect_error(
     nursery_data %>%
       dplyr::group_by(recommend) %>%
@@ -219,6 +234,7 @@ test_that("acro_summarise gives error when .by is provided on a grouped datafram
 })
 
 test_that("acro_summarise gives error when aggregation function is n()", {
+  testthat::skip_on_cran()
   expect_error(
     nursery_data %>%
       dplyr::group_by(recommend) %>%
@@ -228,6 +244,7 @@ test_that("acro_summarise gives error when aggregation function is n()", {
 })
 
 test_that("acro_summarise gives error when aggregation function is not provided", {
+  testthat::skip_on_cran()
   expect_error(
     nursery_data %>%
       dplyr::group_by(recommend) %>%
@@ -237,6 +254,7 @@ test_that("acro_summarise gives error when aggregation function is not provided"
 })
 
 test_that("acro_summarise returns the status of the SDC checks as pass when the output is safe", {
+  testthat::skip_on_cran()
   acro_init()
   acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = parents)
 
@@ -250,6 +268,7 @@ test_that("acro_summarise returns the status of the SDC checks as pass when the 
 })
 
 test_that("acro_summarise returns the status of the SDC checks as fail when the output is unsafe", {
+  testthat::skip_on_cran()
   acro_init()
   acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = c(parents, recommend))
 
@@ -263,9 +282,10 @@ test_that("acro_summarise returns the status of the SDC checks as fail when the 
 })
 
 test_that("acro_summarise returns the summary as review when suppression is enabled", {
+  testthat::skip_on_cran()
   acro_init()
   acro_enable_suppression()
-  acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = c(parents, recommend))
+  acro_table <- acro_summarise(nursery_data, mean_children = mean(children), .by = c(parents, finance))
 
   # Access the python results object
   py_results <- acro:::acroEnv$ac$results

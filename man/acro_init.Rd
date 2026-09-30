@@ -7,6 +7,9 @@
 acro_init(
   config = "default",
   suppress = FALSE,
+  mitigation = NULL,
+  round_base = NULL,
+  federated = NULL,
   envname = acro_venv,
   use_conda = NULL
 )
@@ -15,6 +18,12 @@ acro_init(
 \item{config}{Name of a yaml configuration file with safe parameters.}
 
 \item{suppress}{Whether to automatically apply suppression.}
+
+\item{mitigation}{The disclosure-control strategy applied to outputs, one of "none","suppress", "round".}
+
+\item{round_base}{The base to round to when mitigation == "round".}
+
+\item{federated}{Whether to run in federated mode.}
 
 \item{envname}{Name of the Python environment to use.}
 
