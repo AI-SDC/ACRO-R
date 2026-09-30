@@ -147,7 +147,7 @@ if (!requireNamespace("acro", quietly = TRUE)) {
 #' Note that when the cell runs it should report (possibly in a different coloured
 #' font/background):
 #'
-#' -   what version of acro is running: *this should be 0.4.12 or above*
+#' -   what version of acro is running: *this should be 1.0.2 or above*
 #'
 #' -   the TRE's risk appetite: that define the rules your outputs will be checked against.
 #'
@@ -352,7 +352,7 @@ table4
 #'     -   you can also pass a list of aggregation functions e.g.
 #'         `aggfunc <-list("mean","median")`
 #'     -   NB we have recently had reports of instability when automatically suppressing
-#'         tables with multiple aggregation functions, one of which is "std". This should be fixed in
+#'         tables with multiple aggregation functions, one of which is "std". This is addressed in
 #'         versions 1.0 and above which implement suppression differently.
 #'
 #'       For acro_summarise():
