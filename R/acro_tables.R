@@ -177,6 +177,8 @@ acro_table <- function(index, columns, dnn = NULL, deparse.level = 0, useNA = "n
 #' @returns Summary of the data
 #' @export
 
+#' @importFrom stats complete.cases
+
 acro_summarise <- function(.data, ..., .groups = NULL, .by = NULL) {
   if (is.null(acroEnv$ac)) {
     stop("ACRO has not been initialised. Please first call acro_init()")
