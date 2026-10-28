@@ -21,6 +21,8 @@ automatic cell suppression for small counts.
   functions
 - **[`table()`](https://rdrr.io/r/base/table.html)** - Simple frequency
   tables for categorical data (R interface only)
+- **`summarise()`** - Creates summary statistics for data frames
+  (similar to tidyverse summarise()
 
 **Technical Details:**
 
