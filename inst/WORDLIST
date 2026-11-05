@@ -39,3 +39,6 @@ tidyverse
 www
 xlsx
 yaml
+CoxPHFitter
+multistate
+Surv
