@@ -66,43 +66,6 @@ acro_coxph <- function(formula, data, weights = NULL, subset = NULL, na.action =
     stop("Multi-state models utilizing 'istate' or 'statedata' are not supported at the moment.")
   }
 
-  # Handle subsetting if provided
-  if (!missing(subset)) {
-    subset_expr <- substitute(subset)
-    subsetted_columns <- eval(subset_expr, data)
-    data <- data[subsetted_columns & !is.na(subsetted_columns), ]
-  }
-
-  # Handle na.action
-  if (is.null(na.action)) {
-    na.action <- getOption("na.action")
-  }
-
-  na_function <- match.fun(na.action)
-  data <- na_function(data)
-
-  # Parse the formula to extract duration and event columns from the left-hand side
-  surv_func <- formula[[2]]
-  if (!inherits(surv_func, "call") || as.character(surv_func[[1]]) != "Surv") {
-    stop("The left-hand side of the formula must use Surv(), e.g., Surv(time, event) ~ x1 + x2")
-  }
-  duration_col <- as.character(surv_func[[2]])
-  event_col <- as.character(surv_func[[3]])
-
-  # Validate and transform event column for python lifelines
-  event_values <- unique(na.omit(data[[event_col]]))
-
-  if (all(event_values %in% c(1, 2))) {
-    data[[event_col]][data[[event_col]] == 1] <- 0
-    data[[event_col]][data[[event_col]] == 2] <- 1
-  } else if (!all(event_values %in% c(0, 1))) {
-    # If it's neither {1, 2} nor {0, 1}, throw an error
-    stop(paste0("In Surv(", duration_col, ", ", event_col, ") : Invalid status values"))
-  }
-
-  # Extract the right-hand side (independent variables) as a formula string
-  independent_vars <- deparse(formula[[3]])
-
   # Handle weights if provided as a column or a vector
   weights_col <- NULL
   if (!missing(weights)) {
@@ -142,6 +105,43 @@ acro_coxph <- function(formula, data, weights = NULL, subset = NULL, na.action =
       robust <- TRUE # Automatically trigger robust variance when clustering is provided
     }
   }
+
+  # Handle subsetting if provided
+  if (!missing(subset)) {
+    subset_expr <- substitute(subset)
+    subsetted_columns <- eval(subset_expr, data)
+    data <- data[subsetted_columns & !is.na(subsetted_columns), ]
+  }
+
+  # Handle na.action
+  if (is.null(na.action)) {
+    na.action <- getOption("na.action")
+  }
+
+  na_function <- match.fun(na.action)
+  data <- na_function(data)
+
+  # Parse the formula to extract duration and event columns from the left-hand side
+  surv_func <- formula[[2]]
+  if (!inherits(surv_func, "call") || as.character(surv_func[[1]]) != "Surv") {
+    stop("The left-hand side of the formula must use Surv(), e.g., Surv(time, event) ~ x1 + x2")
+  }
+  duration_col <- as.character(surv_func[[2]])
+  event_col <- as.character(surv_func[[3]])
+
+  # Validate and transform event column for python lifelines
+  event_values <- unique(na.omit(data[[event_col]]))
+
+  if (all(event_values %in% c(1, 2))) {
+    data[[event_col]][data[[event_col]] == 1] <- 0
+    data[[event_col]][data[[event_col]] == 2] <- 1
+  } else if (!all(event_values %in% c(0, 1))) {
+    # If it's neither {1, 2} nor {0, 1}, throw an error
+    stop(paste0("In Surv(", duration_col, ", ", event_col, ") : Invalid status values"))
+  }
+
+  # Extract the right-hand side (independent variables) as a formula string
+  independent_vars <- deparse(formula[[3]])
 
   # Check for any unused arguments
   if (length(list(...)) > 0) {

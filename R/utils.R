@@ -1,10 +1,6 @@
 #' Identify empty values; NA or NaN in an object
 #'
-#' @param Values to check for empty values in it
-#'
-#' @returns logical vector that shows the places of the empty values
 #' @noRd
-
 is_invalid <- function(Values) {
   # Check for NA or NaN in the object
   is.na(Values) | tolower(Values) %in% c("na", "nan")
@@ -12,12 +8,7 @@ is_invalid <- function(Values) {
 
 #' Identify values to be excluded from an object
 #'
-#' @param Values to exclude from
-#' @param exclude_list Items to exclude from the values
-#'
-#' @returns logical vector that shows the places of the items that needs to be excluded
 #' @noRd
-
 is_excluded <- function(Values, exclude_list) {
   # Catch everything in the exclude list
   mask <- Values %in% exclude_list
@@ -39,12 +30,7 @@ is_excluded <- function(Values, exclude_list) {
 
 #' Convert data to factors and manage NA levels
 #'
-#' @param Values to create factors on
-#' @param useNA  whether to include NA values in the table
-#'
-#' @returns R vector factor
 #' @noRd
-
 create_factors <- function(Values, useNA) {
   # Check for NAs
   char_values <- as.character(Values)
@@ -64,12 +50,7 @@ create_factors <- function(Values, useNA) {
 
 #' Convert an R factor to a Pandas Categorical
 #'
-#' @param Values R factor vector to be converted
-#' @param pd Reference to the Python `pandas` module
-#'
-#' @returns A Python `pandas.Categorical` object
 #' @noRd
-
 to_pandas_categorical <- function(Values, pd) {
   # Build the Pandas Categorical
   pd$Categorical(
@@ -79,6 +60,7 @@ to_pandas_categorical <- function(Values, pd) {
   )
 }
 
+#' @noRd
 parse_summary_expression <- function(quo) {
   expr <- rlang::quo_get_expr(quo)
 
@@ -117,6 +99,7 @@ parse_summary_expression <- function(quo) {
   )
 }
 
+#' @noRd
 get_offset_hist_breaks <- function(data, column, breaks = "sturges") {
   # Extract the column from the data
   r_column <- data[[column]]
