@@ -112,6 +112,8 @@ Text](inst/Images/logo_print.png)
   outputs
 - [`acro_add_exception()`](acro_add_exception.md) : Adds an exception
   request to an output.
+- [`acro_coxph()`](acro_coxph.md) : Fits a Cox proportional hazards
+  regression model.
 - [`acro_crosstab()`](acro_crosstab.md) : Compute a simple cross
   tabulation of two (or more) factors.
 - [`acro_custom_output()`](acro_custom_output.md) : Adds an unsupported
