@@ -2,7 +2,7 @@
 % Please edit documentation in R/acro_regression.R
 \name{acro_coxph}
 \alias{acro_coxph}
-\title{Fits a Cox proportional hazards regression model}
+\title{Fits a Cox proportional hazards regression model.}
 \usage{
 acro_coxph(
   formula,
@@ -45,5 +45,10 @@ acro_coxph(
 Fitted CoxPHFitter results object
 }
 \description{
-Fits a Cox proportional hazards regression model
+Fits a Cox proportional hazards model via ACRO. This function is designed
+as a drop-in replacement for \code{survival::coxph()}.
+}
+\details{
+Please note that multi-state models (using \code{istate} or \code{statedata})
+and time-varying covariate models are currently not supported.
 }

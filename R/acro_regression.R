@@ -37,7 +37,15 @@ acro_glm <- function(formula, data, family) {
   model$summary()
 }
 
-#' Fits a Cox proportional hazards regression model
+#' Fits a Cox proportional hazards regression model.
+#'
+#' @description
+#' Fits a Cox proportional hazards model via ACRO. This function is designed
+#' as a drop-in replacement for \code{survival::coxph()}.
+#'
+#' @details
+#' Please note that multi-state models (using \code{istate} or \code{statedata})
+#' and time-varying covariate models are currently not supported.
 #'
 #' @param formula a formula object, with the response on the left of a ~ operator, and the terms on the right. The response must be a survival object as returned by the Surv function.
 #' @param data a data.frame in which to interpret the variables named in the formula, or in the subset and the weights argument.
@@ -68,6 +76,7 @@ acro_coxph <- function(formula, data, weights = NULL, subset = NULL, na.action =
 
   model_data <- as.data.frame(data)
 
+  # Handle weights
   weights_col <- NULL
   if (!missing(weights)) {
     res <- resolve_optional_column(substitute(weights), model_data, "weights", "acro_weight")
@@ -75,7 +84,7 @@ acro_coxph <- function(formula, data, weights = NULL, subset = NULL, na.action =
     model_data <- res$data
   }
 
-  # 4. Handle cluster using the helper function
+  # Handle cluster
   cluster_col <- NULL
   if (!missing(cluster)) {
     res <- resolve_optional_column(substitute(cluster), model_data, "cluster", "acro_cluster")
