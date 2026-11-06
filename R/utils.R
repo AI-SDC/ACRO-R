@@ -114,3 +114,29 @@ get_offset_hist_breaks <- function(data, column, breaks = "sturges") {
   }
   return(breaks)
 }
+
+
+#' Helper to resolve external inputs (weights, cluster)
+#' @noRd
+resolve_optional_column <- function(expr, data, arg_name, prefix) {
+  optional_col <- NULL
+  if (!missing(expr)) {
+    col_expr <- substitute(optional_col)
+    if (!is.null(col_expr)) {
+      # If exp passed as a quoted character string matching a column name
+      if (is.character(col_expr) && col_expr %in% names(data)) {
+        optional_col <- col_expr
+      }
+      # If exp passed as an unquoted column name
+      else if (deparse(col_expr) %in% names(data)) {
+        optional_col <- deparse(col_expr)
+      }
+      # If exp passed as an external vector, expression, or function
+      else {
+        optional_col <- paste0("acro_additional_", sample(10000:99999, 1))
+        data[[optional_col]] <- eval(col_expr, data, parent.frame())
+      }
+    }
+  }
+  return(list(col_name = optional_col, data = data))
+}

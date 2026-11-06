@@ -94,7 +94,7 @@ test_that("acro_coxph with na.action", {
   )
 })
 
-test_that("acro_coxph with unvalid status options(eg. having a status as 4)", {
+test_that("acro_coxph with invalid status options(eg. having a status as 4)", {
   acro_init()
   test_data$status[test_data$status == 1] <- 4
 
@@ -252,6 +252,6 @@ test_that("acro_coxph warns on unused arguments in ...", {
 
   expect_warning(
     acro_coxph(Surv(time, status) ~ age, data = test_data, dump_arg = 999),
-    "Unused arguments were provided: dump_arg"
+    "Unsupported arguments were provided: dump_arg"
   )
 })

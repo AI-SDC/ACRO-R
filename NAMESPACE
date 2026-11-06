@@ -24,5 +24,7 @@ export(acro_surv_func)
 export(acro_table)
 importFrom(stats,
   complete.cases,
-  na.omit
+  model.frame,
+  na.omit,
+  terms
 )

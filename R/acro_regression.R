@@ -54,7 +54,7 @@ acro_glm <- function(formula, data, family) {
 #' @returns Fitted CoxPHFitter results object
 #' @export
 
-#' @importFrom stats na.omit
+#' @importFrom stats na.omit terms model.frame
 
 acro_coxph <- function(formula, data, weights = NULL, subset = NULL, na.action = NULL, robust = TRUE, init = NULL, cluster = NULL, istate = NULL, statedata = NULL, ...) {
   if (is.null(acroEnv$ac)) {
@@ -66,51 +66,29 @@ acro_coxph <- function(formula, data, weights = NULL, subset = NULL, na.action =
     stop("Multi-state models utilizing 'istate' or 'statedata' are not supported at the moment.")
   }
 
-  # Handle weights if provided as a column or a vector
+  model_data <- as.data.frame(data)
+
   weights_col <- NULL
   if (!missing(weights)) {
-    weights_expr <- substitute(weights)
-    if (!is.null(weights_expr)) {
-      # If weights passed as a quoted character string matching a column name
-      if (is.character(weights_expr) && weights_expr %in% names(data)) {
-        weights_col <- weights_expr
-      }
-      # If weights passed as an unquoted column name
-      else if (deparse(weights_expr) %in% names(data)) {
-        weights_col <- deparse(weights_expr)
-      }
-      # If weights passed as an external vector, expression, or function
-      else {
-        data$acro_weight_col__ <- eval(weights_expr, data, parent.frame())
-        weights_col <- "acro_weight_col__"
-      }
-    }
+    res <- resolve_optional_column(substitute(weights), model_data, "weights", "acro_weight")
+    weights_col <- res$col_name
+    model_data <- res$data
   }
 
-  # Handle cluster
+  # 4. Handle cluster using the helper function
   cluster_col <- NULL
   if (!missing(cluster)) {
-    cluster_expr <- substitute(cluster)
-    if (!is.null(cluster_expr)) {
-      if (is.character(cluster_expr) && cluster_expr %in% names(data)) {
-        cluster_col <- cluster_expr
-      } else if (deparse(cluster_expr) %in% names(data)) {
-        cluster_col <- deparse(cluster_expr)
-      }
-      # If weights passed as an external vector, expression, or function
-      else {
-        data$acro_cluster_col__ <- eval(cluster_expr, data, parent.frame())
-        cluster_col <- "acro_cluster_col__"
-      }
-      robust <- TRUE # Automatically trigger robust variance when clustering is provided
-    }
+    res <- resolve_optional_column(substitute(cluster), model_data, "cluster", "acro_cluster")
+    cluster_col <- res$col_name
+    model_data <- res$data
+    robust <- TRUE # Clustering implies robust variance
   }
 
   # Handle subsetting if provided
   if (!missing(subset)) {
     subset_expr <- substitute(subset)
-    subsetted_columns <- eval(subset_expr, data)
-    data <- data[subsetted_columns & !is.na(subsetted_columns), ]
+    subsetted_columns <- eval(subset_expr, model_data)
+    model_data <- model_data[subsetted_columns & !is.na(subsetted_columns), ]
   }
 
   # Handle na.action
@@ -119,7 +97,7 @@ acro_coxph <- function(formula, data, weights = NULL, subset = NULL, na.action =
   }
 
   na_function <- match.fun(na.action)
-  data <- na_function(data)
+  model_data <- na_function(model_data)
 
   # Parse the formula to extract duration and event columns from the left-hand side
   surv_func <- formula[[2]]
@@ -130,26 +108,30 @@ acro_coxph <- function(formula, data, weights = NULL, subset = NULL, na.action =
   event_col <- as.character(surv_func[[3]])
 
   # Validate and transform event column for python lifelines
-  event_values <- unique(na.omit(data[[event_col]]))
+  event_values <- unique(na.omit(model_data[[event_col]]))
 
   if (all(event_values %in% c(1, 2))) {
-    data[[event_col]][data[[event_col]] == 1] <- 0
-    data[[event_col]][data[[event_col]] == 2] <- 1
+    model_data[[event_col]][model_data[[event_col]] == 1] <- 0
+    model_data[[event_col]][model_data[[event_col]] == 2] <- 1
   } else if (!all(event_values %in% c(0, 1))) {
     # If it's neither {1, 2} nor {0, 1}, throw an error
     stop(paste0("In Surv(", duration_col, ", ", event_col, ") : Invalid status values"))
   }
 
-  # Extract the right-hand side (independent variables) as a formula string
-  independent_vars <- deparse(formula[[3]])
+  # Extract the right-hand side (independent variables) using terms()
+  trm <- terms(formula, data = model_data)
+  term_labels <- attr(trm, "term.labels")
+
+  # Collapse back into a robust formula string
+  independent_vars <- paste(term_labels, collapse = " + ")
 
   # Check for any unused arguments
   if (length(list(...)) > 0) {
-    warning("Unused arguments were provided: ", paste0(names(list(...)), collapse = ", "), "\n", "Please use the help command to learn more about the function.")
+    warning("Unsupported arguments were provided: ", paste0(names(list(...)), collapse = ", "), "\n", "Please use the help command to learn more about the function.")
   }
 
   model <- acroEnv$ac$coxph(
-    df = data,
+    df = model_data,
     duration_col = duration_col,
     event_col = event_col,
     weights_col = weights_col,
@@ -158,4 +140,6 @@ acro_coxph <- function(formula, data, weights = NULL, subset = NULL, na.action =
     initial_point = init,
     cluster_col = cluster_col
   )
+
+  return(model)
 }
