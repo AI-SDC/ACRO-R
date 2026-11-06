@@ -8,7 +8,7 @@ test_that("acro_coxph without initialising ACRO object first", {
 test_that("acro_coxph throws an error with multi-state arguments", {
   acro_init()
   expect_error(
-    acro_coxph(Surv(time, status) ~ age + ph.karno, data = test_data, istate = 1),
+    acro_coxph(survival::Surv(time, status) ~ age + ph.karno, data = test_data, istate = 1),
     "Multi-state models utilizing 'istate' or 'statedata' are not supported at the moment."
   )
   expect_error(

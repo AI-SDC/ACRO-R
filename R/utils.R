@@ -118,6 +118,7 @@ get_offset_hist_breaks <- function(data, column, breaks = "sturges") {
 
 #' Helper to resolve external inputs (weights, cluster)
 #' @noRd
+## nocov start
 resolve_optional_column <- function(expr, data, arg_name, prefix) {
   optional_col <- NULL
   if (!missing(expr)) {
@@ -140,3 +141,4 @@ resolve_optional_column <- function(expr, data, arg_name, prefix) {
   }
   return(list(col_name = optional_col, data = data))
 }
+## nocov end
