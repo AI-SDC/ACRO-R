@@ -1,4 +1,4 @@
-test_data <-  lung
+test_data <- lung
 
 test_that("acro_coxph without initialising ACRO object first", {
   acroEnv$ac <- NULL
@@ -107,7 +107,7 @@ test_that("acro_coxph with unvalid status options(eg. having a status as 4)", {
 test_that("acro_coxph with weights as a column from the dataset", {
   acro_init()
 
-  #add a weight column in the dataset
+  # add a weight column in the dataset
   test_data$my_weights <- runif(nrow(test_data), 0.8, 1.2)
 
   # R survival model
@@ -132,7 +132,7 @@ test_that("acro_coxph with weights as a column from the dataset", {
 test_that("acro_coxph with weights as a string column name from the dataset", {
   acro_init()
 
-  #add a weight column in the dataset
+  # add a weight column in the dataset
   test_data$my_weights <- runif(nrow(test_data), 0.8, 1.2)
 
   # R survival model
@@ -157,8 +157,8 @@ test_that("acro_coxph with weights as a string column name from the dataset", {
 test_that("acro_coxph with weights provided by the user", {
   acro_init()
 
-  #define a vector weight
-  my_weights <-  runif(nrow(test_data), 0.8, 1.2)
+  # define a vector weight
+  my_weights <- runif(nrow(test_data), 0.8, 1.2)
   # R survival model
   r_model <- survival::coxph(Surv(time, status) ~ age + ph.karno, data = test_data, weights = my_weights)
   r_coefs <- stats::coef(r_model)
@@ -174,7 +174,7 @@ test_that("acro_coxph with weights provided by the user", {
   expect_equal(
     reticulate::py_to_r(unname(acro_model$params_["ph.karno"])),
     unname(r_coefs["ph.karno"]),
-   tolerance = 0.02
+    tolerance = 0.02
   )
 })
 
@@ -225,7 +225,7 @@ test_that("acro_coxph with cluster as a quoted column name in the dataset", {
 test_that("acro_coxph with cluster provided by the user", {
   acro_init()
 
-  #define a cluster vector
+  # define a cluster vector
   my_cluster <- sample(1:10, size = nrow(lung), replace = TRUE)
 
   # R survival model
