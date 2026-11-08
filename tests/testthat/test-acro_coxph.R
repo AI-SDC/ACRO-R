@@ -7,6 +7,7 @@ test_that("acro_coxph without initialising ACRO object first", {
 })
 
 test_that("acro_coxph throws an error with multi-state arguments", {
+  testthat::skip_on_cran()
   acro_init()
   expect_error(
     acro_coxph(Surv(time, status) ~ age + ph.karno, data = test_data, istate = 1),
@@ -19,6 +20,7 @@ test_that("acro_coxph throws an error with multi-state arguments", {
 })
 
 test_that("acro_coxph validates the left side of the formula uses Surv() function", {
+  testthat::skip_on_cran()
   acro_init()
   expect_error(
     acro_coxph(time ~ age + ph.karno, data = test_data),
@@ -27,6 +29,7 @@ test_that("acro_coxph validates the left side of the formula uses Surv() functio
 })
 
 test_that("acro_coxph works", {
+  testthat::skip_on_cran()
   acro_init()
 
   # R Survival model
@@ -50,6 +53,7 @@ test_that("acro_coxph works", {
 })
 
 test_that("acro_coxph with subsetting", {
+  testthat::skip_on_cran()
   acro_init()
 
   # R Survival model
@@ -73,6 +77,7 @@ test_that("acro_coxph with subsetting", {
 })
 
 test_that("acro_coxph with na.action", {
+  testthat::skip_on_cran()
   acro_init()
 
   # R Survival model
@@ -96,6 +101,7 @@ test_that("acro_coxph with na.action", {
 })
 
 test_that("acro_coxph with invalid status options(eg. having a status as 4)", {
+  testthat::skip_on_cran()
   acro_init()
   test_data$status[test_data$status == 1] <- 4
 
@@ -106,6 +112,7 @@ test_that("acro_coxph with invalid status options(eg. having a status as 4)", {
 })
 
 test_that("acro_coxph with weights as a column from the dataset", {
+  testthat::skip_on_cran()
   acro_init()
 
   # add a weight column in the dataset
@@ -131,6 +138,7 @@ test_that("acro_coxph with weights as a column from the dataset", {
 })
 
 test_that("acro_coxph with weights as a string column name from the dataset", {
+  testthat::skip_on_cran()
   acro_init()
 
   # add a weight column in the dataset
@@ -156,6 +164,7 @@ test_that("acro_coxph with weights as a string column name from the dataset", {
 })
 
 test_that("acro_coxph with weights provided by the user", {
+  testthat::skip_on_cran()
   acro_init()
 
   # define a vector weight
@@ -180,6 +189,7 @@ test_that("acro_coxph with weights provided by the user", {
 })
 
 test_that("acro_coxph with cluster as a column in the dataset", {
+  testthat::skip_on_cran()
   acro_init()
 
   # R Survival model
@@ -202,6 +212,7 @@ test_that("acro_coxph with cluster as a column in the dataset", {
 })
 
 test_that("acro_coxph with cluster as a quoted column name in the dataset", {
+  testthat::skip_on_cran()
   acro_init()
 
   # R Survival model
@@ -224,6 +235,7 @@ test_that("acro_coxph with cluster as a quoted column name in the dataset", {
 })
 
 test_that("acro_coxph with cluster provided by the user", {
+  testthat::skip_on_cran()
   acro_init()
 
   # define a cluster vector
@@ -249,6 +261,7 @@ test_that("acro_coxph with cluster provided by the user", {
 })
 
 test_that("acro_coxph warns on unused arguments in ...", {
+  testthat::skip_on_cran()
   acro_init()
 
   expect_warning(
