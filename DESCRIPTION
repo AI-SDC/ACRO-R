@@ -28,7 +28,8 @@ Imports:
     rlang,
     tibble,
     tidyselect,
-    utils
+    utils,
+    survival
 Suggests:
     knitr,
     rmarkdown,
