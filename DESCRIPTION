@@ -1,7 +1,7 @@
 Package: acro
 Title: A Tool for Semi-Automating the Statistical Disclosure Control of
     Research Outputs
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: c(
     person("Jim", "Smith", , "James.Smith@uwe.ac.uk", role = c("cre", "ctb"),
            comment = c(ORCID = "0000-0001-7908-1859")),
@@ -9,7 +9,7 @@ Authors@R: c(
     person("Richard John", "Preen", , "Richard2.Preen@uwe.ac.uk", role = c("aut", "ctb"),
            comment = c(ORCID = "0000-0003-3351-8132"))
   )
-Maintainer: Jim Smith <James.Smith@uwe.ac.uk>
+Maintainer: Maha Albashir <Maha.Albashir@uwe.ac.uk>
 Description: A Tool for Semi-Automating the Statistical Disclosure Control
     of Research Outputs.
 License: MIT + file LICENSE
@@ -28,13 +28,13 @@ Imports:
     rlang,
     tibble,
     tidyselect,
-    utils,
-    survival
+    utils
 Suggests:
     knitr,
     rmarkdown,
     spelling,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    survival
 VignetteBuilder:
     knitr
 Config/roxygen2/version: 8.1.1
