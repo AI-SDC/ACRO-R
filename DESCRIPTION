@@ -1,11 +1,11 @@
 Package: acro
 Title: A Tool for Semi-Automating the Statistical Disclosure Control of
     Research Outputs
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: c(
-    person("Jim", "Smith", , "James.Smith@uwe.ac.uk", role = c("cre", "ctb"),
+    person("Jim", "Smith", , "James.Smith@uwe.ac.uk", role = c("aut", "ctb"),
            comment = c(ORCID = "0000-0001-7908-1859")),
-    person("Maha", "Albashir", , "Maha.Albashir@uwe.ac.uk", role = c("aut", "ctb")),
+    person("Maha", "Albashir", , "Maha.Albashir@uwe.ac.uk", role = c("cre", "ctb")),
     person("Richard John", "Preen", , "Richard2.Preen@uwe.ac.uk", role = c("aut", "ctb"),
            comment = c(ORCID = "0000-0003-3351-8132"))
   )
