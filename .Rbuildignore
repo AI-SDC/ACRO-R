@@ -29,3 +29,4 @@
 ^cliff\.toml$
 ^doc$
 ^Meta$
+^CRAN-SUBMISSION$

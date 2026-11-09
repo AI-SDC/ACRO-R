@@ -1,3 +1,6 @@
+#acro 1.1.1
+* Updated the Authors@R field to correctly list maintainer roles.
+
 #acro 1.1.0
 * Added support for Cox Proportional Hazards
 
