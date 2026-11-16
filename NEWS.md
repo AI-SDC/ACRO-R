@@ -68,9 +68,9 @@
 
 ### Fixes
 
-* Fix Python virtual environment creation.
-* Pin Python `acro` package to v0.4.6 for stability.
+* Fix Python virtual environment creation
+* Pin Python `acro` package to v0.4.6 for stability
 
 # acro 0.1.1 (Aug 14, 2024)
 
-* First version.
+* First version
